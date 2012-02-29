@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="i.dont.really.care"
+    package="cs310w10.MoleFinder.View"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -10,8 +10,9 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <activity
-            android:name=".OstrichFarmerActivity"
-            android:label="@string/app_name" >
+            android:name=".ViewActivityMain"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
