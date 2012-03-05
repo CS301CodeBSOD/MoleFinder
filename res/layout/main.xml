@@ -3,33 +3,50 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    <TextView
-        android:id="@+id/MainViewTitleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal|top"
-        android:text="Mole Finder!" />
-
-    <ImageView
-        android:id="@+id/MainViewTitleImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/MainViewTitleText"
-        android:src="@drawable/ic_launcher" />
-
-    <Button
-        android:id="@+id/MainViewNewMoleButton"
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/MainViewTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center_vertical|right"
+            android:text="Mole Finder!"
+            android:textSize="25sp" />
+
+        <ImageView
+            android:id="@+id/MainViewTitleImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:contentDescription="Mole Finder Icon"
+            android:src="@drawable/mole_icon_inverse" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/MainViewAddMoleButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:gravity="center"
-        android:text="New Mole"
-        android:layout_centerVertical="true" />
+        android:text="Add Mole" />
 
     <Button
-        android:id="@+id/MainViewViewMoleListButton"
+        android:id="@+id/MainViewViewMolesButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/MainViewNewMoleButton"
-        android:text="View Mole List" />
+        android:layout_above="@+id/MainViewAddMoleButton"
+        android:text="View Moles" />
+
+    <Button
+        android:id="@+id/MainViewSearchLocationButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/MainViewAddMoleButton"
+        android:text="Search Location" />
 
 </RelativeLayout>
