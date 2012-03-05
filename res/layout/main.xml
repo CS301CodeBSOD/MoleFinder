@@ -1,12 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:layout_height="fill_parent" >
 
     <TextView
+        android:id="@+id/MainViewTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|top"
+        android:text="Mole Finder!" />
+
+    <ImageView
+        android:id="@+id/MainViewTitleImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/MainViewTitleText"
+        android:src="@drawable/ic_launcher" />
+
+    <Button
+        android:id="@+id/MainViewNewMoleButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello" />
+        android:gravity="center"
+        android:text="New Mole"
+        android:layout_centerVertical="true" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/MainViewViewMoleListButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/MainViewNewMoleButton"
+        android:text="View Mole List" />
+
+</RelativeLayout>
