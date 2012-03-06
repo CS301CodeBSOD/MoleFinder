@@ -1,41 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
-    <RelativeLayout
+    android:layout_height="fill_parent" >
+
+    <ImageButton
+        android:id="@+id/ListMoleViewTrashButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@android:drawable/ic_delete" />
+
+    <ImageButton
+        android:id="@+id/ListMoleViewAddButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/ListMoleViewTrashButton"
+        android:src="@android:drawable/ic_input_add" />
+
+    <TextView
         android:layout_width="fill_parent"
-        android:layout_height="50dip" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:text="Moles"
-            android:textSize="36sp" />
-
-        <Button
-            android:id="@+id/ListMoleViewTrashButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:text="~T~" />
-
-        <Button
-            android:id="@+id/ListMoleViewAddButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@id/ListMoleViewTrashButton"
-            android:text="~+~" />
-    </RelativeLayout>
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/ListMoleViewAddButton"
+        android:layout_alignBottom="@id/ListMoleViewAddButton"
+        android:text="Moles"
+        android:textSize="36sp" />
 
     <ListView
         android:id="@+id/ListMoleViewMoleList"
+        android:layout_below="@id/ListMoleViewAddButton"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent" >
     </ListView>
 
-</LinearLayout>
+</RelativeLayout>

@@ -1,31 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center" >
-
-        <TextView
-            android:id="@+id/MainViewTitleText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:gravity="center_vertical|right"
-            android:text="@string/main_view_title_text"
-            android:textSize="25sp" />
-
-        <ImageView
-            android:id="@+id/MainViewTitleImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="left|center_vertical"
-            android:contentDescription="Mole Finder Icon"
-            android:src="@drawable/mole_icon_inverse" />
-    </LinearLayout>
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal" >
 
     <Button
         android:id="@+id/MainViewAddMoleButton"
@@ -48,5 +25,26 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/MainViewAddMoleButton"
         android:text="Search Location" />
+
+    <ImageView
+        android:id="@+id/MainViewTitleImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/MainViewViewMolesButton"
+        android:layout_alignParentTop="true"
+        android:contentDescription="Mole Finder Icon"
+        android:src="@drawable/mole_icon_inverse" />
+
+    <TextView
+        android:id="@+id/MainViewTitleText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/MainViewViewMolesButton"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@id/MainViewTitleImage"
+        android:gravity="center"
+        android:text="@string/main_view_title_text"
+        android:textSize="25sp" />
 
 </RelativeLayout>

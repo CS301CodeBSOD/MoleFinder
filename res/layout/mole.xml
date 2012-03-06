@@ -1,48 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
+    <ImageButton
+        android:id="@+id/MoleViewEditDescriptionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@android:drawable/ic_input_get" />
+    
     <TextView
         android:id="@+id/MoleViewName"
         android:layout_width="fill_parent"
+        android:layout_toLeftOf="@id/MoleViewEditDescriptionButton"
+        android:layout_alignBottom="@id/MoleViewEditDescriptionButton"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="36sp"
-        android:text="Mole on Wrist" />
+        android:text="Mole on Wrist"
+        android:textSize="36sp" />
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/MoleViewDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec venenatis consectetur lorem, ac elementum arcu pretium ut. Phasellus a justo vitae lacus congue egestas. Aliquam eget nunc lectus. Ut pharetra viverra risus, quis lacinia risus laoreet eu. In hac habitasse platea dictumst. Sed nec tempor turpis. Phasellus mattis pretium lorem fringilla porta. Proin pharetra vestibulum eros sed vulputate. Aenean eget odio sed nunc consectetur congue posuere aliquam mi. Donec quis justo vitae nisi elementum viverra condimentum eu mauris.
+    <TextView
+        android:id="@+id/MoleViewDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/MoleViewEditDescriptionButton"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec venenatis consectetur lorem, ac elementum arcu pretium ut. Phasellus a justo vitae lacus congue egestas. Aliquam eget nunc lectus. Ut pharetra viverra risus, quis lacinia risus laoreet eu. In hac habitasse platea dictumst. Sed nec tempor turpis. Phasellus mattis pretium lorem fringilla porta. Proin pharetra vestibulum eros sed vulputate. Aenean eget odio sed nunc consectetur congue posuere aliquam mi. Donec quis justo vitae nisi elementum viverra condimentum eu mauris.
 
 Curabitur et felis tortor, ut laoreet nisl. Maecenas metus nisl, auctor aliquam imperdiet in, facilisis quis orci. Duis tempor sollicitudin ante. Donec commodo vulputate eros, id molestie nulla faucibus non. Praesent sed magna a elit consequat dapibus ac sed eros. Phasellus nunc arcu, tempus ut bibendum id, vehicula sit amet velit. Integer sem elit, sollicitudin a imperdiet sit amet, imperdiet non tortor. Pellentesque iaculis tempor varius." />
 
-        <Button
-            android:id="@+id/MoleViewEditDescriptionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="[edit]" />
-
-        <Button
-            android:id="@+id/MoleViewAddPictureButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:text="[+]" />
-    </RelativeLayout>
-
     <Gallery
         android:id="@+id/MoleViewGallery"
+        android:layout_alignParentBottom="true"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="80dip" />
+    
+    <ImageButton
+        android:id="@+id/MoleViewAddPictureButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/MoleViewGallery"
+        android:layout_alignParentRight="true"
+        android:src="@android:drawable/ic_input_add" />
 
-</LinearLayout>
+</RelativeLayout>
