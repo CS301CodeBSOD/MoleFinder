@@ -18,7 +18,7 @@
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
+            android:layout_height="wrap_content" >
 
             <ImageButton
                 android:id="@+id/MoleGalleryViewEditButton"
@@ -50,8 +50,8 @@
 
             <TextView
                 android:id="@+id/MoleGalleryViewNotesText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_below="@id/MoleGalleryViewNotesLabel"
                 android:text="Lorem ipsum etc. etc. etc." />
         </RelativeLayout>
