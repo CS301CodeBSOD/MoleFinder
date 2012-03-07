@@ -4,7 +4,7 @@ package cs310w10.MoleFinder.Controller;
 // in other parts of the program, since they require a lot of setup which
 // is likely to be consistent across the whole app.
 // See: http://developer.android.com/guide/topics/intents/intents-filters.html
-// for what needs to be done to implement it
+// for what it needs to be able to do... we should add it to the UML too.
 public class IntentHelper {
 
 }

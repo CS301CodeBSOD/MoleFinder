@@ -41,16 +41,16 @@ public class MainViewActivity extends Activity {
 	}
 
 	protected void pressViewMolesButton() {
-		// TBI
+		// TBI: intent to launch ListMole view
 
 	}
 
 	protected void pressSearchLocationButton() {
-		// TBI
+		// TBI: intent to launch Search view
 
 	}
 
 	public void pressAddMoleButton() {
-		// TBI
+		// TBI: intent to launch NewMole view
 	}
 }
