@@ -36,7 +36,7 @@ public class ListMoleViewActivity extends Activity {
 	}
 
 	protected void pressTrashButton() {
-		// TODO: implement!
+		// TODO: implement deleting!
 	}
 
 	protected void pressAddButton() {
