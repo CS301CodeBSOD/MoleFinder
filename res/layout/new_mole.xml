@@ -7,10 +7,10 @@
         android:id="@+id/NewMoleViewSubmitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:src="@android:drawable/ic_input_add"
-        android:contentDescription="Submit" />
+        android:layout_alignParentTop="true"
+        android:contentDescription="Submit"
+        android:src="@android:drawable/ic_input_add" />
 
     <EditText
         android:id="@+id/NewMoleViewNameEdit"
@@ -39,6 +39,7 @@
         android:layout_height="fill_parent"
         android:layout_above="@id/NewMoleViewLocationLabel"
         android:layout_below="@id/NewMoleViewNameEdit"
-        android:hint="Description" />
+        android:hint="Description"
+        android:inputType="textMultiLine" />
 
 </RelativeLayout>
