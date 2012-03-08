@@ -33,7 +33,6 @@
         android:layout_alignParentRight="true"
         android:layout_above="@id/MainViewViewMolesButton"
         android:layout_alignParentTop="true"
-        android:contentDescription="Mole Finder Icon"
         android:src="@drawable/mole_icon_inverse" />
 
     <TextView

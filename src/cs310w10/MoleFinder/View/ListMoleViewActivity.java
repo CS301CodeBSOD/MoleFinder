@@ -1,15 +1,16 @@
 package cs310w10.MoleFinder.View;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 public class ListMoleViewActivity extends Activity {
-	Button trashButton;
-	Button addButton;
+	ImageButton trashButton;
+	ImageButton addButton;
 	ListView moleList;
 
 	@Override
@@ -17,14 +18,14 @@ public class ListMoleViewActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.list_mole);
 
-		trashButton = (Button) findViewById(R.id.ListMoleViewTrashButton);
+		trashButton = (ImageButton) findViewById(R.id.ListMoleViewTrashButton);
 		trashButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				pressTrashButton();
 			}
 		});
 
-		addButton = (Button) findViewById(R.id.ListMoleViewAddButton);
+		addButton = (ImageButton) findViewById(R.id.ListMoleViewAddButton);
 		addButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				pressAddButton();
@@ -35,10 +36,12 @@ public class ListMoleViewActivity extends Activity {
 	}
 
 	protected void pressTrashButton() {
-		// TBI
+		// TODO: implement!
 	}
 
 	protected void pressAddButton() {
-		// TBI
+		Intent intent;
+		intent = new Intent(this, NewMoleViewActivity.class);
+		startActivity(intent);
 	}
 }

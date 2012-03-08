@@ -4,14 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
 public class EditImageViewActivity extends Activity {
 	private ImageView image;
-	private Button submitButton;
+	private ImageButton submitButton;
 	private Spinner dateSpinner;
 	private EditText notesField;
 
@@ -23,7 +23,7 @@ public class EditImageViewActivity extends Activity {
 		image = (ImageView) findViewById(R.id.EditImageViewImage);
 		// TODO: load from intent
 
-		submitButton = (Button) findViewById(R.id.EditImageViewSubmitButton);
+		submitButton = (ImageButton) findViewById(R.id.EditImageViewSubmitButton);
 		submitButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				pressSubmitButton();

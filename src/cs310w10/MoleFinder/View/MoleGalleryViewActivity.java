@@ -4,13 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageSwitcher;
 import android.widget.TextView;
 
 public class MoleGalleryViewActivity extends Activity {
 	private ImageSwitcher imageSwitcher;
-	private Button editButton;
+	private ImageButton editButton;
 	private TextView dateText;
 	private TextView notesText;
 
@@ -23,7 +23,7 @@ public class MoleGalleryViewActivity extends Activity {
 		// TODO: make imageSwitcher work? Maybe this will help:
 		// http://saigeethamn.blogspot.com/2010/05/image-switcher-view-android-developer.html
 
-		editButton = (Button) findViewById(R.id.MoleGalleryViewEditButton);
+		editButton = (ImageButton) findViewById(R.id.MoleGalleryViewEditButton);
 		editButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				pressEditButton();

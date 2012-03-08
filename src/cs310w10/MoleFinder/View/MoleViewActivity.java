@@ -4,13 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.Gallery;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class MoleViewActivity extends Activity {
-	private Button editDescriptionButton;
-	private Button addPictureButton;
+	private ImageButton editDescriptionButton;
+	private ImageButton addPictureButton;
 	private TextView name;
 	private TextView description;
 	private Gallery gallery;
@@ -20,14 +20,14 @@ public class MoleViewActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mole);
 
-		editDescriptionButton = (Button) findViewById(R.id.MoleViewEditButton);
+		editDescriptionButton = (ImageButton) findViewById(R.id.MoleViewEditButton);
 		editDescriptionButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				pressEditButton();
 			}
 		});
 
-		addPictureButton = (Button) findViewById(R.id.MoleViewAddPictureButton);
+		addPictureButton = (ImageButton) findViewById(R.id.MoleViewAddPictureButton);
 		addPictureButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				pressAddPictureButton();

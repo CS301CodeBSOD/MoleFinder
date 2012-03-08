@@ -7,7 +7,8 @@
         android:id="@+id/SearchViewTextInput"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:inputType="textAutoComplete|textAutoCorrect" >"
+        android:inputType="textAutoComplete|textAutoCorrect" 
+        android:hint="Enter search text" >
 
         <requestFocus />
     </EditText>

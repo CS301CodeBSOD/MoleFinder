@@ -1,6 +1,7 @@
 package cs310w10.MoleFinder.View;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -41,16 +42,20 @@ public class MainViewActivity extends Activity {
 	}
 
 	protected void pressViewMolesButton() {
-		// TBI: intent to launch ListMole view
-
+		Intent intent;
+		intent = new Intent(this, ListMoleViewActivity.class);
+		startActivity(intent);
 	}
 
 	protected void pressSearchLocationButton() {
-		// TBI: intent to launch Search view
-
+		Intent intent;
+		intent = new Intent(this, SearchViewActivity.class);
+		startActivity(intent);
 	}
 
 	public void pressAddMoleButton() {
-		// TBI: intent to launch NewMole view
+		Intent intent;
+		intent = new Intent(this, NewMoleViewActivity.class);
+		startActivity(intent);
 	}
 }
