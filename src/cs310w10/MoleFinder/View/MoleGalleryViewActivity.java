@@ -7,8 +7,10 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageSwitcher;
 import android.widget.TextView;
+import cs310w10.MoleFinder.Model.ListMole;
 
-public class MoleGalleryViewActivity extends Activity {
+public class MoleGalleryViewActivity extends Activity implements
+		ViewActivity<ListMole> {
 	private ImageSwitcher imageSwitcher;
 	private ImageButton editButton;
 	private TextView dateText;
@@ -42,5 +44,10 @@ public class MoleGalleryViewActivity extends Activity {
 
 	protected void pressEditButton() {
 		// TODO: transfer intent to EditImage
+	}
+
+	public void update(ListMole model) {
+		// TODO Auto-generated method stub
+
 	}
 }

@@ -1,15 +1,15 @@
 package cs310w10.MoleFinder.Model;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class ListMole {
-	private LinkedList<Mole> moles;
+	private ArrayList<Mole> moles;
 
-	public LinkedList<Mole> getMoles() {
+	public ArrayList<Mole> getMoles() {
 		return moles;
 	}
 
-	public void setMoles(LinkedList<Mole> moles) {
+	public void setMoles(ArrayList<Mole> moles) {
 		this.moles = moles;
 	}
 }

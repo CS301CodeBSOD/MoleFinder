@@ -7,8 +7,9 @@ import android.view.View.OnClickListener;
 import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import cs310w10.MoleFinder.Model.Mole;
 
-public class MoleViewActivity extends Activity {
+public class MoleViewActivity extends Activity implements ViewActivity<Mole> {
 	private ImageButton editDescriptionButton;
 	private ImageButton addPictureButton;
 	private TextView name;
@@ -53,5 +54,10 @@ public class MoleViewActivity extends Activity {
 
 	protected void pressEditButton() {
 		// TBI : edit description field
+	}
+
+	public void update(Mole model) {
+		// TODO Auto-generated method stub
+
 	}
 }

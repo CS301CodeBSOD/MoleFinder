@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import cs310w10.MoleFinder.Model.ListMole;
 
-public class ListMoleViewActivity extends Activity {
+public class ListMoleViewActivity extends Activity implements
+		ViewActivity<ListMole> {
 	ImageButton trashButton;
 	ImageButton addButton;
 	ListView moleList;
@@ -43,5 +45,10 @@ public class ListMoleViewActivity extends Activity {
 		Intent intent;
 		intent = new Intent(this, NewMoleViewActivity.class);
 		startActivity(intent);
+	}
+
+	public void update(ListMole model) {
+		// TODO Auto-generated method stub
+
 	}
 }

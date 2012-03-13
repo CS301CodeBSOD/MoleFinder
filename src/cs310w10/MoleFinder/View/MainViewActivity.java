@@ -42,20 +42,17 @@ public class MainViewActivity extends Activity {
 	}
 
 	protected void pressViewMolesButton() {
-		Intent intent;
-		intent = new Intent(this, ListMoleViewActivity.class);
+		Intent intent = new Intent(this, ListMoleViewActivity.class);
 		startActivity(intent);
 	}
 
 	protected void pressSearchLocationButton() {
-		Intent intent;
-		intent = new Intent(this, SearchViewActivity.class);
+		Intent intent = new Intent(this, SearchViewActivity.class);
 		startActivity(intent);
 	}
 
 	public void pressAddMoleButton() {
-		Intent intent;
-		intent = new Intent(this, NewMoleViewActivity.class);
+		Intent intent = new Intent(this, NewMoleViewActivity.class);
 		startActivity(intent);
 	}
 }

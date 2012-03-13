@@ -2,5 +2,15 @@
 <resources>
     <string name="main_view_title_text">Mole Finder</string>
     <string name="app_name">Mole Finder</string>
+    <string-array name="area_names">
+        <item >Left Arm</item>
+        <item >Right Arm</item>
+        <item >Head</item>
+        <item >Neck</item>
+        <item >Torso</item>
+        <item >Abdomen</item>
+        <item >Left Leg</item>
+        <item >Right Leg</item>
+    </string-array>
 
 </resources>

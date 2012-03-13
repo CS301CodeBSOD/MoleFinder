@@ -5,10 +5,17 @@ import java.util.ArrayList;
 import android.graphics.Picture;
 
 public class Mole {
+	private static int s_id;
 	private int id;
 	private String name;
 	private String description;
+	private String location;
 	private ArrayList<Picture> PhotoId;
+
+	public Mole() {
+		id = s_id;
+		s_id++;
+	}
 
 	public int getId() {
 		return id;
@@ -40,5 +47,13 @@ public class Mole {
 
 	public void setPhotoId(ArrayList<Picture> photoId) {
 		PhotoId = photoId;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 }

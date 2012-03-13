@@ -1,14 +1,19 @@
 package cs310w10.MoleFinder.View;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import cs310w10.MoleFinder.Controller.ListMoleController;
+import cs310w10.MoleFinder.Model.Mole;
+import cs310w10.MoleFinder.Model.MoleFinderApplication;
 
-public class NewMoleViewActivity extends Activity {
+public class NewMoleViewActivity extends Activity implements ViewActivity<Mole> {
 	private ImageButton submitButton;
 	private EditText nameEdit;
 	private EditText descriptionEdit;
@@ -28,11 +33,32 @@ public class NewMoleViewActivity extends Activity {
 
 		nameEdit = (EditText) findViewById(R.id.NewMoleViewNameEdit);
 		descriptionEdit = (EditText) findViewById(R.id.NewMoleViewDescriptionEdit);
+
 		locationSpinner = (Spinner) findViewById(R.id.NewMoleViewLocationSpinner);
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+				this, R.array.area_names, android.R.layout.simple_spinner_item);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		locationSpinner.setAdapter(adapter);
 
 	}
 
 	public void pressSubmitButton() {
+		String name = nameEdit.getText().toString().trim();
+		String description = nameEdit.getText().toString().trim();
+		String location = locationSpinner.getSelectedItem().toString();
+
+		ListMoleController listMoleController = MoleFinderApplication
+				.getListMoleController();
+
+		int id = listMoleController.addMole(name, description, location);
+
+		Intent intent = new Intent(this, MoleViewActivity.class);
+		intent.putExtra(Intent.EXTRA_SUBJECT, id);
+		startActivity(intent);
+	}
+
+	public void update(Mole mole) {
+		// TODO Auto-generated method stub
 
 	}
 }

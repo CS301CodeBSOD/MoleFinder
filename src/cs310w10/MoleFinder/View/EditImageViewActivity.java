@@ -8,8 +8,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import cs310w10.MoleFinder.Model.Picture;
 
-public class EditImageViewActivity extends Activity {
+public class EditImageViewActivity extends Activity implements
+		ViewActivity<Picture> {
 	private ImageView image;
 	private ImageButton submitButton;
 	private Spinner dateSpinner;
@@ -39,5 +41,10 @@ public class EditImageViewActivity extends Activity {
 
 	public void pressSubmitButton() {
 		// TODO: grab fields and send them to our ListMoleController
+	}
+
+	public void update(Picture model) {
+		// TODO Auto-generated method stub
+
 	}
 }

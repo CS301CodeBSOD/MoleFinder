@@ -1,16 +1,16 @@
 package cs310w10.MoleFinder.Model;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class ListPicture {
 
-	private LinkedList<Picture> pictures;
+	private ArrayList<Picture> pictures;
 
-	public LinkedList<Picture> getPictures() {
+	public ArrayList<Picture> getPictures() {
 		return pictures;
 	}
 
-	public void setPictures(LinkedList<Picture> pictures) {
+	public void setPictures(ArrayList<Picture> pictures) {
 		this.pictures = pictures;
 	}
 }
