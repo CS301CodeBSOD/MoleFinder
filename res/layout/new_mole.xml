@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ImageButton
+        android:id="@+id/NewMoleViewSubmitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:contentDescription="Submit"
+        android:src="@android:drawable/ic_input_add" />
+
+    <EditText
+        android:id="@+id/NewMoleViewNameEdit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@id/NewMoleViewSubmitButton"
+        android:hint="Name" />
+
+    <Spinner
+        android:id="@+id/NewMoleViewLocationSpinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+    <TextView
+        android:id="@+id/NewMoleViewLocationLabel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/NewMoleViewLocationSpinner"
+        android:text="Location" />
+
+    <EditText
+        android:id="@+id/NewMoleViewDescriptionEdit"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/NewMoleViewLocationLabel"
+        android:layout_below="@id/NewMoleViewNameEdit"
+        android:hint="Description"
+        android:inputType="textMultiLine" />
+
+</RelativeLayout>

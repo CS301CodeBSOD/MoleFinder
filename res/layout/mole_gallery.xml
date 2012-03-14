@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <ImageSwitcher
+        android:id="@+id/MoleGalleryViewImageSwitcher"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="2" >
+    </ImageSwitcher>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageButton
+                android:id="@+id/MoleGalleryViewEditButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:contentDescription="Edit Picture Details"
+                android:src="@android:drawable/ic_input_get" />
+
+            <TextView
+                android:id="@+id/MoleGalleryViewDateLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date: " />
+
+            <TextView
+                android:id="@+id/MoleGalleryViewDateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/MoleGalleryViewDateLabel"
+                android:text="Jan 1, 2012" />
+
+            <TextView
+                android:id="@+id/MoleGalleryViewNotesLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/MoleGalleryViewEditButton"
+                android:text="Notes:" />
+
+            <TextView
+                android:id="@+id/MoleGalleryViewNotesText"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/MoleGalleryViewNotesLabel"
+                android:text="Lorem ipsum etc. etc. etc." />
+        </RelativeLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal" >
+
+    <Button
+        android:id="@+id/MainViewAddMoleButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:text="Add Mole" />
+
+    <Button
+        android:id="@+id/MainViewViewMolesButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/MainViewAddMoleButton"
+        android:text="View Moles" />
+
+    <Button
+        android:id="@+id/MainViewSearchLocationButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/MainViewAddMoleButton"
+        android:text="Search Location" />
+
+    <ImageView
+        android:id="@+id/MainViewTitleImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/MainViewViewMolesButton"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/mole_icon_inverse" />
+
+    <TextView
+        android:id="@+id/MainViewTitleText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/MainViewViewMolesButton"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@id/MainViewTitleImage"
+        android:gravity="center"
+        android:text="@string/main_view_title_text"
+        android:textSize="25sp" />
+
+</RelativeLayout>
