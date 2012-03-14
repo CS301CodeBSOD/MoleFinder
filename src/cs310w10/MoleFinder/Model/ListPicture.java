@@ -2,7 +2,9 @@ package cs310w10.MoleFinder.Model;
 
 import java.util.ArrayList;
 
-public class ListPicture {
+import cs310w10.MoleFinder.View.ViewActivity;
+
+public class ListPicture extends MoleModel<ViewActivity>{
 
 	private ArrayList<Picture> pictures;
 

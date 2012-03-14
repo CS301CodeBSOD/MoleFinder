@@ -2,7 +2,9 @@ package cs310w10.MoleFinder.Model;
 
 import java.util.ArrayList;
 
-public class ListMole {
+import cs310w10.MoleFinder.View.ViewActivity;
+
+public class ListMole extends MoleModel<ViewActivity>{
 	private ArrayList<Mole> moles;
 
 	public ArrayList<Mole> getMoles() {

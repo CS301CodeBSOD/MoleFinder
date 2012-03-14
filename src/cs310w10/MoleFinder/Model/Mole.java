@@ -2,9 +2,11 @@ package cs310w10.MoleFinder.Model;
 
 import java.util.ArrayList;
 
+import cs310w10.MoleFinder.View.ViewActivity;
+
 import android.graphics.Picture;
 
-public class Mole {
+public class Mole extends MoleModel<ViewActivity>{
 	private static int s_id;
 	private int id;
 	private String name;

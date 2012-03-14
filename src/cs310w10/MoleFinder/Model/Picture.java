@@ -3,9 +3,11 @@ package cs310w10.MoleFinder.Model;
 import java.util.ArrayList;
 import java.util.Date;
 
+import cs310w10.MoleFinder.View.ViewActivity;
+
 import android.net.Uri;
 
-public class Picture {
+public class Picture extends MoleModel<ViewActivity> {
 	private int id;
 	private String description;
 	private Date date;
