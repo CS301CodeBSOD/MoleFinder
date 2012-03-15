@@ -11,7 +11,6 @@ public class ListMoleController {
 	public ListMole getMoles() {
 		if (sMoles == null) {
 			sMoles = new ListMole();
-			sMoles.setMoles(new ArrayList<Mole>());
 		}
 		return sMoles;
 	}
@@ -21,7 +20,7 @@ public class ListMoleController {
 
 		Mole newmole = MoleController.newMole(name, description, location);
 
-		moles.getMoles().add(newmole);
+		moles.add(newmole);
 		return newmole.getId();
 	}
 }
