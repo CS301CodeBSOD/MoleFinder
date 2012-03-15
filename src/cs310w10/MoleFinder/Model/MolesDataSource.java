@@ -1,5 +1,8 @@
 package cs310w10.MoleFinder.Model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -85,9 +88,9 @@ public class MolesDataSource {
 		Cursor cursor = database.query(TablePictures.TABLE_PICTURES, TablePictures.ALLCOLUMNS, null, null, null, null, null);
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()){
-				Picture picutre = cursorToPicture(cursor);
-				allpictures.add(picutre);
-				cursor.moveToNext();
+			Picture picutre = cursorToPicture(cursor);
+			allpictures.add(picutre);
+			cursor.moveToNext();
 		}
 		cursor.close();
 		return null;
@@ -98,4 +101,32 @@ public class MolesDataSource {
 		// TODO need to implement this method 
 		return null;
 	} 
+	
+	public void insertMolePicturePair ( int moleID, int PhotoID){
+		ContentValues values = new ContentValues();
+		values.put(TableMolesPictures.COLUMN_MOLEID, moleID);
+		values.put(TableMolesPictures.COLUMN_PICTUREID, PhotoID);
+		
+		database.insert(TableMolesPictures.TABLE_MOLESPICTURES, null, values);
+		
+	}
+	
+	public ListPicture getListPictureFromMole ( int moleID ){
+		ListPicture pictures = new ListPicture();
+		Cursor cursor = database.query(TableMolesPictures.TABLE_MOLESPICTURES, TableMolesPictures.ALLCOLUMNS,
+				"where "+ TableMolesPictures.COLUMN_PICTUREID + " = " + moleID, null, null, null, null);
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()){
+			Picture picture = new Picture();
+			int PhotoID = cursor.getInt(0);
+			picture.setId(PhotoID);
+			Cursor tempcursor = database.query(TablePictures.TABLE_PICTURES, TablePictures.ALLCOLUMNS,
+					"where " + TablePictures.COLUMN_ID + " = " + PhotoID, null, null, null, null);
+			int time = cursor.getInt(1);
+			Date date = new Date();
+			date.setTime(milliseconds)
+			
+		}
+		return pictures;
+	}
 }

@@ -16,7 +16,7 @@ public class TablePictures {
 	private  static final String TABLE_CREATE = "create table "
 			+ TABLE_PICTURES + "( " + COLUMN_ID 
 			+ " integer primary key, " + COLUMN_DATE
-			+ " text not null, " + COLUMN_URI
+			+ " integer not null, " + COLUMN_URI
 			+ " text not null, " + COLUMN_DESCRIPTION
 			+ " text);";
 	
