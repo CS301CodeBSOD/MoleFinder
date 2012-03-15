@@ -17,6 +17,11 @@ public class MoleSQLiteHelper extends SQLiteOpenHelper{
 		// TODO Auto-generated constructor stub
 	}
 
+	public MoleSQLiteHelper(Context context) {
+		// TODO Auto-generated constructor stub
+		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+	}
+
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub

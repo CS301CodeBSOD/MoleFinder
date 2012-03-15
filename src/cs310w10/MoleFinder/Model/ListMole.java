@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import cs310w10.MoleFinder.View.ViewActivity;
 
-public class ListMole extends MoleModel<ViewActivity>{
+public class ListMole extends MoleModel<ViewActivity> {
 	private ArrayList<Mole> moles;
 
 	public ArrayList<Mole> getMoles() {
@@ -13,5 +13,9 @@ public class ListMole extends MoleModel<ViewActivity>{
 
 	public void setMoles(ArrayList<Mole> moles) {
 		this.moles = moles;
+	}
+
+	public void add(Mole mole) {
+		moles.add(mole);
 	}
 }

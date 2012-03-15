@@ -33,6 +33,10 @@ public class Picture extends MoleModel<ViewActivity> {
 	public Date getDate() {
 		return date;
 	}
+	
+	public String getDateAsString(){
+		return date.toGMTString();
+	}
 
 	public void setDate(Date date) {
 		this.date = date;
@@ -52,5 +56,9 @@ public class Picture extends MoleModel<ViewActivity> {
 
 	public void setImageData(Uri imageData) {
 		this.imageData = imageData;
+	}
+	
+	public String getURI(){
+		return imageData.toString();
 	}
 }
