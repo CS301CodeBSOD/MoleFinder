@@ -15,4 +15,9 @@ public class ListPicture extends MoleModel<ViewActivity>{
 	public void setPictures(ArrayList<Picture> pictures) {
 		this.pictures = pictures;
 	}
+
+	public void add(Picture picutre) {
+		pictures.add(picutre);
+		
+	}
 }

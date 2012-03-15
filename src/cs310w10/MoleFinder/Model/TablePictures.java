@@ -9,6 +9,9 @@ public class TablePictures {
 	public static final String COLUMN_DATE = "date";
 	public static final String COLUMN_DESCRIPTION = "description";
 	public static final String COLUMN_URI = "uri";
+	public static final String[] ALLCOLUMNS = { COLUMN_ID, COLUMN_DATE,
+			COLUMN_URI, COLUMN_DESCRIPTION };
+	
 	
 	private  static final String TABLE_CREATE = "create table "
 			+ TABLE_PICTURES + "( " + COLUMN_ID 

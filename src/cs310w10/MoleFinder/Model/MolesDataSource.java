@@ -8,9 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 public class MolesDataSource {
 	private SQLiteDatabase database;
 	private MoleSQLiteHelper moledbhelper;
-	private String[] allcolumns = { TableMoles.COLUMN_ID, TableMoles.COLUMN_NAME,
-			TableMoles.COLUMN_LOCATION, TableMoles.COLUMN_DESCRIPTION };
-	
+
 	public MolesDataSource( Context context ){
 		moledbhelper = new MoleSQLiteHelper(context);
 	}
@@ -45,7 +43,7 @@ public class MolesDataSource {
 	//
 	public ListMole getAllMoles(){
 		ListMole allmoles = new ListMole();
-		Cursor cursor = database.query(TableMoles.TABLE_MOLES, allcolumns, null, null, null, null, null);
+		Cursor cursor = database.query(TableMoles.TABLE_MOLES, TableMoles.ALLCOLUMNS, null, null, null, null, null);
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()){
 				Mole mole = cursorToMole(cursor);
@@ -63,9 +61,7 @@ public class MolesDataSource {
 		return null;
 	}
 	
-	/* Temporarily commented out since part of the functionality of this 
-	 * class need to reallocated to the table classes
-	 * will fix this issue later
+	//insert a picture into the database
 	public void insertPicture(Picture picture) {
 		ContentValues values = new ContentValues();
 		values.put(TablePictures.COLUMN_ID, picture.getId());
@@ -83,18 +79,23 @@ public class MolesDataSource {
 				TablePictures.COLUMN_ID + " = " + picid, null);
 	}
 	
-	//
+	//retrieve all pictures from the database
 	public ListMole getAllPictures(){
 		ListPicture allpictures = new ListPicture();
-		Cursor cursor = database.query(TablePictures.TABLE_PICTURES, allcolumns, null, null, null, null, null);
+		Cursor cursor = database.query(TablePictures.TABLE_PICTURES, TablePictures.ALLCOLUMNS, null, null, null, null, null);
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()){
-				Mole mole = cursorToMole(cursor);
-				allmoles.add(mole);
+				Picture picutre = cursorToPicture(cursor);
+				allpictures.add(picutre);
 				cursor.moveToNext();
 		}
 		cursor.close();
 		return null;
 		
-	} */
+	}
+
+	private Picture cursorToPicture(Cursor cursor) {
+		// TODO need to implement this method 
+		return null;
+	} 
 }
