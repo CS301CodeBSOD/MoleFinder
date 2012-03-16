@@ -2,7 +2,7 @@ package cs310w10.MoleFinder.View;
 
 import cs310w10.MoleFinder.Controller.ListMoleController;
 import cs310w10.MoleFinder.Model.ListMole;
-import cs310w10.MoleFinder.Model.MoleAdapter;
+//import cs310w10.MoleFinder.Model.MoleAdapter;
 import cs310w10.MoleFinder.View.MoleViewActivity;
 import android.app.Activity;
 import android.content.Intent;
@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageButton;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView;
@@ -45,7 +46,7 @@ public class ListMoleViewActivity extends Activity implements
 		ListMole moleList = MoleFinderApplication.getListMoleController().getMoles(); 
 		
 		moleListView = (ListView) findViewById(R.id.ListMoleViewMoleList);
-		moleListView.setAdapter(new MoleAdapter(moleList, getApplicationContext()));
+		//moleListView.setAdapter(new ListAdapter(moleList.get(), getApplicationContext()));
 		moleListView.setOnItemClickListener(this);
 	        registerForContextMenu(moleListView);
 	}
@@ -61,9 +62,9 @@ public class ListMoleViewActivity extends Activity implements
 		startActivityForResult(intent, 1);
 	}
 
-	public void update(ListMole model) {
+	public void update(ListMole moles) {
             
-	    moleListView.setAdapter(new MoleAdapter(model, getApplicationContext()));
+	    //moleListView.setAdapter(new MoleAdapter(moles.get(), getApplicationContext()));
 	    
 	}
 	

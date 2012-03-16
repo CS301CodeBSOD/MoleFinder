@@ -32,6 +32,14 @@ public class ListMole extends fModel<fView> {
 	}
 
 	/**
+	 * @return Mole
+	 * get will get the mole list for use by an adapter class
+	 */
+	public ArrayList<Mole> get() {
+		return moles;
+	}
+
+	/**
 	 * @param mole
 	 * add will add the mole that is passed with this function. Will be used
 	 * repeatedly when loading in the moles from the database 
