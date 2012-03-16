@@ -54,7 +54,23 @@ public class MolesDataSource {
         database.delete(TableMoles.TABLE_MOLES, 
                 TableMoles.COLUMN_ID + " = " + moleid, null);
     }
-
+   
+    public Mole editMole(Mole mole, String name, String description, String location){
+        long moleid = mole.getId();
+        ContentValues values = new ContentValues();
+        values.put(TableMoles.COLUMN_NAME, name);
+        values.put(TableMoles.COLUMN_LOCATION, location);
+        values.put(TableMoles.COLUMN_DESCRIPTION, description);
+        long rowId = database.update(TableMoles.TABLE_MOLES, values, TableMoles.COLUMN_ID + " = " + moleid, null);
+        
+        Cursor cursor = database.query(TableMoles.TABLE_MOLES, TableMoles.ALLCOLUMNS,
+                TableMoles.COLUMN_ID + " = " + rowId, null, null, null, null);
+        if (cursor.moveToFirst()){
+            mole = cursorToMole(cursor);
+        }
+        return mole;
+    }
+    
     //
     public ListMole getAllMoles(){
         ListMole allmoles = new ListMole();
