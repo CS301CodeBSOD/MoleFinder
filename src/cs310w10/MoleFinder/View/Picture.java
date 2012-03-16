@@ -1,9 +1,8 @@
-package cs310w10.MoleFinder.Model;
+package cs310w10.MoleFinder.View;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-import cs310w10.MoleFinder.View.ViewActivity;
 
 import android.net.Uri;
 

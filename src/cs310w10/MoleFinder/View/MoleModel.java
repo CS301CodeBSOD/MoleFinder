@@ -1,10 +1,9 @@
-package cs310w10.MoleFinder.Model;
+package cs310w10.MoleFinder.View;
 
 /// Mostly copied from Abram Hindle's FillerCreep app.
 
 import java.util.ArrayList;
 
-import cs310w10.MoleFinder.View.ViewActivity;
 
 public class MoleModel<V extends ViewActivity> {
 	private final ArrayList<V> views;

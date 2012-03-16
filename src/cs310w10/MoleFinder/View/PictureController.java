@@ -1,10 +1,9 @@
-package cs310w10.MoleFinder.Controller;
+package cs310w10.MoleFinder.View;
 
 import java.util.Date;
 
 import android.net.Uri;
 
-import cs310w10.MoleFinder.Model.Picture;
 
 public class PictureController {
 	Picture picture;

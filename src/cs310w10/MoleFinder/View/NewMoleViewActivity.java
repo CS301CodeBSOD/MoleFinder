@@ -9,9 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-import cs310w10.MoleFinder.Controller.ListMoleController;
-import cs310w10.MoleFinder.Model.Mole;
-import cs310w10.MoleFinder.Model.MoleFinderApplication;
 
 public class NewMoleViewActivity extends Activity implements ViewActivity<Mole> {
 	private ImageButton submitButton;

@@ -1,4 +1,4 @@
-package cs310w10.MoleFinder.Model;
+package cs310w10.MoleFinder.View;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

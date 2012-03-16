@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import cs310w10.MoleFinder.Model.ListMole;
 
 public class ListMoleViewActivity extends Activity implements
 		ViewActivity<ListMole> {

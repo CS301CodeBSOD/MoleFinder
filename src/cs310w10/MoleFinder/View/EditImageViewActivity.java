@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import cs310w10.MoleFinder.Model.Picture;
 
 public class EditImageViewActivity extends Activity implements
 		ViewActivity<Picture> {

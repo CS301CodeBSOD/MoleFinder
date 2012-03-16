@@ -7,7 +7,6 @@ import android.view.View.OnClickListener;
 import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import cs310w10.MoleFinder.Model.Mole;
 
 public class MoleViewActivity extends Activity implements ViewActivity<Mole> {
 	private ImageButton editDescriptionButton;

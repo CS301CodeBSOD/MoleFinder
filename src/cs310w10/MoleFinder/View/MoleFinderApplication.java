@@ -1,8 +1,6 @@
-package cs310w10.MoleFinder.Model;
+package cs310w10.MoleFinder.View;
 
 import android.app.Application;
-import cs310w10.MoleFinder.Controller.ListMoleController;
-import cs310w10.MoleFinder.Controller.ListPictureController;
 
 public class MoleFinderApplication extends Application {
 	transient private static MoleFinder moleFinder;
