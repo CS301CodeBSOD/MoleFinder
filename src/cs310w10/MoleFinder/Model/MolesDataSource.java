@@ -13,25 +13,53 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
+/**
+ * The class is used to store and to retrieve model class objects to and from the SQLite database provided by android.
+ * @author Bing Pan
+ *
+ */
 public class MolesDataSource {
+    /**
+     * 
+     */
     private SQLiteDatabase database;
+    /**
+     * 
+     */
     private MoleSQLiteHelper moledbhelper;
 
+    /**
+     * Create a MoleDataSource Object.
+     * @param current context
+     */
     public MolesDataSource( Context context ){
         moledbhelper = new MoleSQLiteHelper(context);
     }
 
     //open the database
+    /**
+     * Open the database.
+     */
     public void open (){
         database = moledbhelper.getWritableDatabase();
     }
 
     //close the database
+    /**
+     * Close the database.
+     */
     public void close(){
         moledbhelper.close();
     }
 
     //insert a mole into the database
+    /**
+     * Create a Mole object and set its attribute to the values supplied. Id is assigned by the database. 
+     * @param the name of the mole
+     * @param the description of the mole
+     * @param the location of the mole
+     * @return A Mole object
+     */
     public Mole createMole(String name, String description, String location){
         Mole mole = new Mole();
         ContentValues values = new ContentValues();
@@ -49,6 +77,10 @@ public class MolesDataSource {
     }
 
     //delete a mole
+    /**
+     * Delete a mole from the database.
+     * @param the Mole object
+     */
     public void deleteMole(Mole mole){
         long moleid = mole.getId();
         database.delete(TableMoles.TABLE_MOLES, 
@@ -72,6 +104,10 @@ public class MolesDataSource {
     }
     
     //
+    /**
+     * Retrieve all moles from the database as a ListMole object.
+     * @return a ListMole containing all moles
+     */
     public ListMole getAllMoles(){
         ListMole allmoles = new ListMole();
         Cursor cursor = database.query(TableMoles.TABLE_MOLES, TableMoles.ALLCOLUMNS, null, null, null, null, null);
@@ -85,6 +121,9 @@ public class MolesDataSource {
         return allmoles;
 
     }
+    /**
+     * Delete all moles from the database
+     */
     public void deleteAllMoles(){
         Cursor cursor = database.query(TableMoles.TABLE_MOLES, TableMoles.ALLCOLUMNS, null, null, null, null, null);
         cursor.moveToFirst();
@@ -98,6 +137,11 @@ public class MolesDataSource {
 
     }
 
+    /**
+     * Process all the information from the row pointed by the cursor supplied and package the information into a mole object.
+     * @param cursor
+     * @return a Mole object
+     */
     private Mole cursorToMole(Cursor cursor) {
         Mole mole = new Mole();
         int moleId = cursor.getInt(0);
@@ -112,6 +156,9 @@ public class MolesDataSource {
     }
 
     //insert a picture into the database
+    /**
+     * @param picture
+     */
     public void insertPicture(Picture picture) {
         ContentValues values = new ContentValues();
         PictureController picturecontroller = new PictureController(picture);
@@ -124,6 +171,10 @@ public class MolesDataSource {
     }
 
     //delete a picture
+    /**
+     * Delete a picture from the database
+     * @param picture
+     */
     public void deletePicture(Picture picture){
         long picid = picture.getId();
         database.delete(TablePictures.TABLE_PICTURES, 
@@ -131,6 +182,10 @@ public class MolesDataSource {
     }
 
     //retrieve all pictures from the database
+    /**
+     * Retrieve all the pictures from the database
+     * @return a list of pictures
+     */
     public ListMole getAllPictures(){
         ListPicture allpictures = new ListPicture();
         Cursor cursor = database.query(TablePictures.TABLE_PICTURES, TablePictures.ALLCOLUMNS, null, null, null, null, null);
@@ -145,11 +200,20 @@ public class MolesDataSource {
 
     }
 
+    /**
+     * @param cursor
+     * @return
+     */
     private Picture cursorToPicture(Cursor cursor) {
         // TODO need to implement this method 
         return null;
     } 
 
+    /**
+     * Associate a picture with a mole and insert that relationship into the database.
+     * @param the id of the mole
+     * @param the id of the picture
+     */
     public void insertMolePicturePair ( int moleID, int PhotoID){
         ContentValues values = new ContentValues();
         values.put(TableMolesPictures.COLUMN_MOLEID, moleID);
@@ -159,6 +223,11 @@ public class MolesDataSource {
 
     }
 
+    /**
+     * Obtain all the ids of the pictures related to the mole provided.
+     * @param the id of the mole
+     * @return a list of picture ids
+     */
     public ArrayList<Integer> getPhotoIdsFromeMole (int moleId){
         ArrayList<Integer> photoids = new ArrayList<Integer>();
         String [] columns = { TableMolesPictures.COLUMN_PICTUREID };
@@ -174,6 +243,11 @@ public class MolesDataSource {
         return photoids; 
     }
 
+    /**
+     * Retrieve a list of picture related to the given mole.
+     * @param the id of the mole
+     * @return a list of pictures
+     */
     public ListPicture getListPictureFromMole ( int moleID ){
         ListPicture pictures = new ListPicture();
         String [] columns = { TableMolesPictures.COLUMN_PICTUREID };
@@ -199,10 +273,15 @@ public class MolesDataSource {
         return pictures;
     }
 
+    /**
+     * Retrieve a mole from the database using its id.
+     * @param the id of the mole
+     * @return the Mole object
+     */
     public Mole getMoleFromId(long id){
         Mole mole = new Mole();
         Cursor cursor = database.query(TableMoles.TABLE_MOLES, TableMoles.ALLCOLUMNS, 
-                TableMoles.COLUMN_ID + "=" + String.valueOf(id), null, null, null, null);
+                TableMoles.COLUMN_ID + " = " + String.valueOf(id), null, null, null, null);
         cursor.moveToFirst();
         if (!cursor.isAfterLast()){
             mole = cursorToMole(cursor);
