@@ -1,5 +1,6 @@
 package cs310w10.MoleFinder.View;
 
+import cs310w10.MoleFinder.Controller.ListMoleController;
 import cs310w10.MoleFinder.Model.ListMole;
 import android.app.Activity;
 import android.content.Intent;
@@ -38,7 +39,7 @@ public class ListMoleViewActivity extends Activity implements
 	}
 
 	protected void pressTrashButton() {
-		// TODO: implement deleting!
+		ListMoleController.deleteAllMoles();
 	}
 
 	protected void pressAddButton() {

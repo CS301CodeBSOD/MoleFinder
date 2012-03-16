@@ -1,7 +1,11 @@
 package cs310w10.MoleFinder.View;
 
+import cs310w10.MoleFinder.Controller.ListMoleController;
+import cs310w10.MoleFinder.Controller.MoleController;
+import cs310w10.MoleFinder.Model.ListMole;
 import cs310w10.MoleFinder.Model.Mole;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,11 +39,15 @@ public class MoleViewActivity extends Activity implements ViewActivity<Mole> {
 			}
 		});
 
-		name = (TextView) findViewById(R.id.MoleViewName);
-		name.setText("NAME GOES HERE"); // TBI : get mole details from intent
+		int id = getIntent().getIntExtra(Intent.EXTRA_SUBJECT, 0);
 
+		Mole mole = MoleController.getMoleFromId(id);
+                
+		
+		name = (TextView) findViewById(R.id.MoleViewName);
+		name.setText(mole.getName()); 
 		description = (TextView) findViewById(R.id.MoleViewDescription);
-		description.setText("DESCRIPTION GOES HERE"); // TBI
+		description.setText(mole.getDescription()); 
 
 		// tutorial for this part:
 		// http://developer.android.com/guide/tutorials/views/hello-gallery.html
@@ -54,6 +62,7 @@ public class MoleViewActivity extends Activity implements ViewActivity<Mole> {
 
 	protected void pressEditButton() {
 		// TBI : edit description field
+	    
 	}
 
 	public void update(Mole model) {

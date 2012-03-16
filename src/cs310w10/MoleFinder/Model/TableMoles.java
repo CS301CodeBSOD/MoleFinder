@@ -14,7 +14,7 @@ public class TableMoles {
 	private  static final String TABLE_CREATE = "create table "
 			+ TABLE_MOLES + "( " + COLUMN_ID 
 			+ " integer primary key autoincrement, " + COLUMN_NAME
-			+ " text unique not null, " + COLUMN_LOCATION
+			+ " text not null, " + COLUMN_LOCATION
 			+ " text, " + COLUMN_DESCRIPTION
 			+ " text);";
 	

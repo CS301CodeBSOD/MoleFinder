@@ -48,4 +48,9 @@ public class ListMole extends MoleModel<ViewActivity> {
 	public void setMoles(ArrayList<Mole> moles) {
 		this.moles = moles;
 	}
+
+    public int indexOf(Mole mole)
+    {
+        return this.moles.indexOf(mole);
+    }
 }

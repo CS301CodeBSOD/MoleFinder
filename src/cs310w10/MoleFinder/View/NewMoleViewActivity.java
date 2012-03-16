@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class NewMoleViewActivity extends Activity implements ViewActivity<Mole> {
 	private ImageButton submitButton;
@@ -42,18 +43,22 @@ public class NewMoleViewActivity extends Activity implements ViewActivity<Mole> 
 	}
 
 	public void pressSubmitButton() {
-		String name = nameEdit.getText().toString().trim();
-		String description = nameEdit.getText().toString().trim();
+	    String name = nameEdit.getText().toString().trim();
+		String description = descriptionEdit.getText().toString().trim();
 		String location = locationSpinner.getSelectedItem().toString();
 
 		ListMoleController listMoleController = MoleFinderApplication
 				.getListMoleController();
 
 		int id = listMoleController.addMole(name, description, location);
+		if (id == -1){
+		    Toast.makeText(getBaseContext(), "Invalid or already in use mole name", Toast.LENGTH_LONG).show();
 
-		Intent intent = new Intent(this, MoleViewActivity.class);
-		intent.putExtra(Intent.EXTRA_SUBJECT, id);
-		startActivity(intent);
+		}else{
+		    Intent intent = new Intent(this, MoleViewActivity.class);
+		    intent.putExtra(Intent.EXTRA_SUBJECT, id);
+		    startActivity(intent);
+		}
 	}
 
 	public void update(Mole mole) {
