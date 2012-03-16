@@ -2,7 +2,6 @@ package cs310w10.MoleFinder.View;
 
 import cs310w10.MoleFinder.Controller.ListMoleController;
 import cs310w10.MoleFinder.Model.ListMole;
-import cs310w10.MoleFinder.Model.Mole;
 import cs310w10.MoleFinder.Model.MoleAdapter;
 import cs310w10.MoleFinder.View.MoleViewActivity;
 import android.app.Activity;
@@ -84,7 +83,7 @@ public class ListMoleViewActivity extends Activity implements
            // Toast.makeText(this, String.valueOf(id), Toast.LENGTH_SHORT).show();
            Intent intent = new Intent(this, MoleViewActivity.class);
            intent.putExtra(Intent.EXTRA_SUBJECT, id);
-           startActivity(intent);
+           startActivityForResult(intent, 3);
 
         }
 
