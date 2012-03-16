@@ -1,5 +1,6 @@
 package cs310w10.MoleFinder.View;
 
+import cs310w10.MoleFinder.Model.ListMole;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,10 +8,9 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageSwitcher;
 import android.widget.TextView;
-import cs310w10.MoleFinder.Model.ListMole;
 
 public class MoleGalleryViewActivity extends Activity implements
-		ViewActivity<ListMole> {
+		fView<ListMole> {
 	private ImageSwitcher imageSwitcher;
 	private ImageButton editButton;
 	private TextView dateText;

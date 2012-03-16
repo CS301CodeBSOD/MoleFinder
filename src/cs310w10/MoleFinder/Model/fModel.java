@@ -4,12 +4,21 @@ package cs310w10.MoleFinder.Model;
 
 import java.util.ArrayList;
 
-import cs310w10.MoleFinder.View.ViewActivity;
+import cs310w10.MoleFinder.View.fView;
 
-public class MoleModel<V extends ViewActivity> {
+/**
+ * 
+ * @author James Helberg
+ * 
+ * This is the abstract class for the Models. It allows for ease of updating
+ * of the associated views of this model
+ * 
+ * @param <V>
+ */
+public class fModel<V extends fView> {
 	private final ArrayList<V> views;
 
-	public MoleModel() {
+	public fModel() {
 		views = new ArrayList<V>();
 	}
 

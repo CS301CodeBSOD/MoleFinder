@@ -1,5 +1,6 @@
 package cs310w10.MoleFinder.View;
 
+import cs310w10.MoleFinder.Model.Picture;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,10 +9,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import cs310w10.MoleFinder.Model.Picture;
 
 public class EditImageViewActivity extends Activity implements
-		ViewActivity<Picture> {
+		fView<Picture> {
 	private ImageView image;
 	private ImageButton submitButton;
 	private Spinner dateSpinner;

@@ -1,21 +1,26 @@
 package cs310w10.MoleFinder.View;
 
+import cs310w10.MoleFinder.Controller.ListMoleController;
+import cs310w10.MoleFinder.Controller.MoleController;
+import cs310w10.MoleFinder.Model.ListMole;
+import cs310w10.MoleFinder.Model.Mole;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import cs310w10.MoleFinder.Model.Mole;
 
-public class MoleViewActivity extends Activity implements ViewActivity<Mole> {
+public class MoleViewActivity extends Activity implements fView<Mole> {
 	private ImageButton editDescriptionButton;
 	private ImageButton addPictureButton;
 	private TextView name;
 	private TextView description;
 	private Gallery gallery;
-
+	private Mole mole;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -35,11 +40,16 @@ public class MoleViewActivity extends Activity implements ViewActivity<Mole> {
 			}
 		});
 
-		name = (TextView) findViewById(R.id.MoleViewName);
-		name.setText("NAME GOES HERE"); // TBI : get mole details from intent
+		Intent intent = getIntent();
+		long id = intent.getExtras().getLong(Intent.EXTRA_SUBJECT);
 
+		mole = MoleController.getMoleFromId(id);
+                
+		
+		name = (TextView) findViewById(R.id.MoleViewName);
+		name.setText(mole.getName()); 
 		description = (TextView) findViewById(R.id.MoleViewDescription);
-		description.setText("DESCRIPTION GOES HERE"); // TBI
+		description.setText(mole.getDescription()); 
 
 		// tutorial for this part:
 		// http://developer.android.com/guide/tutorials/views/hello-gallery.html
@@ -49,15 +59,40 @@ public class MoleViewActivity extends Activity implements ViewActivity<Mole> {
 	}
 
 	protected void pressAddPictureButton() {
-		// TBI : launch picture-get intent
+	    // TBI : launch picture-get intent
 	}
 
 	protected void pressEditButton() {
-		// TBI : edit description field
+	    long id = mole.getId();
+	    Intent intent = new Intent(this, NewMoleViewActivity.class);
+	    intent.putExtra(Intent.EXTRA_SUBJECT, id);
+	    startActivityForResult(intent, 2);
+
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+	    super.onActivityResult(requestCode, resultCode, data);
+	    if(resultCode==RESULT_OK){
+	           update(mole);
+	           setResult(Activity.RESULT_OK);
+	    }
+
 	}
 
 	public void update(Mole model) {
-		// TODO Auto-generated method stub
+	    long id = mole.getId();
+	    mole = MoleController.getMoleFromId(id);
+            
+            name = (TextView) findViewById(R.id.MoleViewName);
+            name.setText(mole.getName()); 
+            description = (TextView) findViewById(R.id.MoleViewDescription);
+            description.setText(mole.getDescription()); 
+
+            // tutorial for this part:
+            // http://developer.android.com/guide/tutorials/views/hello-gallery.html
+            gallery = (Gallery) findViewById(R.id.MoleViewGallery);
+            gallery.setAdapter(null); // TBI
 
 	}
 }
