@@ -53,4 +53,10 @@ public class ListMole extends MoleModel<ViewActivity> {
     {
         return this.moles.indexOf(mole);
     }
+
+    public int size()
+    {
+        return this.moles.size();
+
+    }
 }

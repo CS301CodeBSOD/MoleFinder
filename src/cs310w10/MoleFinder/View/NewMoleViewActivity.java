@@ -1,6 +1,7 @@
 package cs310w10.MoleFinder.View;
 
 import cs310w10.MoleFinder.Controller.ListMoleController;
+import cs310w10.MoleFinder.Model.ListMole;
 import cs310w10.MoleFinder.Model.Mole;
 import android.app.Activity;
 import android.content.Intent;
@@ -58,6 +59,8 @@ public class NewMoleViewActivity extends Activity implements ViewActivity<Mole> 
 		    Intent intent = new Intent(this, MoleViewActivity.class);
 		    intent.putExtra(Intent.EXTRA_SUBJECT, id);
 		    startActivity(intent);
+	            setResult(Activity.RESULT_OK, intent);
+	            finish();
 		}
 	}
 
