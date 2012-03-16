@@ -39,7 +39,8 @@ public class MoleViewActivity extends Activity implements ViewActivity<Mole> {
 			}
 		});
 
-		int id = getIntent().getIntExtra(Intent.EXTRA_SUBJECT, 0);
+		Intent intent = getIntent();
+		long id = intent.getExtras().getLong(Intent.EXTRA_SUBJECT);
 
 		Mole mole = MoleController.getMoleFromId(id);
                 

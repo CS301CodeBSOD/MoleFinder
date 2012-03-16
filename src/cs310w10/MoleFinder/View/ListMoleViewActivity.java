@@ -2,12 +2,15 @@ package cs310w10.MoleFinder.View;
 
 import cs310w10.MoleFinder.Controller.ListMoleController;
 import cs310w10.MoleFinder.Model.ListMole;
+import cs310w10.MoleFinder.Model.Mole;
 import cs310w10.MoleFinder.Model.MoleAdapter;
+import cs310w10.MoleFinder.View.MoleViewActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -15,7 +18,7 @@ import android.widget.AdapterView;
 
 
 public class ListMoleViewActivity extends Activity implements
-		ViewActivity<ListMole> {
+		ViewActivity<ListMole>, OnItemClickListener {
 	ImageButton trashButton;
 	ImageButton addButton;
 	ListView moleListView;
@@ -44,6 +47,7 @@ public class ListMoleViewActivity extends Activity implements
 		
 		moleListView = (ListView) findViewById(R.id.ListMoleViewMoleList);
 		moleListView.setAdapter(new MoleAdapter(moleList, getApplicationContext()));
+		moleListView.setOnItemClickListener(this);
 	        registerForContextMenu(moleListView);
 	}
 
@@ -73,6 +77,16 @@ public class ListMoleViewActivity extends Activity implements
 	    }
 
 	}
+	
+        public void onItemClick(AdapterView<?> l, View v, int position,
+                long id)
+        {
+           // Toast.makeText(this, String.valueOf(id), Toast.LENGTH_SHORT).show();
+           Intent intent = new Intent(this, MoleViewActivity.class);
+           intent.putExtra(Intent.EXTRA_SUBJECT, id);
+           startActivity(intent);
+
+        }
 
 
     

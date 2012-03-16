@@ -51,7 +51,7 @@ public class NewMoleViewActivity extends Activity implements ViewActivity<Mole> 
 		ListMoleController listMoleController = MoleFinderApplication
 				.getListMoleController();
 
-		int id = listMoleController.addMole(name, description, location);
+		long id = listMoleController.addMole(name, description, location);
 		if (id == -1){
 		    Toast.makeText(getBaseContext(), "Invalid or already in use mole name", Toast.LENGTH_LONG).show();
 
@@ -59,10 +59,13 @@ public class NewMoleViewActivity extends Activity implements ViewActivity<Mole> 
 		    Intent intent = new Intent(this, MoleViewActivity.class);
 		    intent.putExtra(Intent.EXTRA_SUBJECT, id);
 		    startActivity(intent);
+		    
 	            setResult(Activity.RESULT_OK, intent);
 	            finish();
 		}
 	}
+	
+	
 
 	public void update(Mole mole) {
 		// TODO Auto-generated method stub

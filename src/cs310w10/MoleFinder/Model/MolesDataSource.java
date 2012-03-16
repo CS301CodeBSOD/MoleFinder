@@ -183,7 +183,7 @@ public class MolesDataSource {
         return pictures;
     }
 
-    public Mole getMoleFromId(int id){
+    public Mole getMoleFromId(long id){
         Mole mole = new Mole();
         Cursor cursor = database.query(TableMoles.TABLE_MOLES, TableMoles.ALLCOLUMNS, 
                 TableMoles.COLUMN_ID + "=" + String.valueOf(id), null, null, null, null);

@@ -20,7 +20,7 @@ public class MoleController {
 		return mole;
 	}
 	
-	public static Mole getMoleFromId(int id){
+	public static Mole getMoleFromId(long id){
 	        MolesDataSource source = new MolesDataSource(MoleFinderApplication.getAppContext());
 	        source.open();
 	        Mole mole = source.getMoleFromId(id);
