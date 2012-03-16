@@ -53,8 +53,5 @@ public class Picture extends MoleModel<ViewActivity> {
 	public void setImageData(Uri imageData) {
 		this.imageData = imageData;
 	}
-	
-	public String getURI(){
-		return imageData.toString();
-	}
+
 }
