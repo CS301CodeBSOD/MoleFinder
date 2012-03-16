@@ -14,12 +14,9 @@ import android.util.Log;
 public class MoleSQLiteHelper extends SQLiteOpenHelper{
 
 	/**
-	 * 
+	 * Variable values associated with the SQL helper
 	 */
 	private static final String DATABASE_NAME = "moles.db";
-	/**
-	 * 
-	 */
 	private static final int DATABASE_VERSION = 1;
 	
 	/**

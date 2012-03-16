@@ -14,18 +14,16 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
 /**
- * The class is used to store and to retrieve model class objects to and from the SQLite database provided by android.
+ * The class is used to store and to retrieve model class objects to and from the SQLite
+ * database provided by android.
  * @author Bing Pan
  *
  */
 public class MolesDataSource {
     /**
-     * 
+     * These are the private variables associated with the database
      */
     private SQLiteDatabase database;
-    /**
-     * 
-     */
     private MoleSQLiteHelper moledbhelper;
 
     /**
@@ -35,12 +33,10 @@ public class MolesDataSource {
     public MolesDataSource( Context context ){
         moledbhelper = new MoleSQLiteHelper(context);
     }
-
-    //open the database
     /**
      * Open the database.
      */
-    public void open (){
+    public void open () {
         database = moledbhelper.getWritableDatabase();
     }
 
@@ -87,6 +83,14 @@ public class MolesDataSource {
                 TableMoles.COLUMN_ID + " = " + moleid, null);
     }
    
+    /**
+     * edits a mole that has previously been set in the database
+     * @param mole
+     * @param name
+     * @param description
+     * @param location
+     * @return
+     */
     public Mole editMole(Mole mole, String name, String description, String location){
         long moleid = mole.getId();
         ContentValues values = new ContentValues();
@@ -170,7 +174,6 @@ public class MolesDataSource {
         database.insert(TablePictures.TABLE_PICTURES, null, values);
     }
 
-    //delete a picture
     /**
      * Delete a picture from the database
      * @param picture
@@ -181,7 +184,6 @@ public class MolesDataSource {
                 TablePictures.COLUMN_ID + " = " + picid, null);
     }
 
-    //retrieve all pictures from the database
     /**
      * Retrieve all the pictures from the database
      * @return a list of pictures

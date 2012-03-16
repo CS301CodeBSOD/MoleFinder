@@ -2,8 +2,16 @@ package cs310w10.MoleFinder.Model;
 
 import android.database.sqlite.SQLiteDatabase;
 
+/**
+ * @author James Helberg
+ * 
+ * TablePictures is an interface with the database within the Android environment
+ */
 public class TablePictures {
 	
+	/**
+	 * these are Statics associated with the database
+	 */
 	public static final String TABLE_PICTURES = "pictures";
 	public static final String COLUMN_ID = "_id";
 	public static final String COLUMN_DESCRIPTION = "description";
