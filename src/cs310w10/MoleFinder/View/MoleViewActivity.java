@@ -13,7 +13,7 @@ import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class MoleViewActivity extends Activity implements ViewActivity<Mole> {
+public class MoleViewActivity extends Activity implements fView<Mole> {
 	private ImageButton editDescriptionButton;
 	private ImageButton addPictureButton;
 	private TextView name;

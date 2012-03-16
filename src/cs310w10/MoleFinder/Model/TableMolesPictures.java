@@ -1,9 +1,17 @@
 package cs310w10.MoleFinder.Model;
 
 import android.database.sqlite.SQLiteDatabase;
-
+/**
+ * 
+ * @author James Helberg
+ *
+ * The database interface with the pictures Database
+ */
 public class TableMolesPictures {
 	
+	/**
+	 * Statics for pulling adn pushing data to the database of pictures
+	 */
 	public static final String TABLE_MOLESPICTURES = "molespictures";
 	public static final String COLUMN_MOLEID = "moleid";
 	public static final String COLUMN_PICTUREID = "pictureid";

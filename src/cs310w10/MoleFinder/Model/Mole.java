@@ -2,7 +2,7 @@ package cs310w10.MoleFinder.Model;
 
 import java.util.ArrayList;
 
-import cs310w10.MoleFinder.View.ViewActivity;
+import cs310w10.MoleFinder.View.fView;
 
 
 import android.graphics.Picture;
@@ -15,7 +15,7 @@ import android.graphics.Picture;
  * array of picture ids
  * 
  */
-public class Mole extends MoleModel<ViewActivity>{
+public class Mole extends fModel<fView>{
 	/**
 	 * The variables within the Mole class
 	 * id          - Mole id within the database

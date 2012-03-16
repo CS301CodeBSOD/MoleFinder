@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 public class EditImageViewActivity extends Activity implements
-		ViewActivity<Picture> {
+		fView<Picture> {
 	private ImageView image;
 	private ImageButton submitButton;
 	private Spinner dateSpinner;

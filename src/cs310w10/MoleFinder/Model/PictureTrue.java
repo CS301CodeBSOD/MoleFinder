@@ -9,12 +9,13 @@ import cs310w10.MoleFinder.View.fView;
 import android.net.Uri;
 
 /**
- * This class is used to represent a picture. 
- * 
- * @author Bing Pan
+ * @author James Helberg
  *
+ * Picture is a class designed to hold an image and the moles that it
+ * is associated with. the image will be loaded here for ease of access
+ * for display when a mole is referenced.
  */
-public class Picture extends fModel<fView> {
+public class PictureTrue extends fModel<fView> {
 	/**
 	 * Variables within the Picture class
 	 * id          - the id associated with the picture data in the database
@@ -30,31 +31,54 @@ public class Picture extends fModel<fView> {
 	private Uri imageData;
 
 	/**
-	 * Return the picture's id as an integer.
-	 * @return the picture's id
+	 * constructor for the picture with default id as -1
+	 */
+	public PictureTrue() {
+		id = -1;
+		description = "";
+		date = new Date();
+		moleID = new ArrayList<Integer>();
+		imageData = null;
+	}
+	
+	/**
+	 * constructor for the picture with single parameter for setting id
+	 * @param id
+	 */
+	public PictureTrue(int n_id) {
+		id = n_id;
+		description = "";
+		date = new Date();
+		moleID = new ArrayList<Integer>();
+		imageData = null;
+	}
+
+	/**
+	 * returns the Picture id associated with the database
+	 * @return id
 	 */
 	public int getId() {
 		return id;
 	}
 
 	/**
-	 * Set the picture's id to the integer provided.
-	 * @param the picture's id
+	 * Sets the picture id from the data base
+	 * @param id
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
 	/**
-	 * Return the picture's description.
-	 * @return the picture's description
+	 * returns the description of the image
+	 * @return description
 	 */
 	public String getDescription() {
 		return description;
 	}
 
 	/**
-	 * Set the picture's description to the description provided.
+	 * sets the description of the picture
 	 * @param description
 	 */
 	public void setDescription(String description) {
@@ -62,15 +86,15 @@ public class Picture extends fModel<fView> {
 	}
 
 	/**
-	 * Return the picture's date as a Date object.
-	 * @return the picture's date
+	 * returns the date that the picture was taken
+	 * @return date
 	 */
 	public Date getDate() {
 		return date;
 	}
-	
+
 	/**
-	 * Set the picture's date to the date provided.
+	 * sets the date in which the picture was taken
 	 * @param date
 	 */
 	public void setDate(Date date) {
@@ -78,16 +102,18 @@ public class Picture extends fModel<fView> {
 	}
 
 	/**
-	 * Return a list of mole ids with which the picture is associated with.
-	 * @return the list of moles
+	 * returns the list of mole ids that are associated with this picture. I a majority of the cases
+	 * it will be a single digit, though in cases where in several moles are close enough together to
+	 * fit in one image, it may be necessary to have them be recorded in the same image
+	 * @return ArrayList<Integer>
 	 */
 	public ArrayList<Integer> getMoleID() {
 		return moleID;
 	}
 
 	/**
-	 * Set the list of mole ids the picture is associated with to the list provided.
-	 * @param an ArrayList of mole objects
+	 * can set all the moleIDs directly
+	 * @param moleID
 	 */
 	public void setMoleID(ArrayList<Integer> moleID) {
 		this.moleID = moleID;
@@ -102,19 +128,18 @@ public class Picture extends fModel<fView> {
 	}
 
 	/**
-	 * Return the picture's URI.
-	 * @return the picture's URI
+	 * Returns the Uri image that is stored in the picture class
+	 * @return imageData
 	 */
 	public Uri getImageData() {
 		return imageData;
 	}
 
 	/**
-	 * Set the picture's URI to the URI provided.
+	 * set the image data for the picture object
 	 * @param imageData
 	 */
 	public void setImageData(Uri imageData) {
 		this.imageData = imageData;
 	}
-
 }

@@ -1,8 +1,16 @@
 package cs310w10.MoleFinder.Model;
 
 import android.database.sqlite.SQLiteDatabase;
-
+/**
+ * 
+ * @author James Helberg
+ *
+ * The database interface for pulling and putting values about Moles within the database
+ */
 public class TableMoles {
+	/**
+	 * Statics for loading and saving to the database
+	 */
 	public static final String TABLE_MOLES = "moles";
 	public static final String COLUMN_ID = "id";
 	public static final String COLUMN_NAME = "name";

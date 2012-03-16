@@ -17,7 +17,7 @@ import android.widget.AdapterView;
 
 
 public class ListMoleViewActivity extends Activity implements
-		ViewActivity<ListMole>, OnItemClickListener {
+		fView<ListMole>, OnItemClickListener {
 	ImageButton trashButton;
 	ImageButton addButton;
 	ListView moleListView;

@@ -2,7 +2,7 @@ package cs310w10.MoleFinder.Model;
 
 import java.util.ArrayList;
 
-import cs310w10.MoleFinder.View.ViewActivity;
+import cs310w10.MoleFinder.View.fView;
 
 /**
  * 
@@ -11,7 +11,7 @@ import cs310w10.MoleFinder.View.ViewActivity;
  * The list mole class manages all the loaded moles from the Database.
  * It allows for an easier management of the moles created by the user
  */
-public class ListMole extends MoleModel<ViewActivity> {
+public class ListMole extends fModel<fView> {
 	/**
 	 * this is the arrayList of moles that will have been pulled from the database
 	 */

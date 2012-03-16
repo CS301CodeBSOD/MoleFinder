@@ -2,7 +2,7 @@ package cs310w10.MoleFinder.Model;
 
 import java.util.ArrayList;
 
-import cs310w10.MoleFinder.View.ViewActivity;
+import cs310w10.MoleFinder.View.fView;
 
 
 /**
@@ -10,7 +10,7 @@ import cs310w10.MoleFinder.View.ViewActivity;
  * @author Bing Pan
  *
  */
-public class ListPicture extends MoleModel<ViewActivity>{
+public class ListPicture extends fModel<fView>{
 
 	/**
 	 * The list of pictures stored as an ArrayList of Picture objects.
@@ -23,6 +23,17 @@ public class ListPicture extends MoleModel<ViewActivity>{
 	 */
 	public ArrayList<Picture> getPictures() {
 		return pictures;
+	}
+	
+	/**
+	 * Gets a specific picture from the list of Pictures
+	 * the index indicates the position in the loaded ArrayList, not the index within
+	 * the database
+	 * @param index
+	 * @return Picture
+	 */
+	public Picture getPicture(int index) {
+		return pictures.get(index);
 	}
 
 	/**

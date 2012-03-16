@@ -16,7 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class NewMoleViewActivity extends Activity implements ViewActivity<Mole> {
+public class NewMoleViewActivity extends Activity implements fView<Mole> {
     private ImageButton submitButton;
     private EditText nameEdit;
     private EditText descriptionEdit;
