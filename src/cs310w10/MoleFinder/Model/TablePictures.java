@@ -6,18 +6,18 @@ public class TablePictures {
 	
 	public static final String TABLE_PICTURES = "pictures";
 	public static final String COLUMN_ID = "_id";
-	public static final String COLUMN_DATE = "date";
 	public static final String COLUMN_DESCRIPTION = "description";
+	public static final String COLUMN_DATE = "date";
 	public static final String COLUMN_URI = "uri";
-	public static final String[] ALLCOLUMNS = { COLUMN_ID, COLUMN_DATE,
-			COLUMN_URI, COLUMN_DESCRIPTION };
+	public static final String[] ALLCOLUMNS = { COLUMN_ID, 
+			COLUMN_DESCRIPTION, COLUMN_DATE, COLUMN_URI };
 	
 	
 	private  static final String TABLE_CREATE = "create table "
 			+ TABLE_PICTURES + "( " + COLUMN_ID 
-			+ " integer primary key, " + COLUMN_DATE
+			+ " text, " + COLUMN_DESCRIPTION
+			+ " integer not null, " + COLUMN_DATE
 			+ " integer not null, " + COLUMN_URI
-			+ " text not null, " + COLUMN_DESCRIPTION
 			+ " text);";
 	
 	public static void onCreate(SQLiteDatabase db){
