@@ -1,5 +1,6 @@
 package cs310w10.MoleFinder.View;
 
+import cs310w10.MoleFinder.Model.Mole;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;

@@ -1,8 +1,10 @@
-package cs310w10.MoleFinder.View;
+package cs310w10.MoleFinder.Model;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import cs310w10.MoleFinder.Controller.PictureController;
 
 
 import android.content.ContentValues;

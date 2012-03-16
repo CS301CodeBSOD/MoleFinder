@@ -1,5 +1,8 @@
 package cs310w10.MoleFinder.View;
 
+import cs310w10.MoleFinder.Controller.ListMoleController;
+import cs310w10.MoleFinder.Controller.ListPictureController;
+import cs310w10.MoleFinder.Model.MoleFinder;
 import android.app.Application;
 
 public class MoleFinderApplication extends Application {

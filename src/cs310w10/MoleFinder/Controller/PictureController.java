@@ -1,6 +1,8 @@
-package cs310w10.MoleFinder.View;
+package cs310w10.MoleFinder.Controller;
 
 import java.util.Date;
+
+import cs310w10.MoleFinder.Model.Picture;
 
 import android.net.Uri;
 

@@ -1,6 +1,9 @@
-package cs310w10.MoleFinder.View;
+package cs310w10.MoleFinder.Controller;
 
 import java.util.ArrayList;
+
+import cs310w10.MoleFinder.Model.ListMole;
+import cs310w10.MoleFinder.Model.Mole;
 
 
 public class ListMoleController {
