@@ -1,6 +1,7 @@
 package cs310w10.MoleFinder.View;
 
 import cs310w10.MoleFinder.Controller.ListMoleController;
+import cs310w10.MoleFinder.Controller.MoleFinderApplication;
 import cs310w10.MoleFinder.Model.ListMole;
 //import cs310w10.MoleFinder.Model.MoleAdapter;
 import cs310w10.MoleFinder.View.MoleViewActivity;

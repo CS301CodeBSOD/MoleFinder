@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import cs310w10.MoleFinder.Model.ListMole;
 import cs310w10.MoleFinder.Model.Mole;
 import cs310w10.MoleFinder.Model.MolesDataSource;
-import cs310w10.MoleFinder.View.MoleFinderApplication;
 
 
 public class ListMoleController {
