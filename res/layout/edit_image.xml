@@ -24,8 +24,8 @@
                 android:contentDescription="Submit"
                 android:src="@android:drawable/ic_input_add" />
 
-            <Spinner
-                android:id="@+id/EditImageViewDateSpinner"
+            <Button
+                android:id="@+id/EditImageViewDateButton"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/EditImageViewSubmitButton" />
