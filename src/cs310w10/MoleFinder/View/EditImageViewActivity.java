@@ -1,11 +1,7 @@
 package cs310w10.MoleFinder.View;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.graphics.Bitmap;
@@ -18,12 +14,12 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import cs310w10.MoleFinder.Controller.MoleFinderApplication;
+import cs310w10.MoleFinder.Controller.PictureController;
 import cs310w10.MoleFinder.Model.Picture;
 
 public class EditImageViewActivity extends ViewActivity<Picture> {
-	
+
 	private static final int DATE_DIALOG_ID = 0;
 
 	private ImageView image;
@@ -32,17 +28,17 @@ public class EditImageViewActivity extends ViewActivity<Picture> {
 	private EditText notesField;
 	private Picture picture;
 
-
-
+	@Override
 	protected void setViews() {
 		setContentView(R.layout.edit_image);
 		image = (ImageView) findViewById(R.id.EditImageViewImage);
 		submitButton = (ImageButton) findViewById(R.id.EditImageViewSubmitButton);
 		dateButton = (Button) findViewById(R.id.EditImageViewDateButton);
 		notesField = (EditText) findViewById(R.id.EditImageViewNotesField);
-		
+
 	}
-	
+
+	@Override
 	protected void addListeners() {
 		dateButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -56,19 +52,22 @@ public class EditImageViewActivity extends ViewActivity<Picture> {
 			}
 		});
 	}
-	
+
 	public void pressSubmitButton() {
 		picture.setDescription(notesField.getText().toString());
 
 		// TODO: apply fields and go back to the mole you were just on.
 	}
-	
+
+	@Override
 	protected void updateSelf() {
 		update(picture);
 	}
 
 	public void update(Picture model) {
 		Bundle extras = getIntent().getExtras();
+
+		// TODO: Put this into a controller or something. It needs fixing.
 		if (extras.containsKey("id")) {
 			picture = MoleFinderApplication.getListPictureController()
 					.getPictureById(extras.getInt("id"));
@@ -77,42 +76,34 @@ public class EditImageViewActivity extends ViewActivity<Picture> {
 				Bitmap imagebitmap = BitmapFactory.decodeFile(path);
 				image.setImageBitmap(imagebitmap);
 				if (picture.getDate() != null) {
-					displayDate(picture.getDate());
+					dateButton.setText(new PictureController(picture)
+							.getDateAsString());
 				} else {
-					picture.setDate(new Date());
+					picture.setDate(Calendar.getInstance());
 				}
 			}
 		}
 
 	}
 
-	private void displayDate(Date date) {
-		DateFormat df = new SimpleDateFormat("EEE, MMM d, ''yy");
-		String text = df.format(date);
-		dateButton.setText(text);
-	}
-
+	@Override
 	protected Dialog onCreateDialog(int id) {
 		switch (id) {
 		case DATE_DIALOG_ID:
-			Calendar calendar = Calendar.getInstance();
-			calendar.setTime(picture.getDate());
 			return new DatePickerDialog(this,
 					new DatePickerDialog.OnDateSetListener() {
 
 						public void onDateSet(DatePicker view, int year,
 								int monthOfYear, int dayOfMonth) {
-
-							Date date = picture.getDate();
-							date.setYear(year);
-							date.setMonth(monthOfYear);
-							date.setDate(dayOfMonth);
+							Calendar date = picture.getDate();
+							date.set(year, monthOfYear, dayOfMonth);
 							picture.setDate(date);
-							displayDate(date);
+							update(picture);
 						}
 
-					}, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH)
-							, calendar.get(Calendar.DAY_OF_MONTH));
+					}, picture.getDate().get(Calendar.YEAR), picture.getDate()
+							.get(Calendar.MONTH), picture.getDate().get(
+							Calendar.DAY_OF_MONTH));
 		}
 		return null;
 	}

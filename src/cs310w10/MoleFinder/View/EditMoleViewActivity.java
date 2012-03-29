@@ -86,7 +86,9 @@ public class EditMoleViewActivity extends ViewActivity<Mole> {
 
 			} else {
 				Intent intent = new Intent(this, MoleViewActivity.class);
-				intent.putExtra(Intent.EXTRA_SUBJECT, id);
+				
+				// TODO: get mole
+				putMole(intent, id);
 				startActivity(intent);
 
 				setResult(Activity.RESULT_OK, intent);

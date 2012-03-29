@@ -15,9 +15,6 @@ import cs310w10.MoleFinder.Controller.PictureController;
 import cs310w10.MoleFinder.Model.Mole;
 
 public class MoleViewActivity extends ViewActivity<Mole> {
-	private static final int CAMERA_PICTURE_REQUEST = 124;
-	private static final int EDIT_MOLE_REQUEST = 125;
-	private static final int EDIT_PIC_REQUEST = 126;
 	private ImageButton editDescriptionButton;
 	private ImageButton addPictureButton;
 	private TextView name;
@@ -52,23 +49,17 @@ public class MoleViewActivity extends ViewActivity<Mole> {
 	}
 
 	protected void pressAddPictureButton() {
-		Intent cameraIntent = new Intent(
-				android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-		startActivityForResult(cameraIntent, CAMERA_PICTURE_REQUEST);
+		launchCamera();
 	}
 
 	protected void pressEditButton() {
-		long id = mole.getId();
-		Intent intent = new Intent(this, EditMoleViewActivity.class);
-		intent.putExtra("id", id);
-		startActivityForResult(intent, EDIT_MOLE_REQUEST);
+		launchEditMole();
 	}
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == EDIT_MOLE_REQUEST && resultCode == RESULT_OK) {
-			update(mole);
 			setResult(Activity.RESULT_OK);
 		}
 		if (requestCode == CAMERA_PICTURE_REQUEST && resultCode == RESULT_OK) {
@@ -80,15 +71,16 @@ public class MoleViewActivity extends ViewActivity<Mole> {
 			Intent intent = new Intent(this, EditImageViewActivity.class);
 			intent.putExtra("moleId", newPictureController.getPicture().getId());
 			startActivityForResult(intent, EDIT_PIC_REQUEST);
-			update(mole);
 		}
-
+		update(mole);
 	}
 
 	public void update(Mole model) {
+		if(mole != null) {
 		name.setText(mole.getName());
 		description.setText(mole.getDescription());
 		updateGallery();
+		}
 	}
 
 	@Override
