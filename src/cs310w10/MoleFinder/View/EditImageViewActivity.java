@@ -22,7 +22,8 @@ import android.widget.Spinner;
 import cs310w10.MoleFinder.Controller.MoleFinderApplication;
 import cs310w10.MoleFinder.Model.Picture;
 
-public class EditImageViewActivity extends Activity implements fView<Picture> {
+public class EditImageViewActivity extends ViewActivity<Picture> {
+	
 	private static final int DATE_DIALOG_ID = 0;
 
 	private ImageView image;

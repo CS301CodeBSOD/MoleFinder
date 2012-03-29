@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ListView;
 
-public class SearchViewActivity extends Activity implements fView<Mole> {
+public class SearchViewActivity extends ViewActivity<Mole> {
 	private EditText textInput;
 	private ListView resultsList;
 

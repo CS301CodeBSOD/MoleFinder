@@ -1,5 +1,6 @@
 package cs310w10.MoleFinder.View;
 
+import cs310w10.MoleFinder.Model.Picture;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class MainViewActivity extends Activity {
+public class MainViewActivity extends ViewActivity<Picture> {
 	private Button addMoleButton;
 	private Button viewMolesButton;
 	private Button searchLocationButton;
@@ -54,5 +55,9 @@ public class MainViewActivity extends Activity {
 	public void pressAddMoleButton() {
 		Intent intent = new Intent(this, NewMoleViewActivity.class);
 		startActivity(intent);
+	}
+
+	public void update(Picture model) {
+		// doesn't do anything since the main view doesn't actually display any models
 	}
 }

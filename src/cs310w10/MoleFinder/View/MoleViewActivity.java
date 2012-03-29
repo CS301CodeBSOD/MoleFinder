@@ -14,7 +14,7 @@ import cs310w10.MoleFinder.Controller.MoleFinderApplication;
 import cs310w10.MoleFinder.Controller.PictureController;
 import cs310w10.MoleFinder.Model.Mole;
 
-public class MoleViewActivity extends Activity implements fView<Mole> {
+public class MoleViewActivity extends ViewActivity<Mole> {
 	private static final int CAMERA_PICTURE_REQUEST = 124;
 	private static final int EDIT_MOLE_REQUEST = 125;
 	private static final int EDIT_PIC_REQUEST = 126;

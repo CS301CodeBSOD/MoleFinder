@@ -9,8 +9,7 @@ import android.widget.ImageButton;
 import android.widget.ImageSwitcher;
 import android.widget.TextView;
 
-public class MoleGalleryViewActivity extends Activity implements
-		fView<ListMole> {
+public class MoleGalleryViewActivity extends ViewActivity<ListMole> {
 	private ImageSwitcher imageSwitcher;
 	private ImageButton editButton;
 	private TextView dateText;

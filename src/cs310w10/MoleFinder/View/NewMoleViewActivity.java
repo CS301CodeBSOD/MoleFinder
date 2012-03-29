@@ -15,7 +15,7 @@ import cs310w10.MoleFinder.Controller.MoleController;
 import cs310w10.MoleFinder.Controller.MoleFinderApplication;
 import cs310w10.MoleFinder.Model.Mole;
 
-public class NewMoleViewActivity extends Activity implements fView<Mole> {
+public class NewMoleViewActivity extends ViewActivity<Mole> {
 	private ImageButton submitButton;
 	private EditText nameEdit;
 	private EditText descriptionEdit;

@@ -18,8 +18,7 @@ import android.widget.Toast;
 import android.widget.AdapterView;
 
 
-public class ListMoleViewActivity extends Activity implements
-		fView<ListMole>, OnItemClickListener {
+public class ListMoleViewActivity extends ViewActivity<ListMole> implements OnItemClickListener {
 	ImageButton trashButton;
 	ImageButton addButton;
 	ListView moleListView;
