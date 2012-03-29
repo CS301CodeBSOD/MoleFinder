@@ -15,32 +15,25 @@ public class MoleGalleryViewActivity extends ViewActivity<ListMole> {
 	private TextView dateText;
 	private TextView notesText;
 
+
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	protected void setViews() {
 		setContentView(R.layout.mole_gallery);
 
 		imageSwitcher = (ImageSwitcher) findViewById(R.id.MoleGalleryViewImageSwitcher);
-		// TODO: make imageSwitcher work? Maybe this will help:
-		// http://saigeethamn.blogspot.com/2010/05/image-switcher-view-android-developer.html
-
 		editButton = (ImageButton) findViewById(R.id.MoleGalleryViewEditButton);
+		dateText = (TextView) findViewById(R.id.MoleGalleryViewDateText);
+		notesText = (TextView) findViewById(R.id.MoleGalleryViewNotesText);
+	}
+
+	@Override
+	protected void addListeners() {
 		editButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				pressEditButton();
 			}
 		});
-
-		dateText = (TextView) findViewById(R.id.MoleGalleryViewDateText);
-		// TODO: get date from image data
-		dateText.setText("A DATE");
-
-		notesText = (TextView) findViewById(R.id.MoleGalleryViewNotesText);
-		// TODO: get notes from image data
-		dateText.setText("SOME NOTES ABOUT THE MOLE");
-
 	}
-
 	protected void pressEditButton() {
 		// TODO: transfer intent to EditImage
 	}
@@ -49,4 +42,19 @@ public class MoleGalleryViewActivity extends ViewActivity<ListMole> {
 		// TODO Auto-generated method stub
 
 	}
+
+	@Override
+	protected void updateSelf() {
+		// TODO: make imageSwitcher work? Maybe this will help:
+		// http://saigeethamn.blogspot.com/2010/05/image-switcher-view-android-developer.html
+
+
+		// TODO: get date from image data
+		dateText.setText("A DATE");
+
+		// TODO: get notes from image data
+		dateText.setText("SOME NOTES ABOUT THE MOLE");
+
+	}
+
 }

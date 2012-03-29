@@ -23,36 +23,31 @@ public class MoleViewActivity extends ViewActivity<Mole> {
 	private TextView name;
 	private TextView description;
 	private Gallery gallery;
-	private Mole mole;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	protected void setViews() {
 		setContentView(R.layout.mole);
 
 		gallery = (Gallery) findViewById(R.id.MoleViewGallery);
 		name = (TextView) findViewById(R.id.MoleViewName);
 		description = (TextView) findViewById(R.id.MoleViewDescription);
-
 		editDescriptionButton = (ImageButton) findViewById(R.id.MoleViewEditButton);
+		addPictureButton = (ImageButton) findViewById(R.id.MoleViewAddPictureButton);
+	}
+
+	@Override
+	protected void addListeners() {
 		editDescriptionButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				pressEditButton();
 			}
 		});
 
-		addPictureButton = (ImageButton) findViewById(R.id.MoleViewAddPictureButton);
 		addPictureButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				pressAddPictureButton();
 			}
 		});
-
-		Intent intent = getIntent();
-		long id = intent.getExtras().getLong(Intent.EXTRA_SUBJECT);
-		mole = MoleController.getMoleFromId(id);
-
-		update(mole);
 
 	}
 
@@ -83,7 +78,7 @@ public class MoleViewActivity extends ViewActivity<Mole> {
 			MoleFinderApplication.getListPictureController().insertPicture(
 					newPictureController);
 			Intent intent = new Intent(this, EditImageViewActivity.class);
-			intent.putExtra("id", newPictureController.getPicture().getId());
+			intent.putExtra("moleId", newPictureController.getPicture().getId());
 			startActivityForResult(intent, EDIT_PIC_REQUEST);
 			update(mole);
 		}
@@ -96,9 +91,14 @@ public class MoleViewActivity extends ViewActivity<Mole> {
 		updateGallery();
 	}
 
+	@Override
+	protected void updateSelf() {
+		update(mole);
+	}
+
 	protected void updateGallery() {
 		// tutorial for this part:
 		// http://developer.android.com/guide/tutorials/views/hello-gallery.html
-		gallery.setAdapter(null); // TBI
+		gallery.setAdapter(null); // / TODO: Implement TBI
 	}
 }

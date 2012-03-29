@@ -28,6 +28,8 @@ public abstract class ViewActivity<M> extends Activity implements fView<M> {
 			int id = extras.getInt("pictureId");
 			picture = PictureController.getPictureFromId(id);
 		}
+		setViews();
+		addListeners();
 	}
 	
 	protected void putMole(Intent putintent, Mole putMole) {
@@ -37,4 +39,11 @@ public abstract class ViewActivity<M> extends Activity implements fView<M> {
 		putintent.putExtra("pictureId", putPicture.getId());
 	}
 	
+	/// Load resources from Layout
+	protected abstract void setViews();
+	
+	/// Create new buttonlisteners to associate functions to buttons
+	protected abstract void addListeners();
+	
+	protected abstract void updateSelf();
 }

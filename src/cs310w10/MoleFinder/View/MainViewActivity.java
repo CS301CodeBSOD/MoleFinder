@@ -13,33 +13,35 @@ public class MainViewActivity extends ViewActivity<Picture> {
 	private Button viewMolesButton;
 	private Button searchLocationButton;
 
-	/** Called when the activity is first created. */
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	protected void setViews() {
 		setContentView(R.layout.main);
 
 		addMoleButton = (Button) findViewById(R.id.MainViewAddMoleButton);
+		viewMolesButton = (Button) findViewById(R.id.MainViewViewMolesButton);
+		searchLocationButton = (Button) findViewById(R.id.MainViewSearchLocationButton);
+
+	}
+
+	@Override
+	protected void addListeners() {
 		addMoleButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				pressAddMoleButton();
 			}
 		});
 
-		viewMolesButton = (Button) findViewById(R.id.MainViewViewMolesButton);
 		viewMolesButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				pressViewMolesButton();
 			}
 		});
 
-		searchLocationButton = (Button) findViewById(R.id.MainViewSearchLocationButton);
 		searchLocationButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				pressSearchLocationButton();
 			}
 		});
-
 	}
 
 	protected void pressViewMolesButton() {
@@ -58,6 +60,14 @@ public class MainViewActivity extends ViewActivity<Picture> {
 	}
 
 	public void update(Picture model) {
-		// doesn't do anything since the main view doesn't actually display any models
+		// doesn't do anything since the main view doesn't actually display any
+		// models
 	}
+
+	@Override
+	protected void updateSelf() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

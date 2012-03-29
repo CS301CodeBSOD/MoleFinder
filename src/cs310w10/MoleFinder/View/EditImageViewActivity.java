@@ -32,23 +32,18 @@ public class EditImageViewActivity extends ViewActivity<Picture> {
 	private EditText notesField;
 	private Picture picture;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+
+
+	protected void setViews() {
 		setContentView(R.layout.edit_image);
-
 		image = (ImageView) findViewById(R.id.EditImageViewImage);
-
 		submitButton = (ImageButton) findViewById(R.id.EditImageViewSubmitButton);
-
 		dateButton = (Button) findViewById(R.id.EditImageViewDateButton);
-
 		notesField = (EditText) findViewById(R.id.EditImageViewNotesField);
-		update(picture);
+		
 	}
-
 	
-	private void addButtonListeners() {
+	protected void addListeners() {
 		dateButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				showDialog(DATE_DIALOG_ID);
@@ -66,6 +61,10 @@ public class EditImageViewActivity extends ViewActivity<Picture> {
 		picture.setDescription(notesField.getText().toString());
 
 		// TODO: apply fields and go back to the mole you were just on.
+	}
+	
+	protected void updateSelf() {
+		update(picture);
 	}
 
 	public void update(Picture model) {
