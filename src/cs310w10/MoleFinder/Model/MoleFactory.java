@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 public class MoleFactory {
-	private MolesDataSource connection;
+	private SQLiteDatabase database;
 	
-	public MoleFactory( MolesDataSource connection){
-		connection.;
+	public MoleFactory( SQLiteDatabase database){
+		this.database = database;
 	}
 	
 	 public Mole createMole(String name, String description, String location){
@@ -113,5 +114,26 @@ public class MoleFactory {
 	        mole.setPhotoId(photoIds);
 
 	        return mole;
+	    }
+	    
+
+	    /**
+	     * Obtain all the ids of the pictures related to the mole provided.
+	     * @param the id of the mole
+	     * @return a list of picture ids
+	     */
+	    public ArrayList<Integer> getPhotoIdsFromeMole (int moleId){
+	        ArrayList<Integer> photoids = new ArrayList<Integer>();
+	        String [] columns = { TableMolesPictures.COLUMN_PICTUREID };
+	        Cursor cursor = database.query(TableMolesPictures.TABLE_MOLESPICTURES, columns,
+	                TableMolesPictures.COLUMN_PICTUREID + " = " + moleId, null, null, null, null);
+	        cursor.moveToFirst();
+	        while (!cursor.isAfterLast()){
+	            int photoid = cursor.getInt(0);
+	            photoids.add(photoid);
+	            cursor.moveToNext();
+	        }
+	        cursor.close();
+	        return photoids; 
 	    }
 }
