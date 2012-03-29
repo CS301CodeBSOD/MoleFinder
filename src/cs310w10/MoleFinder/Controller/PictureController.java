@@ -28,6 +28,10 @@ public class PictureController {
 			picture.setImageData(uri);
 		}
 	}
+	
+	public PictureController(int id) {
+		
+	}
 
 	private Uri makeFile(Bitmap imagedata, int id) {
 		String folderpath = MoleFinderApplication.getSavePath();

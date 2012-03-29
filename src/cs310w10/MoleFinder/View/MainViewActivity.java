@@ -55,7 +55,7 @@ public class MainViewActivity extends ViewActivity<Picture> {
 	}
 
 	public void pressAddMoleButton() {
-		Intent intent = new Intent(this, NewMoleViewActivity.class);
+		Intent intent = new Intent(this, EditMoleViewActivity.class);
 		startActivity(intent);
 	}
 

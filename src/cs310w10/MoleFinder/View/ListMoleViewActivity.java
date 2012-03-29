@@ -60,6 +60,7 @@ public class ListMoleViewActivity extends ViewActivity<ListMole> implements
 	}
 
 	protected void pressTrashButton() {
+		// TODO: Add confirmation dialog
 		ListMoleController.deleteAllMoles();
 		Toast.makeText(getBaseContext(), "Database purged", Toast.LENGTH_SHORT)
 				.show();
@@ -67,7 +68,7 @@ public class ListMoleViewActivity extends ViewActivity<ListMole> implements
 
 	protected void pressAddButton() {
 		Intent intent;
-		intent = new Intent(this, NewMoleViewActivity.class);
+		intent = new Intent(this, EditMoleViewActivity.class);
 		startActivityForResult(intent, 1);
 	}
 

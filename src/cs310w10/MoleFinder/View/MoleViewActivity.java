@@ -59,7 +59,7 @@ public class MoleViewActivity extends ViewActivity<Mole> {
 
 	protected void pressEditButton() {
 		long id = mole.getId();
-		Intent intent = new Intent(this, NewMoleViewActivity.class);
+		Intent intent = new Intent(this, EditMoleViewActivity.class);
 		intent.putExtra("id", id);
 		startActivityForResult(intent, EDIT_MOLE_REQUEST);
 	}
