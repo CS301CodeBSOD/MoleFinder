@@ -28,7 +28,7 @@ public class EditImageViewActivity extends ViewActivity<Picture> {
 
 	private ImageView image;
 	private ImageButton submitButton;
-	private Button dateView;
+	private Button dateButton;
 	private EditText notesField;
 	private Picture picture;
 
@@ -40,23 +40,28 @@ public class EditImageViewActivity extends ViewActivity<Picture> {
 		image = (ImageView) findViewById(R.id.EditImageViewImage);
 
 		submitButton = (ImageButton) findViewById(R.id.EditImageViewSubmitButton);
-		submitButton.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				pressSubmitButton();
-			}
-		});
 
-		dateView = (Button) findViewById(R.id.EditImageViewDateButton);
-		dateView.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				showDialog(DATE_DIALOG_ID);
-			}
-		});
+		dateButton = (Button) findViewById(R.id.EditImageViewDateButton);
 
 		notesField = (EditText) findViewById(R.id.EditImageViewNotesField);
 		update(picture);
 	}
 
+	
+	private void addButtonListeners() {
+		dateButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				showDialog(DATE_DIALOG_ID);
+			}
+		});
+
+		submitButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				pressSubmitButton();
+			}
+		});
+	}
+	
 	public void pressSubmitButton() {
 		picture.setDescription(notesField.getText().toString());
 
@@ -85,7 +90,7 @@ public class EditImageViewActivity extends ViewActivity<Picture> {
 	private void displayDate(Date date) {
 		DateFormat df = new SimpleDateFormat("EEE, MMM d, ''yy");
 		String text = df.format(date);
-		dateView.setText(text);
+		dateButton.setText(text);
 	}
 
 	protected Dialog onCreateDialog(int id) {

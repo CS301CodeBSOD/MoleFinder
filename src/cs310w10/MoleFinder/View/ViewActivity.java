@@ -36,4 +36,5 @@ public abstract class ViewActivity<M> extends Activity implements fView<M> {
 	protected void putPicture(Intent putintent, Mole putPicture) {
 		putintent.putExtra("pictureId", putPicture.getId());
 	}
+	
 }
