@@ -23,8 +23,8 @@ public class TablePictures {
 	
 	private  static final String TABLE_CREATE = "create table "
 			+ TABLE_PICTURES + "( " + COLUMN_ID 
-			+ " text, " + COLUMN_DESCRIPTION
-			+ " integer not null, " + COLUMN_DATE
+			+ " integer primary key autoincrement, " + COLUMN_DESCRIPTION
+			+ " text, " + COLUMN_DATE
 			+ " integer not null, " + COLUMN_URI
 			+ " text);";
 	
