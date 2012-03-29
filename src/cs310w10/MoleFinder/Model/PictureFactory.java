@@ -1,6 +1,7 @@
 package cs310w10.MoleFinder.Model;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import android.content.ContentValues;
@@ -69,8 +70,8 @@ public class PictureFactory {
         int pictureId = cursor.getInt(0);
         picture.setId(pictureId);
         picture.setDescription(cursor.getString(1));
-        Date date = new Date();
-        date.setTime(cursor.getInt(2));
+        Calendar date = Calendar.getInstance();
+        date.setTimeInMillis(cursor.getInt(2));
         picture.setDate(date);
         Uri imageData = Uri.parse(cursor.getString(3));
         picture.setImageData(imageData);
@@ -114,9 +115,9 @@ public class PictureFactory {
 			tempcursor.moveToFirst();
 			picture.setDescription(tempcursor.getString(1));
 			Long time = (long) tempcursor.getInt(2);
-			Date date = new Date();
-			date.setTime(time);
-			picture.setDate(date);
+	        Calendar date = Calendar.getInstance();
+	        date.setTimeInMillis(time);
+	        picture.setDate(date);
 			picture.setImageData(Uri.parse(tempcursor.getString(3)));
 
 		}

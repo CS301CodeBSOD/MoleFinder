@@ -2,6 +2,7 @@ package cs310w10.MoleFinder.Model;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import cs310w10.MoleFinder.Controller.PictureController;
@@ -266,8 +267,8 @@ public class MolesDataSource {
             tempcursor.moveToFirst();
             picture.setDescription(tempcursor.getString(1));
             Long time = (long) tempcursor.getInt(2);
-            Date date = new Date();
-            date.setTime(time);
+            Calendar date = Calendar.getInstance();
+            date.setTimeInMillis(time);
             picture.setDate(date);
             picture.setImageData(Uri.parse(tempcursor.getString(3)));
 

@@ -2,6 +2,8 @@ package cs310w10.MoleFinder.Controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import android.graphics.Bitmap;
@@ -24,7 +26,7 @@ public class PictureController {
 		} else {
 			picture = new Picture();
 			picture.setId(id);
-			picture.setDate(new Date());
+			picture.setDate(Calendar.getInstance());
 			picture.setImageData(uri);
 		}
 	}
@@ -71,19 +73,11 @@ public class PictureController {
 
 	public String getDateAsString() {
 		try {
-			Date date = picture.getDate();
-			return date.toGMTString();
+			Calendar date = picture.getDate();
+			SimpleDateFormat format = new SimpleDateFormat("MM - dd - yyyy");
+			return format.format(date);
 		} catch (NullPointerException e) {
 			return null;
-		}
-	}
-
-	public long getDateAslong() {
-		try {
-			Date date = picture.getDate();
-			return date.getTime();
-		} catch (NullPointerException e) {
-			return -1;
 		}
 	}
 
@@ -98,5 +92,10 @@ public class PictureController {
 
 	public Picture getPicture() {
 		return picture;
+	}
+
+	public static Picture getPictureFromId(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
