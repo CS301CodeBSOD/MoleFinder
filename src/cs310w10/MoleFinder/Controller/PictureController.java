@@ -13,11 +13,18 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import cs310w10.MoleFinder.Model.ListMole;
 import cs310w10.MoleFinder.Model.ListPicture;
+import cs310w10.MoleFinder.Model.Mole;
 import cs310w10.MoleFinder.Model.Picture;
+import cs310w10.MoleFinder.Model.TableMoles;
 import cs310w10.MoleFinder.Model.TableMolesPictures;
 import cs310w10.MoleFinder.Model.TablePictures;
 
+/**
+ * @author Bing
+ *
+ */
 public class PictureController {
+
 	private Picture picture;
 	private SQLiteDatabase database;
 
@@ -29,6 +36,7 @@ public class PictureController {
 	public PictureController( SQLiteDatabase database) {
 		this.database = database;
 	}
+
 	public PictureController(Bitmap imagedata) {
 		int id = MoleFinderApplication.getListPictureController()
 				.getNextFreeID();
@@ -42,9 +50,9 @@ public class PictureController {
 			picture.setImageData(uri);
 		}
 	}
-	
+
 	public PictureController(int id) {
-		
+
 	}
 
 	private Uri makeFile(Bitmap imagedata, int id) {
@@ -102,6 +110,10 @@ public class PictureController {
 		}
 	}
 
+	/**
+	 * Get the Picture object the controller is controlling
+	 * @return Picture object
+	 */
 	public Picture getPicture() {
 		return picture;
 	}
@@ -110,23 +122,29 @@ public class PictureController {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
+
+
+	/**
+	 * Create a new Picture
+	 * @param date
+	 * @param description
+	 * @param uri
+	 */
 	public void createPicture(String date, String description, String uri){
 		picture = new Picture();
 		ContentValues values = new ContentValues();
 		values.put(TablePictures.COLUMN_DATE, date);
 		values.put(TablePictures.COLUMN_DESCRIPTION, description);
 		values.put(TablePictures.COLUMN_URI, uri);
-		
-        long rowId = database.insert(TablePictures.TABLE_PICTURES, null, values);
-        Cursor cursor = database.query(TablePictures.TABLE_PICTURES, TablePictures.ALLCOLUMNS,
-                TablePictures.COLUMN_ID + " = " + rowId, null, null, null, null);
-        if (cursor.moveToFirst()){
-            picture = cursorToPicture(cursor);
-        }
+
+		long rowId = database.insert(TablePictures.TABLE_PICTURES, null, values);
+		Cursor cursor = database.query(TablePictures.TABLE_PICTURES, TablePictures.ALLCOLUMNS,
+				TablePictures.COLUMN_ID + " = " + rowId, null, null, null, null);
+		if (cursor.moveToFirst()){
+			picture = cursorToPicture(cursor);
+		}
 	}
-    
+
 	/**
 	 * Delete a picture from the database
 	 * @param picture
@@ -142,62 +160,68 @@ public class PictureController {
 	 * @return
 	 */
 	private Picture cursorToPicture(Cursor cursor) {
-        Picture picture = new Picture();
-        int pictureId = cursor.getInt(0);
-        picture.setId(pictureId);
-        picture.setDescription(cursor.getString(1));
-        Calendar date = Calendar.getInstance();
-        date.setTimeInMillis(cursor.getInt(2));
-        picture.setDate(date);
-        Uri imageData = Uri.parse(cursor.getString(3));
-        picture.setImageData(imageData);
+		Picture picture = new Picture();
+		int pictureId = cursor.getInt(0);
+		picture.setId(pictureId);
+		picture.setDescription(cursor.getString(1));
+		Calendar date = Calendar.getInstance();
+		date.setTimeInMillis(cursor.getInt(2));
+		picture.setDate(date);
+		Uri imageData = Uri.parse(cursor.getString(3));
+		picture.setImageData(imageData);
 
-        return picture;
+		return picture;
 	} 
+	
+	/**
+	 * edits a picture that has previously been set in the database
+	 * @param date
+	 * @param description
+	 * @param uri
+	 * @return
+	 */
+	public void editPicture( String date, String description, String uri){
+		long pictureid = picture.getId();
+		ContentValues values = new ContentValues();
+		values.put(TablePictures.COLUMN_DATE, date);
+		values.put(TablePictures.COLUMN_DESCRIPTION, description);
+		values.put(TablePictures.COLUMN_URI, uri);
+		long rowId = database.update(TablePictures.TABLE_PICTURES, values, TablePictures.COLUMN_ID + " = " + pictureid, null);
 
+		Cursor cursor = database.query(TablePictures.TABLE_PICTURES, TablePictures.ALLCOLUMNS,
+				TableMoles.COLUMN_ID + " = " + rowId, null, null, null, null);
+		if (cursor.moveToFirst()){
+			picture = cursorToPicture(cursor);
+		}
+	}
+	
 	/**
 	 * Associate a picture with a mole and insert that relationship into the database.
 	 * @param the id of the mole
 	 * @param the id of the picture
 	 */
-	public void insertMolePicturePair ( int moleID, int PhotoID){
+	public void AssociatePictureWithMole ( int moleID ){
 		ContentValues values = new ContentValues();
 		values.put(TableMolesPictures.COLUMN_MOLEID, moleID);
-		values.put(TableMolesPictures.COLUMN_PICTUREID, PhotoID);
+		values.put(TableMolesPictures.COLUMN_PICTUREID, picture.getId());
 
 		database.insert(TableMolesPictures.TABLE_MOLESPICTURES, null, values);
 
 	}
 
-
 	/**
-	 * Retrieve a list of picture related to the given mole.
-	 * @param the id of the mole
-	 * @return a list of pictures
+	 * Retrieve the picture with the provided ID from the database
+	 * @param id
 	 */
-	public ListPicture getListPictureFromMole ( int moleID ){
-		ListPicture pictures = new ListPicture();
-		String [] columns = { TableMolesPictures.COLUMN_PICTUREID };
-		Cursor cursor = database.query(TableMolesPictures.TABLE_MOLESPICTURES, columns,
-				TableMolesPictures.COLUMN_PICTUREID + " = " + moleID, null, null, null, null);
+	public void getPictureFromId(long id){
+		picture = new Picture();
+		Cursor cursor = database.query(TablePictures.TABLE_PICTURES, TablePictures.ALLCOLUMNS, 
+				TablePictures.COLUMN_ID + " = " + String.valueOf(id), null, null, null, null);
 		cursor.moveToFirst();
-		while (!cursor.isAfterLast()){
-			Picture picture = new Picture();
-			int PhotoID = cursor.getInt(0);
-			picture.setId(PhotoID);
-			//a temporal cursor to get the 
-			Cursor tempcursor = database.query(TablePictures.TABLE_PICTURES, TablePictures.ALLCOLUMNS,
-					"where " + TablePictures.COLUMN_ID + " = " + PhotoID, null, null, null, null);
-			tempcursor.moveToFirst();
-			picture.setDescription(tempcursor.getString(1));
-			Long time = (long) tempcursor.getInt(2);
-	        Calendar date = Calendar.getInstance();
-	        date.setTimeInMillis(time);
-	        picture.setDate(date);
-			picture.setImageData(Uri.parse(tempcursor.getString(3)));
-
+		if (!cursor.isAfterLast()){
+			picture = cursorToPicture(cursor);
 		}
-		return pictures;
+		cursor.close();
 	}
 
 }

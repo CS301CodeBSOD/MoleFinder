@@ -7,13 +7,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import cs310w10.MoleFinder.Model.ListMole;
 import cs310w10.MoleFinder.Model.Mole;
+import cs310w10.MoleFinder.Model.Picture;
 import cs310w10.MoleFinder.Model.TableMoles;
 import cs310w10.MoleFinder.Model.TableMolesPictures;
 
 public class MoleController {
 	
 	private Mole mole;
-	public SQLiteDatabase database;
+	private SQLiteDatabase database;
 	
 	public MoleController( SQLiteDatabase database){
 		this.database = database;
@@ -37,13 +38,16 @@ public class MoleController {
 			mole = cursorToMole(cursor);
 		}
 	}
+	
+	public Mole getMole() {
+		return mole;
+	}
 
-	//delete a mole
 	/**
 	 * Delete a mole from the database.
 	 * @param the Mole object
 	 */
-	public void deleteMole(Mole mole){
+	public void deleteMole(){
 		long moleid = mole.getId();
 		database.delete(TableMoles.TABLE_MOLES, 
 				TableMoles.COLUMN_ID + " = " + moleid, null);
@@ -142,5 +146,18 @@ public class MoleController {
             mole = cursorToMole(cursor);
         }
         cursor.close();
+    }
+    
+    /**
+     * Associate the provided PhotoID with mole, store the relationship in the database
+     * @param PhotoID
+     */
+    public void associateMoleWithPicture (int PhotoID){
+        ContentValues values = new ContentValues();
+        values.put(TableMolesPictures.COLUMN_MOLEID, mole.getId());
+        values.put(TableMolesPictures.COLUMN_PICTUREID, PhotoID);
+
+        database.insert(TableMolesPictures.TABLE_MOLESPICTURES, null, values);
+
     }
 }
