@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import cs310w10.MoleFinder.Model.ListMole;
 import cs310w10.MoleFinder.Model.Mole;
-import cs310w10.MoleFinder.Model.Picture;
 import cs310w10.MoleFinder.Model.TableMoles;
 import cs310w10.MoleFinder.Model.TableMolesPictures;
 
+/**
+ * @author Bing
+ *
+ */
 public class MoleController {
 	
 	private Mole mole;
@@ -24,6 +26,13 @@ public class MoleController {
 		this.mole = mole;
 		this.database = database;
 	}
+	
+	/**
+	 * create new mole
+	 * @param name
+	 * @param description
+	 * @param location
+	 */
 	public void createMole(String name, String description, String location){
 		mole = new Mole();
 		ContentValues values = new ContentValues();
@@ -39,6 +48,16 @@ public class MoleController {
 		}
 	}
 	
+	private Boolean isConnected(){
+		if (!database.isOpen()){
+			return false;
+		}else if (database.isReadOnly()){
+			return false;
+		}else {
+			return true;
+		}
+	}
+	
 	public Mole getMole() {
 		return mole;
 	}
@@ -48,6 +67,9 @@ public class MoleController {
 	 * @param the Mole object
 	 */
 	public void deleteMole(){
+		if (mole == null){
+			return;
+		}
 		long moleid = mole.getId();
 		database.delete(TableMoles.TABLE_MOLES, 
 				TableMoles.COLUMN_ID + " = " + moleid, null);
@@ -62,6 +84,9 @@ public class MoleController {
 	 * @return
 	 */
 	public void editMole( String name, String description, String location){
+		if (mole == null){
+			return;
+		}
 		long moleid = mole.getId();
 		ContentValues values = new ContentValues();
 		values.put(TableMoles.COLUMN_NAME, name);
@@ -74,22 +99,6 @@ public class MoleController {
 		if (cursor.moveToFirst()){
 			mole = cursorToMole(cursor);
 		}
-	}
-
-	/**
-	 * Delete all moles from the database
-	 */
-	public void deleteAllMoles(){
-		Cursor cursor = database.query(TableMoles.TABLE_MOLES, TableMoles.ALLCOLUMNS, null, null, null, null, null);
-		cursor.moveToFirst();
-		while (!cursor.isAfterLast()){
-			//Find a way to do this that resets the id field, maybe
-			Mole mole = cursorToMole(cursor);
-			deleteMole(mole);
-			cursor.moveToNext();
-		}
-		cursor.close();
-
 	}
 
 	/**
@@ -153,6 +162,9 @@ public class MoleController {
      * @param PhotoID
      */
     public void associateMoleWithPicture (int PhotoID){
+    	if (mole == null){
+    		return;
+    	}
         ContentValues values = new ContentValues();
         values.put(TableMolesPictures.COLUMN_MOLEID, mole.getId());
         values.put(TableMolesPictures.COLUMN_PICTUREID, PhotoID);
