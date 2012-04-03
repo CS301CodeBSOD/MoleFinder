@@ -16,6 +16,7 @@ public class MoleSQLiteHelper extends SQLiteOpenHelper{
 	/**
 	 * Variable values associated with the SQL helper
 	 */
+	private static MoleSQLiteHelper instance = null;
 	private static final String DATABASE_NAME = "moles.db";
 	private static final int DATABASE_VERSION = 1;
 	
@@ -25,7 +26,7 @@ public class MoleSQLiteHelper extends SQLiteOpenHelper{
 	 * @param factory
 	 * @param version
 	 */
-	public MoleSQLiteHelper(Context context, String name, CursorFactory factory,
+	private MoleSQLiteHelper(Context context, String name, CursorFactory factory,
 			int version) {
 		super(context, DATABASE_NAME, factory, DATABASE_VERSION);
 		// TODO Auto-generated constructor stub
@@ -34,9 +35,16 @@ public class MoleSQLiteHelper extends SQLiteOpenHelper{
 	/**
 	 * @param context
 	 */
-	public MoleSQLiteHelper(Context context) {
+	private MoleSQLiteHelper(Context context) {
 		// TODO Auto-generated constructor stub
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+	}
+	
+	public static MoleSQLiteHelper getInstance(Context context){
+		if (instance == null){
+			instance = new MoleSQLiteHelper(context.getApplicationContext());
+		}
+		return instance;
 	}
 
 	/* (non-Javadoc)

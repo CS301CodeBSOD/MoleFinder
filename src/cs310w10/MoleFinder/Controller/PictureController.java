@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -29,13 +30,13 @@ public class PictureController {
 	private Picture picture;
 	private MoleSQLiteHelper connection;
 
-	public PictureController(Picture picture, MoleSQLiteHelper connection) {
+	public PictureController(Picture picture,Context context) {
 		this.picture = picture;
-		this.connection = connection;
+		this.connection = MoleSQLiteHelper.getInstance(context);
 	}
 
-	public PictureController( SQLiteDatabase database) {
-		this.connection = connection;
+	public PictureController(Context context) {
+		this.connection = MoleSQLiteHelper.getInstance(context);
 	}
 
 	public PictureController(Bitmap imagedata) {

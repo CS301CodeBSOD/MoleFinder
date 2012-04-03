@@ -20,17 +20,14 @@ public class MoleController {
 	private Mole mole;
 	private MoleSQLiteHelper connection;
 	
-	public MoleController(Context context ){
-		this.connection = new MoleSQLiteHelper(context);
+	public MoleController(Context context){
+		this.connection = MoleSQLiteHelper.getInstance(context);
 	}
 	
-	public MoleController( MoleSQLiteHelper connection){
-		this.connection = connection;
-	}
 	
-	public MoleController( Mole mole, MoleSQLiteHelper connection){
+	public MoleController( Mole mole, Context context){
 		this.mole = mole;
-		this.connection = connection;
+		this.connection = MoleSQLiteHelper.getInstance(context);
 	}
 	
 	/**
@@ -55,7 +52,6 @@ public class MoleController {
 		}
 		connection.close();
 	}
-	
 	/**
 	 * Delete a mole from the database.
 	 * @param the Mole object
@@ -79,6 +75,12 @@ public class MoleController {
 	 * @param location
 	 * @return
 	 */
+	
+	public Mole getMole(){
+		return mole;
+	}
+	
+	
 	public void editMole( String name, String description, String location){
 		if (mole == null){
 			return;
