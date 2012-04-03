@@ -14,6 +14,7 @@ import android.net.Uri;
 import cs310w10.MoleFinder.Model.ListMole;
 import cs310w10.MoleFinder.Model.ListPicture;
 import cs310w10.MoleFinder.Model.Mole;
+import cs310w10.MoleFinder.Model.MoleSQLiteHelper;
 import cs310w10.MoleFinder.Model.Picture;
 import cs310w10.MoleFinder.Model.TableMoles;
 import cs310w10.MoleFinder.Model.TableMolesPictures;
@@ -26,15 +27,15 @@ import cs310w10.MoleFinder.Model.TablePictures;
 public class PictureController {
 
 	private Picture picture;
-	private SQLiteDatabase database;
+	private MoleSQLiteHelper connection;
 
-	public PictureController(Picture picture, SQLiteDatabase database) {
+	public PictureController(Picture picture, MoleSQLiteHelper connection) {
 		this.picture = picture;
-		this.database = database;
+		this.connection = connection;
 	}
 
 	public PictureController( SQLiteDatabase database) {
-		this.database = database;
+		this.connection = connection;
 	}
 
 	public PictureController(Bitmap imagedata) {
@@ -131,6 +132,7 @@ public class PictureController {
 	 * @param uri
 	 */
 	public void createPicture(String date, String description, String uri){
+		SQLiteDatabase database = connection.getWritableDatabase();
 		picture = new Picture();
 		ContentValues values = new ContentValues();
 		values.put(TablePictures.COLUMN_DATE, date);
@@ -143,6 +145,8 @@ public class PictureController {
 		if (cursor.moveToFirst()){
 			picture = cursorToPicture(cursor);
 		}
+		cursor.close();
+		connection.close();
 	}
 
 	/**
@@ -150,9 +154,11 @@ public class PictureController {
 	 * @param picture
 	 */
 	public void deletePicture(){
+		SQLiteDatabase database = connection.getWritableDatabase();
 		long picid = picture.getId();
 		database.delete(TablePictures.TABLE_PICTURES, 
 				TablePictures.COLUMN_ID + " = " + picid, null);
+		connection.close();
 	}
 
 	/**
@@ -181,6 +187,7 @@ public class PictureController {
 	 * @return
 	 */
 	public void editPicture( String date, String description, String uri){
+		SQLiteDatabase database = connection.getWritableDatabase();
 		long pictureid = picture.getId();
 		ContentValues values = new ContentValues();
 		values.put(TablePictures.COLUMN_DATE, date);
@@ -193,6 +200,8 @@ public class PictureController {
 		if (cursor.moveToFirst()){
 			picture = cursorToPicture(cursor);
 		}
+		cursor.close();
+		connection.close();
 	}
 	
 	/**
@@ -201,12 +210,13 @@ public class PictureController {
 	 * @param the id of the picture
 	 */
 	public void AssociatePictureWithMole ( int moleID ){
+		SQLiteDatabase database = connection.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put(TableMolesPictures.COLUMN_MOLEID, moleID);
 		values.put(TableMolesPictures.COLUMN_PICTUREID, picture.getId());
 
 		database.insert(TableMolesPictures.TABLE_MOLESPICTURES, null, values);
-
+		connection.close();
 	}
 
 	/**
@@ -214,6 +224,7 @@ public class PictureController {
 	 * @param id
 	 */
 	public void getPictureFromId(long id){
+		SQLiteDatabase database = connection.getWritableDatabase();
 		picture = new Picture();
 		Cursor cursor = database.query(TablePictures.TABLE_PICTURES, TablePictures.ALLCOLUMNS, 
 				TablePictures.COLUMN_ID + " = " + String.valueOf(id), null, null, null, null);
@@ -222,6 +233,7 @@ public class PictureController {
 			picture = cursorToPicture(cursor);
 		}
 		cursor.close();
+		connection.close();
 	}
 
 }

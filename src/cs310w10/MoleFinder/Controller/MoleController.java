@@ -3,9 +3,11 @@ package cs310w10.MoleFinder.Controller;
 import java.util.ArrayList;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import cs310w10.MoleFinder.Model.Mole;
+import cs310w10.MoleFinder.Model.MoleSQLiteHelper;
 import cs310w10.MoleFinder.Model.TableMoles;
 import cs310w10.MoleFinder.Model.TableMolesPictures;
 
@@ -16,15 +18,19 @@ import cs310w10.MoleFinder.Model.TableMolesPictures;
 public class MoleController {
 	
 	private Mole mole;
-	private SQLiteDatabase database;
+	private MoleSQLiteHelper connection;
 	
-	public MoleController( SQLiteDatabase database){
-		this.database = database;
+	public MoleController(Context context ){
+		this.connection = new MoleSQLiteHelper(context);
 	}
 	
-	public MoleController( Mole mole, SQLiteDatabase database){
+	public MoleController( MoleSQLiteHelper connection){
+		this.connection = connection;
+	}
+	
+	public MoleController( Mole mole, MoleSQLiteHelper connection){
 		this.mole = mole;
-		this.database = database;
+		this.connection = connection;
 	}
 	
 	/**
@@ -34,6 +40,7 @@ public class MoleController {
 	 * @param location
 	 */
 	public void createMole(String name, String description, String location){
+		SQLiteDatabase database = connection.getWritableDatabase();
 		mole = new Mole();
 		ContentValues values = new ContentValues();
 		values.put(TableMoles.COLUMN_NAME, name);
@@ -46,22 +53,9 @@ public class MoleController {
 		if (cursor.moveToFirst()){
 			mole = cursorToMole(cursor);
 		}
+		connection.close();
 	}
 	
-	private Boolean isConnected(){
-		if (!database.isOpen()){
-			return false;
-		}else if (database.isReadOnly()){
-			return false;
-		}else {
-			return true;
-		}
-	}
-	
-	public Mole getMole() {
-		return mole;
-	}
-
 	/**
 	 * Delete a mole from the database.
 	 * @param the Mole object
@@ -70,9 +64,11 @@ public class MoleController {
 		if (mole == null){
 			return;
 		}
+		SQLiteDatabase database = connection.getWritableDatabase();
 		long moleid = mole.getId();
 		database.delete(TableMoles.TABLE_MOLES, 
 				TableMoles.COLUMN_ID + " = " + moleid, null);
+		connection.close();
 	}
 
 	/**
@@ -87,6 +83,7 @@ public class MoleController {
 		if (mole == null){
 			return;
 		}
+		SQLiteDatabase database = connection.getWritableDatabase();
 		long moleid = mole.getId();
 		ContentValues values = new ContentValues();
 		values.put(TableMoles.COLUMN_NAME, name);
@@ -99,6 +96,8 @@ public class MoleController {
 		if (cursor.moveToFirst()){
 			mole = cursorToMole(cursor);
 		}
+		cursor.close();
+		connection.close();
 	}
 
 	/**
@@ -115,7 +114,6 @@ public class MoleController {
 		mole.setLocation(cursor.getString(3));
 		ArrayList<Integer> photoIds = this.getPhotoIdsFromeMole(moleId);
 		mole.setPhotoId(photoIds);
-
 		return mole;
 	}
 
@@ -126,6 +124,7 @@ public class MoleController {
 	 * @return a list of picture ids
 	 */
 	public ArrayList<Integer> getPhotoIdsFromeMole (int moleId){
+		SQLiteDatabase database = connection.getWritableDatabase();
 		ArrayList<Integer> photoids = new ArrayList<Integer>();
 		String [] columns = { TableMolesPictures.COLUMN_PICTUREID };
 		Cursor cursor = database.query(TableMolesPictures.TABLE_MOLESPICTURES, columns,
@@ -137,6 +136,7 @@ public class MoleController {
 			cursor.moveToNext();
 		}
 		cursor.close();
+		connection.close();
 		return photoids; 
 	}
 	
@@ -147,6 +147,7 @@ public class MoleController {
      * @return the Mole object
      */
     public void getMoleFromId(long id){
+    	SQLiteDatabase database = connection.getWritableDatabase();
         mole = new Mole();
         Cursor cursor = database.query(TableMoles.TABLE_MOLES, TableMoles.ALLCOLUMNS, 
                 TableMoles.COLUMN_ID + " = " + String.valueOf(id), null, null, null, null);
@@ -155,6 +156,7 @@ public class MoleController {
             mole = cursorToMole(cursor);
         }
         cursor.close();
+        connection.close();
     }
     
     /**
@@ -162,6 +164,7 @@ public class MoleController {
      * @param PhotoID
      */
     public void associateMoleWithPicture (int PhotoID){
+    	SQLiteDatabase database = connection.getWritableDatabase();
     	if (mole == null){
     		return;
     	}
@@ -170,6 +173,8 @@ public class MoleController {
         values.put(TableMolesPictures.COLUMN_PICTUREID, PhotoID);
 
         database.insert(TableMolesPictures.TABLE_MOLESPICTURES, null, values);
+        
+        connection.close();
 
     }
 }
