@@ -81,6 +81,11 @@ public class MoleController {
 	}
 	
 	
+	/**
+	 * @param name
+	 * @param description
+	 * @param location
+	 */
 	public void editMole( String name, String description, String location){
 		if (mole == null){
 			return;

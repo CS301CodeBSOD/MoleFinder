@@ -69,7 +69,9 @@ public class EditMoleViewActivity extends ViewActivity<Mole> {
 			Intent intent = getIntent();
 			long id = intent.getExtras().getLong(Intent.EXTRA_SUBJECT);
 
-			MoleController.editMole(name, description, location, id);
+			MoleController controller = new MoleController(this);
+			controller.getMoleFromId(id);
+			controller.editMole(name, description, location);
 			setResult(Activity.RESULT_OK, intent);
 
 			finish();

@@ -8,6 +8,7 @@ import cs310w10.MoleFinder.Controller.PictureController;
 import cs310w10.MoleFinder.Model.ListMole;
 import cs310w10.MoleFinder.Model.ListPicture;
 import cs310w10.MoleFinder.Model.Mole;
+import cs310w10.MoleFinder.Model.MoleSQLiteHelper;
 import cs310w10.MoleFinder.Model.Picture;
 
 public abstract class ViewActivity<M> extends Activity implements fView<M> {
@@ -26,7 +27,9 @@ public abstract class ViewActivity<M> extends Activity implements fView<M> {
 		Bundle extras = intent.getExtras();
 		if (intent.hasExtra("moleId")) {
 			int id = extras.getInt("moleId");
-			mole = MoleController.getMoleFromId(id);
+			MoleController controller = new MoleController(this);
+			controller.getMoleFromId(id);
+			mole = controller.getMole();
 		}
 		if (intent.hasExtra("pictureId")) {
 			int id = extras.getInt("pictureId");

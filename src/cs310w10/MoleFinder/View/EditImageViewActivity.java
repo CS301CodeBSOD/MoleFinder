@@ -76,7 +76,7 @@ public class EditImageViewActivity extends ViewActivity<Picture> {
 				Bitmap imagebitmap = BitmapFactory.decodeFile(path);
 				image.setImageBitmap(imagebitmap);
 				if (picture.getDate() != null) {
-					dateButton.setText(new PictureController(picture)
+					dateButton.setText(new PictureController(picture, this)
 							.getDateAsString());
 				} else {
 					picture.setDate(Calendar.getInstance());
