@@ -38,8 +38,8 @@ public class PictureController {
 	public PictureController(Context context) {
 		this.connection = MoleSQLiteHelper.getInstance(context);
 	}
-
-	public PictureController(Bitmap imagedata) {
+	/*
+	public PictureController(Bitmap imagedata, Context context) {
 		int id = MoleFinderApplication.getListPictureController()
 				.getNextFreeID();
 		Uri uri = makeFile(imagedata, id);
@@ -51,7 +51,9 @@ public class PictureController {
 			picture.setDate(Calendar.getInstance());
 			picture.setImageData(uri);
 		}
+		this.connection = MoleSQLiteHelper.getInstance(context);
 	}
+	*/
 
 	public PictureController(int id) {
 
@@ -132,7 +134,7 @@ public class PictureController {
 	 * @param description
 	 * @param uri
 	 */
-	public void createPicture(String date, String description, String uri){
+	public void createPicture(long date, String description, String uri){
 		SQLiteDatabase database = connection.getWritableDatabase();
 		picture = new Picture();
 		ContentValues values = new ContentValues();
@@ -148,6 +150,12 @@ public class PictureController {
 		}
 		cursor.close();
 		connection.close();
+	}
+	
+	public void createPicture(long date, String description, Bitmap data){
+		String newString = null;
+		createPicture(date, description, newString);
+		makeFile(data, picture.getId());
 	}
 
 	/**
