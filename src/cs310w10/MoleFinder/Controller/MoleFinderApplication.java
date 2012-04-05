@@ -3,7 +3,6 @@ package cs310w10.MoleFinder.Controller;
 import android.app.Application;
 import android.content.Context;
 import android.os.Environment;
-import cs310w10.MoleFinder.Model.ListPicture;
 import cs310w10.MoleFinder.Model.MoleFinder;
 
 public class MoleFinderApplication extends Application {
@@ -42,7 +41,7 @@ public class MoleFinderApplication extends Application {
 
 	public static ListPictureController getListPictureController() {
 		if (listPictureController == null) {
-			listPictureController = new ListPictureController(new ListPicture());
+			listPictureController = new ListPictureController(getAppContext());
 		}
 		return listPictureController;
 	}

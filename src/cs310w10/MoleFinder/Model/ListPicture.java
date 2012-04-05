@@ -8,8 +8,9 @@ import cs310w10.MoleFinder.View.fView;
  * This class is used to represent a list of pictures.
  * 
  * @author Bing Pan
- * 
+ * @deprecated
  */
+@Deprecated
 public class ListPicture extends fModel<fView> {
 
 	/**
@@ -63,8 +64,11 @@ public class ListPicture extends fModel<fView> {
 	}
 
 	/**
-	 * find the picture within the listPicture array that has the same id as the one passed 
-	 * @param id - to be found
+	 * find the picture within the listPicture array that has the same id as the
+	 * one passed
+	 * 
+	 * @param id
+	 *            - to be found
 	 * @return picture - found picture with matching id
 	 */
 	public Picture getPictureById(int id) {
