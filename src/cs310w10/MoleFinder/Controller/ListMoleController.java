@@ -1,15 +1,16 @@
 package cs310w10.MoleFinder.Controller;
 
-import cs310w10.MoleFinder.Model.ListMole;
+import java.util.ArrayList;
+
 import cs310w10.MoleFinder.Model.Mole;
 import cs310w10.MoleFinder.Model.MolesDataSource;
 
 public class ListMoleController {
-	private ListMole sMoles;
+	private ArrayList<Mole> sMoles;
 
-	public ListMole getMoles() {
+	public ArrayList<Mole> getMoles() {
 		if (sMoles == null) {
-			sMoles = new ListMole();
+			sMoles = new ArrayList<Mole>();
 		}
 
 		MolesDataSource source = new MolesDataSource(
@@ -21,7 +22,7 @@ public class ListMoleController {
 	}
 
 	public int addMole(String name, String description, String location) {
-		ListMole moles = getMoles();
+		ArrayList<Mole> moles = getMoles();
 
 		// Mole newmole = MoleController.newMole(name, description, location);
 		Mole newmole = new Mole();
@@ -35,7 +36,7 @@ public class ListMoleController {
 	}
 
 	public int getIndexFromMole(Mole mole) {
-		ListMole moles = getMoles();
+		ArrayList<Mole> moles = getMoles();
 		int id = moles.indexOf(mole);
 		return id;
 	}

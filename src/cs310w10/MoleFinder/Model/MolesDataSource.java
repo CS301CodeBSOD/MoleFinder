@@ -126,8 +126,8 @@ public class MolesDataSource {
 	 * 
 	 * @return a ListMole containing all moles
 	 */
-	public ListMole getAllMoles() {
-		ListMole allmoles = new ListMole();
+	public ArrayList<Mole> getAllMoles() {
+		ArrayList<Mole> allmoles = new ArrayList<Mole>();
 		Cursor cursor = database.query(TableMoles.TABLE_MOLES,
 				TableMoles.ALLCOLUMNS, null, null, null, null, null);
 		cursor.moveToFirst();
@@ -213,8 +213,8 @@ public class MolesDataSource {
 	 * 
 	 * @return a list of pictures
 	 */
-	public ListMole getAllPictures() {
-		ListPicture allpictures = new ListPicture();
+	public ArrayList<Picture> getAllPictures() {
+		ArrayList<Picture> allpictures = new ArrayList<Picture>();
 		Cursor cursor = database.query(TablePictures.TABLE_PICTURES,
 				TablePictures.ALLCOLUMNS, null, null, null, null, null);
 		cursor.moveToFirst();
@@ -286,8 +286,8 @@ public class MolesDataSource {
 	 *            id of the mole
 	 * @return a list of pictures
 	 */
-	public ListPicture getListPictureFromMole(int moleID) {
-		ListPicture pictures = new ListPicture();
+	public ArrayList<Picture> getListPictureFromMole(int moleID) {
+		ArrayList<Picture> pictures = new ArrayList<Picture>();
 		String[] columns = { TableMolesPictures.COLUMN_PICTUREID };
 		Cursor cursor = database.query(TableMolesPictures.TABLE_MOLESPICTURES,
 				columns,

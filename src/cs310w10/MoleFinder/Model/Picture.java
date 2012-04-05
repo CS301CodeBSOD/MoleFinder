@@ -1,19 +1,16 @@
 package cs310w10.MoleFinder.Model;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-
-import cs310w10.MoleFinder.View.fView;
 
 import android.net.Uri;
+import cs310w10.MoleFinder.View.fView;
 
 /**
  * This class is used to represent a picture.
  * 
  * @author Bing Pan
- * 
  */
+@SuppressWarnings("rawtypes")
 public class Picture extends fModel<fView> {
 	/**
 	 * Variables within the Picture class id - the id associated with the

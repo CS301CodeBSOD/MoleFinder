@@ -1,24 +1,22 @@
 package cs310w10.MoleFinder.View;
 
-import cs310w10.MoleFinder.Controller.ListMoleController;
-import cs310w10.MoleFinder.Controller.MoleFinderApplication;
-import cs310w10.MoleFinder.Model.ListMole;
-//import cs310w10.MoleFinder.Model.MoleAdapter;
-import cs310w10.MoleFinder.View.MoleViewActivity;
-import android.app.Activity;
+import java.util.ArrayList;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageButton;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.AdapterView;
+import cs310w10.MoleFinder.Controller.ListMoleController;
+import cs310w10.MoleFinder.Controller.MoleFinderApplication;
+import cs310w10.MoleFinder.Model.Mole;
 
-public class ListMoleViewActivity extends ViewActivity<ListMole> implements
-		OnItemClickListener {
+public class ListMoleViewActivity extends ViewActivity<ArrayList<Mole>>
+		implements OnItemClickListener {
 	ImageButton trashButton;
 	ImageButton addButton;
 	ListView moleListView;
@@ -26,14 +24,14 @@ public class ListMoleViewActivity extends ViewActivity<ListMole> implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		ListMole moleList = MoleFinderApplication.getListMoleController()
+		ArrayList<Mole> moleList = MoleFinderApplication
+				.getListMoleController()
 				.getMoles();
 
-		// moleListView.setAdapter(new ListAdapter(moleList.get(),
+		// moleListView.setAdapter(new SimpleAdapter(moleList,
 		// getApplicationContext()));
 		registerForContextMenu(moleListView);
 	}
-
 
 	@Override
 	protected void setViews() {
@@ -43,7 +41,8 @@ public class ListMoleViewActivity extends ViewActivity<ListMole> implements
 		addButton = (ImageButton) findViewById(R.id.ListMoleViewAddButton);
 		moleListView = (ListView) findViewById(R.id.ListMoleViewMoleList);
 	}
-	
+
+	@Override
 	protected void addListeners() {
 		addButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -72,23 +71,24 @@ public class ListMoleViewActivity extends ViewActivity<ListMole> implements
 		startActivityForResult(intent, 1);
 	}
 
-	public void update(ListMole moles) {
+	public void update(ArrayList<Mole> moles) {
 
 		// moleListView.setAdapter(new MoleAdapter(moles.get(),
 		// getApplicationContext()));
 
 	}
+
 	@Override
 	protected void updateSelf() {
-		
-	}
 
+	}
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == RESULT_OK) {
-			ListMole moleList = MoleFinderApplication.getListMoleController()
+			ArrayList<Mole> moleList = MoleFinderApplication
+					.getListMoleController()
 					.getMoles();
 			update(moleList);
 		}
@@ -102,6 +102,5 @@ public class ListMoleViewActivity extends ViewActivity<ListMole> implements
 		startActivityForResult(intent, 3);
 
 	}
-
 
 }
