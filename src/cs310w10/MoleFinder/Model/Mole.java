@@ -28,7 +28,6 @@ public class Mole extends fModel<fView>{
 	private String name;
 	private String description;
 	private String location;
-	private ArrayList<Integer> photoId;
 
 	/**
 	 * @param n_id
@@ -37,7 +36,6 @@ public class Mole extends fModel<fView>{
 	 */
 	public Mole(int n_id) {
 		id = n_id;
-		photoId = new ArrayList<Integer>();
 		name = "";
 		description = "";
 		location = "";
@@ -49,7 +47,6 @@ public class Mole extends fModel<fView>{
 	 */
 	public Mole() {
 		id = -1;
-		photoId = new ArrayList<Integer>();
 		name = "";
 		description = "";
 		location = "";
@@ -101,22 +98,6 @@ public class Mole extends fModel<fView>{
 	 */
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	/**
-	 * @return ArrayList<Integer> PhotoId
-	 * returns the list of PhotoIds associated with the mole
-	 */
-	public ArrayList<Integer> getPhotoId() {
-		return photoId;
-	}
-
-	/**
-	 * @Param ArrayList<Integer> PhotoId
-	 * Allows the user to set the photoId's associated with the mole
-	 */
-	public void setPhotoId(ArrayList<Integer> photoId) {
-		photoId = photoId;
 	}
 
 	/**

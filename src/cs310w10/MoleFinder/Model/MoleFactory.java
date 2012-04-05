@@ -110,8 +110,8 @@ public class MoleFactory {
 	        mole.setName(cursor.getString(1));
 	        mole.setDescription(cursor.getString(2));
 	        mole.setLocation(cursor.getString(3));
-	        ArrayList<Integer> photoIds = this.getPhotoIdsFromeMole(moleId);
-	        mole.setPhotoId(photoIds);
+	        //ArrayList<Integer> photoIds = this.getPhotoIdsFromeMole(moleId);
+	        //mole.setPhotoId(photoIds);
 
 	        return mole;
 	    }

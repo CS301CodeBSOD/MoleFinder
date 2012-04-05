@@ -25,7 +25,6 @@ public class Picture extends fModel<fView> {
 	private int id;
 	private String description;
 	private Calendar date;
-	private ArrayList<Integer> moleID;
 	private Uri imageData;
 
 	/**
@@ -81,35 +80,6 @@ public class Picture extends fModel<fView> {
 	 */
 	public void setDate(Calendar date) {
 		this.date = date;
-	}
-
-	/**
-	 * Return a list of mole ids with which the picture is associated with.
-	 * 
-	 * @return the list of moles
-	 */
-	public ArrayList<Integer> getMoleID() {
-		return moleID;
-	}
-
-	/**
-	 * Set the list of mole ids the picture is associated with to the list
-	 * provided.
-	 * 
-	 * @param an
-	 *            ArrayList of mole objects
-	 */
-	public void setMoleID(ArrayList<Integer> moleID) {
-		this.moleID = moleID;
-	}
-
-	/**
-	 * Add an id to the mole list
-	 * 
-	 * @param id
-	 */
-	public void addMoleID(Integer id) {
-		this.moleID.add(id);
 	}
 
 	/**

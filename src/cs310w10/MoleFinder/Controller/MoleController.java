@@ -120,7 +120,7 @@ public class MoleController {
 		mole.setDescription(cursor.getString(2));
 		mole.setLocation(cursor.getString(3));
 		ArrayList<Integer> photoIds = this.getPhotoIdsFromeMole(moleId);
-		mole.setPhotoId(photoIds);
+		//mole.setPhotoId(photoIds);
 		return mole;
 	}
 
