@@ -1,5 +1,6 @@
 package cs310w10.MoleFinder.View;
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -77,10 +78,10 @@ public class EditMoleViewActivity extends ViewActivity<Mole> {
 			finish();
 		} else {
 
-			ListMoleController listMoleController = MoleFinderApplication
-					.getListMoleController();
-
-			long id = listMoleController.addMole(name, description, location);
+			MoleController mController = new MoleController(this);
+			mController.createMole(name, description, location);
+			Mole mole = mController.getMole();
+			int id = mole.getId();
 			if (id == -1) {
 				Toast.makeText(getBaseContext(),
 						"Invalid or already in use mole name",
