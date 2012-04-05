@@ -57,11 +57,20 @@ public class ListMole extends fModel<fView> {
 		this.moles = moles;
 	}
 
+	/**
+	 * returns the position of the mole within the listMole internal array structure
+	 * @param mole - to be found
+	 * @return index - of the mole passed
+	 */
     public int indexOf(Mole mole)
     {
         return this.moles.indexOf(mole);
     }
 
+    /**
+     * size returns the size of the array list of moles. This can also be used as count
+     * @return size - of the array list or count of the moles present
+     */
     public int size()
     {
         return this.moles.size();

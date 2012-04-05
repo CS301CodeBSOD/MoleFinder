@@ -25,7 +25,11 @@ public class ListMoleController {
 	public int addMole(String name, String description, String location) {
 		ListMole moles = getMoles();
 
-		Mole newmole = MoleController.newMole(name, description, location);
+		//Mole newmole = MoleController.newMole(name, description, location);
+		Mole newmole = new Mole();
+		newmole.setName(name);
+		newmole.setDescription(description);
+		newmole.setLocation(location);
 
 		moles.add(newmole);
 		

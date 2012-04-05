@@ -62,6 +62,11 @@ public class ListPicture extends fModel<fView> {
 
 	}
 
+	/**
+	 * find the picture within the listPicture array that has the same id as the one passed 
+	 * @param id - to be found
+	 * @return picture - found picture with matching id
+	 */
 	public Picture getPictureById(int id) {
 		for (Picture pictureIterator : pictures) {
 			if (pictureIterator.getId() == id) {
