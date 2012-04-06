@@ -17,107 +17,131 @@ import cs310w10.MoleFinder.Controller.MoleFinderApplication;
 import cs310w10.MoleFinder.Model.Mole;
 
 public class ListMoleViewActivity extends ViewActivity<ArrayList<Mole>>
-		implements OnItemClickListener {
-	ImageButton trashButton;
-	ImageButton addButton;
-	ListView moleListView;
-	ListMoleController lController;
-	SimpleAdapter adapter;
+        implements OnItemClickListener
+{
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		lController = MoleFinderApplication.getListMoleController();
-		setAdapter();
-	}
+    ImageButton        trashButton;
+    ImageButton        addButton;
+    ListView           moleListView;
+    ListMoleController lController;
+    SimpleAdapter      adapter;
 
-	private void setAdapter(){
-            ArrayList<Mole> moleList = lController.getMoles();
-	    
-	    adapter = new SimpleAdapter(
-                    this,
-                    new MoleMapListAdapter(moleList),
-                    R.layout.mole_list_item,
-                    new String[] { "name",
-                                    /* "description", */
-                                    "id",
-                                    "location" },
-                    new int[] {
-                                    R.id.MoleListItemName,
-                                    /* R.id.MoleListItemDescription, */
-                                    R.id.MoleListItemId,
-                                    R.id.MoleListItemLocation }
-                    );
-	    moleListView.setAdapter(adapter);
-	    registerForContextMenu(moleListView);
-	    
-	}
-	
-	@Override
-	protected void setViews() {
-		setContentView(R.layout.list_mole);
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
 
-		trashButton = (ImageButton) findViewById(R.id.ListMoleViewTrashButton);
-		addButton = (ImageButton) findViewById(R.id.ListMoleViewAddButton);
-		moleListView = (ListView) findViewById(R.id.ListMoleViewMoleList);
-	}
+        super.onCreate(savedInstanceState);
+        lController = MoleFinderApplication.getListMoleController();
+        setAdapter();
+    }
 
-	@Override
-	protected void addListeners() {
-		addButton.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				pressAddButton();
-			}
-		});
+    private void setAdapter()
+    {
 
-		trashButton.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				pressTrashButton();
-			}
-		});
-		moleListView.setOnItemClickListener(this);
-	}
+        ArrayList<Mole> moleList = lController.getMoles();
 
-	protected void pressTrashButton() {
-		// TODO: Add confirmation dialog
-		lController.deleteAllMoles();
-		Toast.makeText(getBaseContext(), "Database purged", Toast.LENGTH_SHORT)
+        adapter = new SimpleAdapter(this, new MoleMapListAdapter(moleList),
+                R.layout.mole_list_item, new String[] { "name",
+                /* "description", */
+                "id", "location" }, new int[] { R.id.MoleListItemName,
+                /* R.id.MoleListItemDescription, */
+                R.id.MoleListItemId, R.id.MoleListItemLocation });
+        moleListView.setAdapter(adapter);
+        registerForContextMenu(moleListView);
+
+    }
+
+    @Override
+    protected void setViews()
+    {
+
+        setContentView(R.layout.list_mole);
+
+        trashButton = (ImageButton) findViewById(R.id.ListMoleViewTrashButton);
+        addButton = (ImageButton) findViewById(R.id.ListMoleViewAddButton);
+        moleListView = (ListView) findViewById(R.id.ListMoleViewMoleList);
+    }
+
+    @Override
+    protected void addListeners()
+    {
+
+        addButton.setOnClickListener(new OnClickListener()
+        {
+
+            public void onClick(View v)
+            {
+
+                pressAddButton();
+            }
+        });
+
+        trashButton.setOnClickListener(new OnClickListener()
+        {
+
+            public void onClick(View v)
+            {
+
+                pressTrashButton();
+            }
+        });
+        moleListView.setOnItemClickListener(this);
+    }
+
+    protected void pressTrashButton()
+    {
+
+        // TODO: Add confirmation dialog
+        lController.deleteAllMoles();
+        Toast.makeText(getBaseContext(), "Database purged", Toast.LENGTH_SHORT)
                 .show();
-		setAdapter();
-	}
+        setAdapter();
+    }
 
-	protected void pressAddButton() {
-		this.mole = null;
-		this.picture = null;
-		this.launchEditMole();
-	}
+    protected void pressAddButton()
+    {
 
-	public void update(ArrayList<Mole> mole){
+        this.mole = null;
+        this.picture = null;
+        this.launchEditMole();
+    }
 
-	}
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
 
-	@Override
-	protected void updateSelf() {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK)
+        {
+            setAdapter();
+        }
 
-	}
+    }
 
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		if (resultCode == RESULT_OK) {
-		    setAdapter();
-		}
+    @Override
+    public void onResume()
+    {
 
-	}
-	
-	@Override
-	public void onResume(){
-	    super.onResume();
-	    setAdapter();
-	}
+        super.onResume();
+        setAdapter();
+    }
 
-	public void onItemClick(AdapterView<?> l, View v, int position, long id) {
-		// Toast.makeText(this, String.valueOf(id), Toast.LENGTH_SHORT).show();
-		launchViewMole((int) id);
-	}
+    public void onItemClick(AdapterView<?> l, View v, int position, long id)
+    {
+
+        // Toast.makeText(this, String.valueOf(id), Toast.LENGTH_SHORT).show();
+        launchViewMole((int) id);
+    }
+
+    @Override
+    protected void updateSelf()
+    {
+
+    }
+
+    public void update(ArrayList<Mole> mole)
+    {
+
+    }
+
 }

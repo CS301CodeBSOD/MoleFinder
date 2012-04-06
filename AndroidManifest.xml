@@ -21,11 +21,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity>        
+        
         <activity
             android:name=".SearchViewActivity"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:theme="@android:style/Theme.NoTitleBar" 
+            android:launchMode="singleTop">
             	<intent-filter>
             		<action android:name="android.intent.action.SEARCH" />
        			 </intent-filter>
@@ -33,6 +35,13 @@
                    android:resource="@xml/searchable"/>
             
         </activity>
+        
+        <activity android:name=".SearchHandler" >
+        	<!-- enable the search dialog to send searches to SearchableActivity -->
+        	<meta-data android:name="android.app.default_searchable"
+                   	android:value=".SearchViewActivity" />
+    	</activity>
+        
         <activity
             android:name=".EditImageViewActivity"
             android:label="@string/app_name"
