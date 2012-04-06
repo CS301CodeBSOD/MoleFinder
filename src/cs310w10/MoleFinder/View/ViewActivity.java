@@ -8,7 +8,6 @@ import cs310w10.MoleFinder.Controller.PictureController;
 import cs310w10.MoleFinder.Model.ListMole;
 import cs310w10.MoleFinder.Model.ListPicture;
 import cs310w10.MoleFinder.Model.Mole;
-import cs310w10.MoleFinder.Model.MoleSQLiteHelper;
 import cs310w10.MoleFinder.Model.Picture;
 
 public abstract class ViewActivity<M> extends Activity implements fView<M> {
@@ -41,11 +40,19 @@ public abstract class ViewActivity<M> extends Activity implements fView<M> {
 	}
 
 	protected void putMole(Intent putintent, Mole putMole) {
-		putintent.putExtra("moleId", putMole.getId());
+		if (putMole != null) {
+			putintent.putExtra("moleId", putMole.getId());
+		} else {
+			putintent.putExtra("moleId", -1);
+		}
 	}
 
 	protected void putPicture(Intent putintent, Picture putPicture) {
-		putintent.putExtra("pictureId", putPicture.getId());
+		if (putPicture != null) {
+			putintent.putExtra("pictureId", putPicture.getId());
+		} else {
+			putintent.putExtra("pictureId", -1);
+		}
 	}
 
 	protected void putMole(Intent putintent, long id) {
