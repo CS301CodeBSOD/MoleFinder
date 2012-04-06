@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 import cs310w10.MoleFinder.Controller.ListMoleController;
 import cs310w10.MoleFinder.Controller.MoleFinderApplication;
@@ -28,8 +29,22 @@ public class ListMoleViewActivity extends ViewActivity<ArrayList<Mole>>
 				.getListMoleController()
 				.getMoles();
 
-		// moleListView.setAdapter(new SimpleAdapter(moleList,
-		// getApplicationContext()));
+		SimpleAdapter adapter = new SimpleAdapter(
+				this,
+				new MoleMapListAdapter(moleList),
+				R.layout.mole_list_item,
+				new String[] { "name",
+						/* "description", */
+						"id",
+						"location" },
+				new int[] {
+						R.id.MoleListItemName,
+						/* R.id.MoleListItemDescription, */
+						R.id.MoleListItemId,
+						R.id.MoleListItemLocation }
+				);
+
+		moleListView.setAdapter(adapter);
 		registerForContextMenu(moleListView);
 	}
 
@@ -97,10 +112,6 @@ public class ListMoleViewActivity extends ViewActivity<ArrayList<Mole>>
 
 	public void onItemClick(AdapterView<?> l, View v, int position, long id) {
 		// Toast.makeText(this, String.valueOf(id), Toast.LENGTH_SHORT).show();
-		Intent intent = new Intent(this, MoleViewActivity.class);
-		intent.putExtra(Intent.EXTRA_SUBJECT, id);
-		startActivityForResult(intent, 3);
-
+		launchViewMole((int) id);
 	}
-
 }

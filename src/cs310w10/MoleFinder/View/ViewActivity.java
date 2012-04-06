@@ -59,6 +59,12 @@ public abstract class ViewActivity<M> extends Activity implements fView<M> {
 		}
 	}
 
+	protected void launchViewMole(int id) {
+		Intent intent = new Intent(this, MoleViewActivity.class);
+		putMole(intent, id);
+		startActivity(intent);
+	}
+
 	protected void launchViewMole() {
 		Intent intent = new Intent(this, MoleViewActivity.class);
 
