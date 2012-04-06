@@ -42,25 +42,25 @@ public abstract class ViewActivity<M> extends Activity implements fView<M> {
 	protected void putMole(Intent putintent, Mole putMole) {
 		if (putMole != null) {
 			putintent.putExtra("moleId", putMole.getId());
-		} else {
-			putintent.putExtra("moleId", -1);
 		}
 	}
 
 	protected void putPicture(Intent putintent, Picture putPicture) {
 		if (putPicture != null) {
 			putintent.putExtra("pictureId", putPicture.getId());
-		} else {
-			putintent.putExtra("pictureId", -1);
 		}
 	}
 
 	protected void putMole(Intent putintent, long id) {
-		putintent.putExtra("moleId", id);
+		if (id >= 0) {
+			putintent.putExtra("moleId", id);
+		}
 	}
 
 	protected void putPicture(Intent putintent, long id) {
-		putintent.putExtra("pictureId", id);
+		if (id >= 0) {
+			putintent.putExtra("pictureId", id);
+		}
 	}
 
 	protected void launchEditMole() {
