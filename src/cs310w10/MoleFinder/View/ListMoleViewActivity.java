@@ -26,27 +26,6 @@ public class ListMoleViewActivity extends ViewActivity<ArrayList<Mole>>
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		ArrayList<Mole> moleList = MoleFinderApplication
-				.getListMoleController()
-				.getMoles();
-
-		SimpleAdapter adapter = new SimpleAdapter(
-				this,
-				new MoleMapListAdapter(moleList),
-				R.layout.mole_list_item,
-				new String[] { "name",
-						/* "description", */
-						"id",
-						"location" },
-				new int[] {
-						R.id.MoleListItemName,
-						/* R.id.MoleListItemDescription, */
-						R.id.MoleListItemId,
-						R.id.MoleListItemLocation }
-				);
-
-		moleListView.setAdapter(adapter);
-		registerForContextMenu(moleListView);
 	}
 
 	@Override
@@ -88,15 +67,31 @@ public class ListMoleViewActivity extends ViewActivity<ArrayList<Mole>>
 	}
 
 	public void update(ArrayList<Mole> moles) {
+		SimpleAdapter adapter = new SimpleAdapter(
+				this,
+				new MoleMapListAdapter(moles),
+				R.layout.mole_list_item,
+				new String[] { "name",
+						/* "description", */
+						"id",
+						"location" },
+				new int[] {
+						R.id.MoleListItemName,
+						/* R.id.MoleListItemDescription, */
+						R.id.MoleListItemId,
+						R.id.MoleListItemLocation }
+				);
 
-		// moleListView.setAdapter(new MoleAdapter(moles.get(),
-		// getApplicationContext()));
-
+		moleListView.setAdapter(adapter);
+		registerForContextMenu(moleListView);
 	}
 
 	@Override
 	protected void updateSelf() {
-
+		ArrayList<Mole> moleList = MoleFinderApplication
+				.getListMoleController()
+				.getMoles();
+		update(moleList);
 	}
 
 	@Override

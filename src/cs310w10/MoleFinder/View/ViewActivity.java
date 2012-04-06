@@ -33,6 +33,13 @@ public abstract class ViewActivity<M> extends Activity implements fView<M> {
 		updateSelf();
 	}
 
+	@Override
+	public void onWindowFocusChanged(boolean hasFocus) {
+		if (hasFocus) {
+			updateSelf();
+		}
+	}
+
 	protected void putMole(Intent putintent, Mole putMole) {
 		if (putMole != null) {
 			putintent.putExtra("moleId", putMole.getId());
