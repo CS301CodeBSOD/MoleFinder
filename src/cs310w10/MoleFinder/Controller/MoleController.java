@@ -12,6 +12,10 @@ import cs310w10.MoleFinder.Model.TableMoles;
 import cs310w10.MoleFinder.Model.TableMolesPictures;
 
 /**
+ * MoleController serves as an interface between the model and view components.
+ * It's role is to create and manage Mole objects, while keeping their
+ * state tracked in the database.
+ * 
  * @author Bing
  */
 public class MoleController {
@@ -29,11 +33,13 @@ public class MoleController {
 	}
 
 	/**
-	 * create new mole
+	 * Create a new mole with the given values, store it in the database
+	 * and return the new mole.
 	 * 
 	 * @param name
 	 * @param description
 	 * @param location
+	 * @return mole
 	 */
 	public Mole createMole(String name, String description, String location) {
 		SQLiteDatabase database = connection.getWritableDatabase();
@@ -54,7 +60,7 @@ public class MoleController {
 	}
 
 	/**
-	 * Delete a mole from the database.
+	 * Find and delete the currently focused mole.
 	 * 
 	 * @param the
 	 *            Mole object
@@ -70,25 +76,19 @@ public class MoleController {
 		connection.close();
 	}
 
-	/**
-	 * edits a mole that has previously been set in the database
-	 * 
-	 * @param mole
-	 * @param name
-	 * @param description
-	 * @param location
-	 * @return
-	 */
+
 
 	public Mole getMole() {
 		return mole;
 	}
 
-	/**
-	 * @param name
-	 * @param description
-	 * @param location
-	 */
+    /**
+     * Find and edit a mole that has previously been set in the database
+     * 
+     * @param name
+     * @param description
+     * @param location
+     */
 	public void editMole(String name, String description, String location) {
 		if (mole == null) {
 			return;
