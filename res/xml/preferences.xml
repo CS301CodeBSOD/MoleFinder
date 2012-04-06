@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<PreferenceCategory android:title="Password Protection">
+		<CheckBoxPreference android:name="SettingsEnablePassword"
+			android:title="Toggle Password Protection"
+			android:defaultValue="false"
+			android:key="checkboxPassword"
+			android:disableDependentsState="false" />
+
+		<EditTextPreference android:name="SettingsChangePassword"
+			android:summary="Set or change your password"
+			android:defaultValue=""
+			android:title="New Password" android:key="editPassword" 
+			android:dependency="checkboxPassword"/>
+
+	</PreferenceCategory>
+
+	<PreferenceCategory android:title="Mole Management">
+
+		<EditTextPreference android:name="SettingsDeleteAllMoles"
+			android:defaultValue="I want to delete all my moles!" android:title="Delete All Moles"
+			android:key="editDeleteAllMoles" />
+
+	</PreferenceCategory>
+
+</PreferenceScreen>
+                
+                
+
