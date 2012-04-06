@@ -11,7 +11,7 @@ import cs310w10.MoleFinder.Model.Picture;
 public abstract class ViewActivity<M> extends Activity implements fView<M> {
 	protected static final int CAMERA_PICTURE_REQUEST = 124;
 	protected static final int EDIT_MOLE_REQUEST = 125;
-	protected static final int EDIT_PIC_REQUEST = 126;
+	protected static final int EDIT_PICTURE_REQUEST = 126;
 	protected Mole mole;
 	protected Picture picture;
 
@@ -26,7 +26,7 @@ public abstract class ViewActivity<M> extends Activity implements fView<M> {
 		}
 		if (intent.hasExtra("pictureId")) {
 			int id = extras.getInt("pictureId");
-			picture = PictureController.getPictureFromId(id);
+			picture = new PictureController(this).getPictureFromId(id);
 		}
 		setViews();
 		addListeners();
@@ -72,6 +72,11 @@ public abstract class ViewActivity<M> extends Activity implements fView<M> {
 	protected void launchEditMole() {
 		Intent intent = new Intent(this, EditMoleViewActivity.class);
 		launchIntentRequest(intent, EDIT_MOLE_REQUEST);
+	}
+
+	protected void launchEditPicture() {
+		Intent intent = new Intent(this, EditImageViewActivity.class);
+		launchIntentRequest(intent, EDIT_PICTURE_REQUEST);
 	}
 
 	protected void launchCamera() {

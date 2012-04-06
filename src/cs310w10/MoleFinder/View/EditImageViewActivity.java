@@ -6,7 +6,6 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -14,7 +13,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import cs310w10.MoleFinder.Controller.MoleFinderApplication;
+import android.widget.Toast;
 import cs310w10.MoleFinder.Controller.PictureController;
 import cs310w10.MoleFinder.Model.Picture;
 
@@ -33,7 +32,6 @@ public class EditImageViewActivity extends ViewActivity<Picture> {
 	private ImageButton submitButton;
 	private Button dateButton;
 	private EditText notesField;
-	private Picture picture;
 
 	@Override
 	protected void setViews() {
@@ -42,7 +40,6 @@ public class EditImageViewActivity extends ViewActivity<Picture> {
 		submitButton = (ImageButton) findViewById(R.id.EditImageViewSubmitButton);
 		dateButton = (Button) findViewById(R.id.EditImageViewDateButton);
 		notesField = (EditText) findViewById(R.id.EditImageViewNotesField);
-
 	}
 
 	@Override
@@ -62,8 +59,17 @@ public class EditImageViewActivity extends ViewActivity<Picture> {
 
 	public void pressSubmitButton() {
 		picture.setDescription(notesField.getText().toString());
+		PictureController controller =
+				new PictureController(picture, this);
+		controller.editPicture(
+				picture.getDate().getTimeInMillis(),
+				picture.getDescription(),
+				picture.getImageData());
 
-		// TODO: apply fields and go back to the mole you were just on.
+		Toast.makeText(getBaseContext(), picture.getImageData().toString(),
+				Toast.LENGTH_SHORT).show();
+		setResult(RESULT_OK);
+		finish();
 	}
 
 	@Override
@@ -72,25 +78,18 @@ public class EditImageViewActivity extends ViewActivity<Picture> {
 	}
 
 	public void update(Picture model) {
-		Bundle extras = getIntent().getExtras();
+		if (model != null) {
+			picture = model;
+			String path = picture.getImageData().getPath();
+			Bitmap imagebitmap = BitmapFactory.decodeFile(path);
+			image.setImageBitmap(imagebitmap);
+			if (picture.getDate() == null) {
 
-		// TODO: Put this into a controller or something. It needs fixing.
-		if (extras.containsKey("id")) {
-			picture = MoleFinderApplication.getListPictureController()
-					.getPictureById(extras.getInt("id"));
-			if (picture != null) {
-				String path = picture.getImageData().getPath();
-				Bitmap imagebitmap = BitmapFactory.decodeFile(path);
-				image.setImageBitmap(imagebitmap);
-				if (picture.getDate() != null) {
-					dateButton.setText(new PictureController(picture, this)
-							.getDateAsString());
-				} else {
-					picture.setDate(Calendar.getInstance());
-				}
+				picture.setDate(Calendar.getInstance());
 			}
+			dateButton.setText(new PictureController(picture, this)
+					.getDateAsString());
 		}
-
 	}
 
 	@Override

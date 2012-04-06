@@ -65,14 +65,15 @@ public class MoleViewActivity extends ViewActivity<Mole> {
 			setResult(Activity.RESULT_OK);
 		}
 		if (requestCode == CAMERA_PICTURE_REQUEST && resultCode == RESULT_OK) {
-			Bitmap newPicture = (Bitmap) data.getExtras().get("data");
+			Bitmap imagedata = (Bitmap) data.getExtras().get("data");
 			PictureController newPictureController = new PictureController(this);
+
 			Calendar date = Calendar.getInstance();
-			long time = date.getTime().getTime();
-			newPictureController.createPicture(time, "", newPicture);
-			Intent intent = new Intent(this, EditImageViewActivity.class);
-			intent.putExtra("moleId", newPictureController.getPicture().getId());
-			startActivityForResult(intent, EDIT_PIC_REQUEST);
+			long time = date.getTimeInMillis();
+			picture = newPictureController.createPicture(time, "",
+					imagedata);
+
+			launchEditPicture();
 		}
 		update(mole);
 	}
