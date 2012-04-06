@@ -101,8 +101,8 @@ public class ListPictureController {
 			picture.setId(PhotoID);
 			// a temporal cursor to get the
 			Cursor tempcursor = database.query(TablePictures.TABLE_PICTURES,
-					TablePictures.ALLCOLUMNS,
-					"where " + TablePictures.COLUMN_ID + " = " + PhotoID, null,
+					TablePictures.ALLCOLUMNS, TablePictures.COLUMN_ID + " = "
+							+ PhotoID, null,
 					null, null, null);
 			tempcursor.moveToFirst();
 			picture.setDescription(tempcursor.getString(1));
