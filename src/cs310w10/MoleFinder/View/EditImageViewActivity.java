@@ -18,6 +18,13 @@ import cs310w10.MoleFinder.Controller.MoleFinderApplication;
 import cs310w10.MoleFinder.Controller.PictureController;
 import cs310w10.MoleFinder.Model.Picture;
 
+/**
+ * @author Claire Semple
+ * @author Bing Pan
+ * @description This is the view which allows the user to manipulate the
+ *              contents of a mole object.
+ * @param <V>
+ */
 public class EditImageViewActivity extends ViewActivity<Picture> {
 
 	private static final int DATE_DIALOG_ID = 0;

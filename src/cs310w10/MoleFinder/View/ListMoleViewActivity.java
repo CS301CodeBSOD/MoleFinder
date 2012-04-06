@@ -1,6 +1,7 @@
 package cs310w10.MoleFinder.View;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -111,7 +112,16 @@ public class ListMoleViewActivity extends ViewActivity<ArrayList<Mole>>
 	}
 
 	public void onItemClick(AdapterView<?> l, View v, int position, long id) {
-		// Toast.makeText(this, String.valueOf(id), Toast.LENGTH_SHORT).show();
-		launchViewMole((int) id);
+		int moleId = -1;
+		try {
+			@SuppressWarnings("unchecked")
+			HashMap<String, String> item = (HashMap<String, String>) moleListView
+					.getItemAtPosition(position);
+			moleId = Integer.parseInt(item.get("id"));
+		} catch (Exception e) {
+			Toast.makeText(this, "Problem detecting item", Toast.LENGTH_SHORT)
+					.show();
+		}
+		launchViewMole(moleId);
 	}
 }

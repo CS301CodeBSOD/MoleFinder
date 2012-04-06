@@ -22,9 +22,7 @@ public abstract class ViewActivity<M> extends Activity implements fView<M> {
 		Bundle extras = intent.getExtras();
 		if (intent.hasExtra("moleId")) {
 			int id = extras.getInt("moleId");
-			MoleController controller = new MoleController(this);
-			controller.getMoleFromId(id);
-			mole = controller.getMole();
+			mole = new MoleController(this).getMoleFromId(id);
 		}
 		if (intent.hasExtra("pictureId")) {
 			int id = extras.getInt("pictureId");
@@ -47,13 +45,13 @@ public abstract class ViewActivity<M> extends Activity implements fView<M> {
 		}
 	}
 
-	protected void putMole(Intent putintent, long id) {
+	protected void putMole(Intent putintent, int id) {
 		if (id >= 0) {
 			putintent.putExtra("moleId", id);
 		}
 	}
 
-	protected void putPicture(Intent putintent, long id) {
+	protected void putPicture(Intent putintent, int id) {
 		if (id >= 0) {
 			putintent.putExtra("pictureId", id);
 		}
