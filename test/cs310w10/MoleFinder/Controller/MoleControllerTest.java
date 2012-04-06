@@ -46,11 +46,7 @@ public class MoleControllerTest extends AndroidTestCase {
 	public void testDeleteMole() {
 		mController.createMole("newmole", "a new mole", "arm");
 		Mole mole = mController.getMole();
-<<<<<<< HEAD
-		long id = mole.getId();
-=======
-		int id =  mole.getId();
->>>>>>> refs/remotes/origin/master
+		int id = mole.getId();
 		mController.deleteMole();
 		mController.getMoleFromId(id);
 		mole = mController.getMole();
