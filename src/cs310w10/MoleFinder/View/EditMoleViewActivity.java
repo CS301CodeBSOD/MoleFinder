@@ -1,7 +1,6 @@
 package cs310w10.MoleFinder.View;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -69,27 +68,23 @@ public class EditMoleViewActivity extends ViewActivity<Mole> {
 			MoleController controller = new MoleController(this);
 			controller.getMoleFromId(id);
 			controller.editMole(name, description, location);
-			setResult(Activity.RESULT_OK, getIntent());
+			setResult(RESULT_OK, getIntent());
 
 			finish();
 		} else {
 
 			MoleController mController = new MoleController(this);
 			mController.createMole(name, description, location);
-			Mole mole = mController.getMole();
-			int id = mole.getId();
-			if (id == -1) {
+			mole = mController.getMole();
+			if (mole.getId() == -1) {
 				Toast.makeText(getBaseContext(),
 						"Invalid or already in use mole name",
 						Toast.LENGTH_LONG).show();
 
 			} else {
-				Intent intent = new Intent(this, MoleViewActivity.class);
+				launchViewMole();
 
-				putMole(intent, id);
-				startActivity(intent);
-
-				setResult(Activity.RESULT_OK, intent);
+				setResult(Activity.RESULT_OK, getIntent());
 				finish();
 			}
 		}

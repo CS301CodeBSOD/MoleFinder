@@ -59,9 +59,15 @@ public abstract class ViewActivity<M> extends Activity implements fView<M> {
 		}
 	}
 
+	protected void launchViewMole() {
+		Intent intent = new Intent(this, MoleViewActivity.class);
+
+		launchIntentNoRequest(intent);
+	}
+
 	protected void launchEditMole() {
 		Intent intent = new Intent(this, EditMoleViewActivity.class);
-		launchIntent(intent, EDIT_MOLE_REQUEST);
+		launchIntentRequest(intent, EDIT_MOLE_REQUEST);
 	}
 
 	protected void launchCamera() {
@@ -70,10 +76,16 @@ public abstract class ViewActivity<M> extends Activity implements fView<M> {
 		startActivityForResult(cameraIntent, CAMERA_PICTURE_REQUEST);
 	}
 
-	protected void launchIntent(Intent intent, int request) {
+	protected void launchIntentNoRequest(Intent intent) {
 		putMole(intent, mole);
 		putPicture(intent, picture);
-		startActivityForResult(intent, EDIT_MOLE_REQUEST);
+		startActivity(intent);
+	}
+
+	protected void launchIntentRequest(Intent intent, int request) {
+		putMole(intent, mole);
+		putPicture(intent, picture);
+		startActivityForResult(intent, request);
 	}
 
 	// / Load resources from Layout
