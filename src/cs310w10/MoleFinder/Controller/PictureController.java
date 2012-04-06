@@ -18,6 +18,9 @@ import cs310w10.MoleFinder.Model.TablePictures;
 
 /**
  * @author Bing
+ * 
+ * Picture controller uses an sqlite database connection and user provided values
+ * to create and manage Picture objects for the MoleFinder Application.
  */
 public class PictureController {
 
@@ -45,7 +48,13 @@ public class PictureController {
 	// public PictureController(int id) {
 	//
 	// }
-
+/**
+ * MakeFile reads in bitmap image data and saves it into a file.
+ * 
+ * @param imagedata
+ * @param filename
+ * @return imageUri
+ */
 	private Uri makeFile(Bitmap imagedata, String filename) {
 		String folderpath = MoleFinderApplication.getSavePath();
 		String format = MoleFinderApplication.getSaveFormat();
@@ -77,6 +86,11 @@ public class PictureController {
 		return builder.build();
 	}
 
+	/**
+	 * getDateAsString takes a calendar date out of the picture data and 
+	 * returns a simple coresponding date string.
+	 * @return DateAsString
+	 */
 	public String getDateAsString() {
 		try {
 			Calendar date = picture.getDate();
@@ -87,6 +101,11 @@ public class PictureController {
 		}
 	}
 
+	/**
+	 * Pulls the URI out of the picture data as a string
+	 * 
+	 * @return URIasString
+	 */
 	public String getUriAsString() {
 		try {
 			Uri uri = picture.getImageData();

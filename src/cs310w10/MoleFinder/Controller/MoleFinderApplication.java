@@ -5,6 +5,12 @@ import android.content.Context;
 import android.os.Environment;
 import cs310w10.MoleFinder.Model.MoleFinder;
 
+/**
+ * 
+ * MoleFinderApplication owns the singleton controller objects, as well as handles
+ * the state of the application context and file path. 
+ *
+ */
 public class MoleFinderApplication extends Application {
 	transient private static MoleFinder moleFinder;
 	transient private static ListMoleController listMoleController;
