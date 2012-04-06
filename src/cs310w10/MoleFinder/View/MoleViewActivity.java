@@ -11,7 +11,6 @@ import android.view.View.OnClickListener;
 import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 import cs310w10.MoleFinder.Controller.MoleController;
 import cs310w10.MoleFinder.Controller.PictureController;
 import cs310w10.MoleFinder.Model.Mole;
@@ -106,7 +105,5 @@ public class MoleViewActivity extends ViewActivity<Mole> {
 		data.open();
 		List<Integer> ids = data.getPhotoIdsFromeMole(mole.getId());
 		gallery.setAdapter(new ImageAdapter(getBaseContext(), ids));
-		Toast.makeText(getBaseContext(), ids.size() + "pictures",
-				Toast.LENGTH_SHORT).show();
 	}
 }

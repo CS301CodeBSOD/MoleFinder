@@ -267,7 +267,7 @@ public class MolesDataSource {
 		String[] columns = { TableMolesPictures.COLUMN_PICTUREID };
 		Cursor cursor = database.query(TableMolesPictures.TABLE_MOLESPICTURES,
 				columns,
-				TableMolesPictures.COLUMN_PICTUREID + " = " + moleId, null,
+				TableMolesPictures.COLUMN_MOLEID + " = " + moleId, null,
 				null, null, null);
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
