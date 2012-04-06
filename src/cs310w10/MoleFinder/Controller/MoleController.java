@@ -37,7 +37,6 @@ public class MoleController {
 	 */
 	public Mole createMole(String name, String description, String location) {
 		SQLiteDatabase database = connection.getWritableDatabase();
-		mole = new Mole();
 		ContentValues values = new ContentValues();
 		values.put(TableMoles.COLUMN_NAME, name);
 		values.put(TableMoles.COLUMN_LOCATION, location);
@@ -190,10 +189,11 @@ public class MoleController {
 	 * @param PhotoID
 	 */
 	public void associateMoleWithPicture(int PhotoID) {
-		SQLiteDatabase database = connection.getWritableDatabase();
+		
 		if (mole == null) {
 			return;
 		}
+		SQLiteDatabase database = connection.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put(TableMolesPictures.COLUMN_MOLEID, mole.getId());
 		values.put(TableMolesPictures.COLUMN_PICTUREID, PhotoID);

@@ -12,7 +12,7 @@ public class TablePictures {
 	 * these are Statics associated with the database
 	 */
 	public static final String TABLE_PICTURES = "pictures";
-	public static final String COLUMN_ID = "_id";
+	public static final String COLUMN_ID = "id";
 	public static final String COLUMN_DESCRIPTION = "description";
 	public static final String COLUMN_DATE = "date";
 	public static final String COLUMN_URI = "uri";

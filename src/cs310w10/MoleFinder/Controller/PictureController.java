@@ -170,14 +170,13 @@ public class PictureController {
 		values.put(TablePictures.COLUMN_DESCRIPTION, description);
 		values.put(TablePictures.COLUMN_URI, uriToString(uri));
 
-		long rowId = database.
-				update(TablePictures.TABLE_PICTURES, values,
+		database.update(TablePictures.TABLE_PICTURES, values,
 						TablePictures.COLUMN_ID + " = " + pictureid, null);
 
 		Cursor cursor = database
 				.query(TablePictures.TABLE_PICTURES,
 						TablePictures.ALLCOLUMNS,
-						TablePictures.COLUMN_ID + " = " + rowId, null, null,
+						TablePictures.COLUMN_ID + " = " + pictureid, null, null,
 						null, null);
 		if (cursor.moveToFirst()) {
 			picture = cursorToPicture(cursor);
@@ -193,6 +192,9 @@ public class PictureController {
 	 * @param picture
 	 */
 	public void deletePicture() {
+		if (picture == null){
+			return;
+		}
 		SQLiteDatabase database = connection.getWritableDatabase();
 		long picid = picture.getId();
 		database.delete(TablePictures.TABLE_PICTURES,

@@ -12,6 +12,9 @@ import cs310w10.MoleFinder.Model.Mole;
 import cs310w10.MoleFinder.Model.MoleSQLiteHelper;
 import cs310w10.MoleFinder.Model.Picture;
 
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.net.Uri;
 import android.test.AndroidTestCase;
 
 public class MoleControllerTest extends AndroidTestCase {
@@ -80,7 +83,7 @@ public class MoleControllerTest extends AndroidTestCase {
 		mController.createMole("newmole", "a new mole", "arm");
 		Mole mole = mController.getMole();
 		PictureController  pController = new PictureController(getContext());
-		pController.createPicture(1000, "a new picture", "");
+		pController.createPicture(1000, "a new picture", null);
 		Picture picture = pController.getPicture();
 		mController.associateMoleWithPicture(picture.getId());
 		ArrayList<Integer> photoIds = mController.getPhotoIdsFromeMole(mole.getId());
