@@ -1,7 +1,6 @@
 package cs310w10.MoleFinder.View;
 
 import java.util.Calendar;
-import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,11 +10,9 @@ import android.view.View.OnClickListener;
 import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import cs310w10.MoleFinder.Controller.ListPictureController;
 import cs310w10.MoleFinder.Controller.MoleController;
 import cs310w10.MoleFinder.Controller.PictureController;
 import cs310w10.MoleFinder.Model.Mole;
-import cs310w10.MoleFinder.Model.Picture;
 
 public class MoleViewActivity extends ViewActivity<Mole> {
 	private ImageButton editDescriptionButton;
@@ -98,8 +95,8 @@ public class MoleViewActivity extends ViewActivity<Mole> {
 	protected void updateGallery() {
 		// tutorial for this part:
 		// http://developer.android.com/guide/tutorials/views/hello-gallery.html
-		List<Picture> pictures = new ListPictureController(getBaseContext())
-				.getListPictureFromMole(mole.getId());
-		gallery.setAdapter(new ImageAdapter(getBaseContext(), pictures));
+		// List<Picture> pictures = new ListPictureController(getBaseContext())
+		// .getListPictureFromMole(mole.getId());
+		// gallery.setAdapter(new ImageAdapter(getBaseContext(), pictures));
 	}
 }
