@@ -35,7 +35,7 @@ public class MoleController {
 	 * @param description
 	 * @param location
 	 */
-	public void createMole(String name, String description, String location) {
+	public Mole createMole(String name, String description, String location) {
 		SQLiteDatabase database = connection.getWritableDatabase();
 		mole = new Mole();
 		ContentValues values = new ContentValues();
@@ -51,6 +51,7 @@ public class MoleController {
 			mole = cursorToMole(cursor);
 		}
 		connection.close();
+		return mole;
 	}
 
 	/**
