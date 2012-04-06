@@ -47,7 +47,7 @@ public class NewMoleViewActivity extends Activity implements fView<Mole> {
 		if (getIntent().hasExtra("id")) {
 			editMode = true;
 			Intent intent = getIntent();
-			long id = intent.getExtras().getLong(Intent.EXTRA_SUBJECT);
+			int id = intent.getExtras().getInt(Intent.EXTRA_SUBJECT);
 			
 			MoleController  mcontroller = new MoleController(this);
 
@@ -70,7 +70,7 @@ public class NewMoleViewActivity extends Activity implements fView<Mole> {
 
 		if (editMode) {
 			Intent intent = getIntent();
-			long id = intent.getExtras().getLong(Intent.EXTRA_SUBJECT);
+			int id = intent.getExtras().getInt(Intent.EXTRA_SUBJECT);
 			MoleController mcontroller = new MoleController(this);
 			mcontroller.getMoleFromId(id);
 

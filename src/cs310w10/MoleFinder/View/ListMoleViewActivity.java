@@ -126,11 +126,10 @@ public class ListMoleViewActivity extends ViewActivity<ArrayList<Mole>>
         setAdapter();
     }
 
-    public void onItemClick(AdapterView<?> l, View v, int position, long id)
+    public void onItemClick(AdapterView<?> l, View v, int position, long index)
     {
-
-        // Toast.makeText(this, String.valueOf(id), Toast.LENGTH_SHORT).show();
-        launchViewMole((int) id);
+        Mole myMole = lController.getMoles().get((int)index);
+        launchViewMole( myMole.getId() );
     }
 
     @Override

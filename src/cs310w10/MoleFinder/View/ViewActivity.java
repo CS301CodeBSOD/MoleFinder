@@ -47,13 +47,13 @@ public abstract class ViewActivity<M> extends Activity implements fView<M> {
 		}
 	}
 
-	protected void putMole(Intent putintent, long id) {
+	protected void putMole(Intent putintent, int id) {
 		if (id >= 0) {
 			putintent.putExtra("moleId", id);
 		}
 	}
 
-	protected void putPicture(Intent putintent, long id) {
+	protected void putPicture(Intent putintent, int id) {
 		if (id >= 0) {
 			putintent.putExtra("pictureId", id);
 		}
@@ -73,6 +73,7 @@ public abstract class ViewActivity<M> extends Activity implements fView<M> {
 
 	protected void launchEditMole() {
 		Intent intent = new Intent(this, EditMoleViewActivity.class);
+		putMole(intent, mole.getId());
 		launchIntentRequest(intent, EDIT_MOLE_REQUEST);
 	}
 	

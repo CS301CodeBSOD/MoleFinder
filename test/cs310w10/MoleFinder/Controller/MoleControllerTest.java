@@ -46,7 +46,7 @@ public class MoleControllerTest extends AndroidTestCase {
 	public void testDeleteMole() {
 		mController.createMole("newmole", "a new mole", "arm");
 		Mole mole = mController.getMole();
-		long id =  mole.getId();
+		int id =  mole.getId();
 		mController.deleteMole();
 		mController.getMoleFromId(id);
 		mole = mController.getMole();
@@ -68,7 +68,7 @@ public class MoleControllerTest extends AndroidTestCase {
 	public void testGetMoleFromId() {
 		mController.createMole("newmole", "a new mole", "arm");
 		Mole mole = mController.getMole();
-		long id = mole.getId();
+		int id = mole.getId();
 		MoleController newController = new MoleController(getContext());
 		newController.getMoleFromId(id);
 		mole = newController.getMole();

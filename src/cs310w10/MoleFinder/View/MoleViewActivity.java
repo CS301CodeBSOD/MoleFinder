@@ -60,7 +60,7 @@ public class MoleViewActivity extends ViewActivity<Mole> {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == EDIT_MOLE_REQUEST && resultCode == RESULT_OK) {
-			int id = data.getIntExtra("moleId", -1);
+		        int id = data.getIntExtra("moleId", -1);
 			mole = new MoleController(this).getMoleFromId(id);
 			setResult(Activity.RESULT_OK);
 		}
