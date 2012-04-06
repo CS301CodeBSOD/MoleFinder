@@ -7,14 +7,11 @@ import java.util.ArrayList;
 import cs310w10.MoleFinder.View.fView;
 
 /**
- * 
- * @author James Helberg
- * 
- * This is the abstract class for the Models. It allows for ease of updating
- * of the associated views of this model
- * 
+ * @author James Helberg This is the abstract class for the Models. It allows
+ *         for ease of updating of the associated views of this model
  * @param <V>
  */
+@SuppressWarnings("rawtypes")
 public class fModel<V extends fView> {
 	private final ArrayList<V> views;
 
@@ -26,8 +23,11 @@ public class fModel<V extends fView> {
 	}
 
 	/**
-	 * adds a extended version of fView to a list of currently active views associated with this model
-	 * @param view extends fView -  the view that has been made active
+	 * adds a extended version of fView to a list of currently active views
+	 * associated with this model
+	 * 
+	 * @param view
+	 *            extends fView - the view that has been made active
 	 */
 	public void addView(V view) {
 		if (!views.contains(view)) {
@@ -37,7 +37,9 @@ public class fModel<V extends fView> {
 
 	/**
 	 * Removes a view from the list that has been deleted / dropped
-	 * @param view extends fView - the view that has been deleted
+	 * 
+	 * @param view
+	 *            extends fView - the view that has been deleted
 	 */
 	public void deleteView(V view) {
 		views.remove(view);
@@ -45,9 +47,10 @@ public class fModel<V extends fView> {
 
 	/**
 	 * Function call that should be made after any update of the model object.
-	 * calls update in the fViews which will update the contents of the associated
-	 * active views
+	 * calls update in the fViews which will update the contents of the
+	 * associated active views
 	 */
+	@SuppressWarnings("unchecked")
 	public void notifyViews() {
 		for (V view : views) {
 			view.update(this);
