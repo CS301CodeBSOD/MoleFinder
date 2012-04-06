@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -28,7 +30,6 @@ public class EditMoleViewActivity extends ViewActivity<Mole> {
 			update(mole);
 		} else {
 			editMode = false;
-			mole = new Mole();
 		}
 	}
 
@@ -51,6 +52,26 @@ public class EditMoleViewActivity extends ViewActivity<Mole> {
 				pressSubmitButton();
 			}
 		});
+		locationSpinner
+				.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+					public void onItemSelected(AdapterView<?> adapter,
+							View view,
+							int position, long id) {
+						String location = adapter.getItemAtPosition(position)
+								.toString();
+						if (mole != null) {
+							mole.setLocation(location);
+						}
+
+					}
+
+					public void onNothingSelected(AdapterView<?> arg0) {
+						//
+
+					}
+
+				});
 
 	}
 
