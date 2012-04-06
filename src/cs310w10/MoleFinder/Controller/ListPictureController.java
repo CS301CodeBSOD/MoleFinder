@@ -30,12 +30,6 @@ public class ListPictureController {
 		pictures.add(picture.getPicture());
 	}
 
-	public int getNextFreeID() {
-		// TODO: find out the next free id from the database
-		// this method is obsolete now?
-		return 10;
-	}
-
 	public Picture getPictureById(int id) {
 		Iterator<Picture> li = pictures.iterator();
 		while (li.hasNext()) {
@@ -92,7 +86,7 @@ public class ListPictureController {
 		String[] columns = { TableMolesPictures.COLUMN_PICTUREID };
 		Cursor cursor = database.query(TableMolesPictures.TABLE_MOLESPICTURES,
 				columns,
-				TableMolesPictures.COLUMN_PICTUREID + " = " + moleID, null,
+				TableMolesPictures.COLUMN_MOLEID + " = " + moleID, null,
 				null, null, null);
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
@@ -105,12 +99,17 @@ public class ListPictureController {
 							+ PhotoID, null,
 					null, null, null);
 			tempcursor.moveToFirst();
+
 			picture.setDescription(tempcursor.getString(1));
+
 			Long time = (long) tempcursor.getInt(2);
 			Calendar date = Calendar.getInstance();
 			date.setTimeInMillis(time);
 			picture.setDate(date);
+
 			picture.setImageData(Uri.parse(tempcursor.getString(3)));
+
+			pictures.add(picture);
 		}
 		cursor.close();
 		connection.close();

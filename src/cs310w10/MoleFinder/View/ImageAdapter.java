@@ -1,5 +1,6 @@
 package cs310w10.MoleFinder.View;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Gallery;
 import android.widget.ImageView;
+import cs310w10.MoleFinder.Controller.PictureController;
 import cs310w10.MoleFinder.Model.Picture;
 
 /**
@@ -19,8 +21,12 @@ public class ImageAdapter extends BaseAdapter {
 	private final List<Picture> list;
 	private final Context context;
 
-	public ImageAdapter(Context context, List<Picture> list) {
-		this.list = list;
+	public ImageAdapter(Context context, List<Integer> listids) {
+		list = new ArrayList<Picture>();
+		PictureController controller = new PictureController(context);
+		for (Integer i : listids) {
+			list.add(controller.getPictureFromId(i));
+		}
 		this.context = context;
 	}
 
