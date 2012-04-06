@@ -15,5 +15,6 @@
     
     
     <string name="search_hint" >Search locations for moles</string>
+    <string name="settings">Settings</string>
 	
 </resources>
