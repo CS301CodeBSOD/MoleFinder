@@ -12,5 +12,8 @@
         <item >Left Leg</item>
         <item >Right Leg</item>
     </string-array>
+    
+    
+    <string name="search_hint" >Search locations for moles</string>
 	
 </resources>
