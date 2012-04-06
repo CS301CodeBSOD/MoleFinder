@@ -70,5 +70,9 @@ public class MoleSQLiteHelper extends SQLiteOpenHelper{
 		TablePictures.onUpdate(db);
 		TableMoles.onUpdate(db);
 	}
+	
+	public static String getDatabaseName(){
+		return DATABASE_NAME;
+	}
 
 }
