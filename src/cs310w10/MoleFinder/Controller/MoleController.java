@@ -64,7 +64,7 @@ public class MoleController {
 			return;
 		}
 		SQLiteDatabase database = connection.getWritableDatabase();
-		long moleid = mole.getId();
+		int moleid = mole.getId();
 		database.delete(TableMoles.TABLE_MOLES,
 				TableMoles.COLUMN_ID + " = " + moleid, null);
 		connection.close();
@@ -94,7 +94,7 @@ public class MoleController {
 			return;
 		}
 		SQLiteDatabase database = connection.getWritableDatabase();
-		long moleid = mole.getId();
+		int moleid = mole.getId();
 		ContentValues values = new ContentValues();
 		values.put(TableMoles.COLUMN_NAME, name);
 		values.put(TableMoles.COLUMN_LOCATION, location);
@@ -121,8 +121,8 @@ public class MoleController {
 	 */
 	private Mole cursorToMole(Cursor cursor) {
 		Mole mole = new Mole();
-		int moleId = cursor.getInt(0);
-		mole.setId(moleId);
+		int moleid = cursor.getInt(0);
+		mole.setId(moleid);
 		mole.setName(cursor.getString(1));
 		mole.setDescription(cursor.getString(2));
 		mole.setLocation(cursor.getString(3));
@@ -138,13 +138,13 @@ public class MoleController {
 	 *            id of the mole
 	 * @return a list of picture ids
 	 */
-	public ArrayList<Integer> getPhotoIdsFromeMole(int moleId) {
+	public ArrayList<Integer> getPhotoIdsFromeMole(int moleid) {
 		SQLiteDatabase database = connection.getWritableDatabase();
 		ArrayList<Integer> photoids = new ArrayList<Integer>();
 		String[] columns = { TableMolesPictures.COLUMN_PICTUREID };
 		Cursor cursor = database.query(TableMolesPictures.TABLE_MOLESPICTURES,
 				columns,
-				TableMolesPictures.COLUMN_PICTUREID + " = " + moleId, null,
+				TableMolesPictures.COLUMN_PICTUREID + " = " + moleid, null,
 				null, null, null);
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
@@ -164,7 +164,7 @@ public class MoleController {
 	 *            id of the mole
 	 * @return the Mole object
 	 */
-	public Mole getMoleFromId(long id) {
+	public Mole getMoleFromId(int id) {
 		SQLiteDatabase database = connection.getWritableDatabase();
 		mole = new Mole();
 		Cursor cursor = database.query(TableMoles.TABLE_MOLES,

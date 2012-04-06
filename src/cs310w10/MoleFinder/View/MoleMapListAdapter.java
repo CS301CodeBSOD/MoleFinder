@@ -18,7 +18,7 @@ public class MoleMapListAdapter extends ArrayList<HashMap<String, String>> {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("name", mole.getName());
 		map.put("description", mole.getDescription());
-		map.put("id", Integer.toString(mole.getId()));
+		map.put("id", Long.toString(mole.getId()));
 		map.put("location", mole.getLocation());
 		return map;
 	}
