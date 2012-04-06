@@ -100,12 +100,12 @@ public class MoleController {
 		values.put(TableMoles.COLUMN_NAME, name);
 		values.put(TableMoles.COLUMN_LOCATION, location);
 		values.put(TableMoles.COLUMN_DESCRIPTION, description);
-		long rowId = database.update(TableMoles.TABLE_MOLES, values,
+		database.update(TableMoles.TABLE_MOLES, values,
 				TableMoles.COLUMN_ID + " = " + moleid, null);
 
 		Cursor cursor = database.query(TableMoles.TABLE_MOLES,
 				TableMoles.ALLCOLUMNS,
-				TableMoles.COLUMN_ID + " = " + rowId, null, null, null, null);
+				TableMoles.COLUMN_ID + " = " + moleid, null, null, null, null);
 		if (cursor.moveToFirst()) {
 			mole = cursorToMole(cursor);
 		}
@@ -175,6 +175,8 @@ public class MoleController {
 		cursor.moveToFirst();
 		if (!cursor.isAfterLast()) {
 			mole = cursorToMole(cursor);
+		}else{
+			mole = null;
 		}
 		cursor.close();
 		connection.close();
