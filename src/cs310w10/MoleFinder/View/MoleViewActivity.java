@@ -1,5 +1,8 @@
 package cs310w10.MoleFinder.View;
 
+import java.util.Calendar;
+import java.util.Locale;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -64,10 +67,10 @@ public class MoleViewActivity extends ViewActivity<Mole> {
 		}
 		if (requestCode == CAMERA_PICTURE_REQUEST && resultCode == RESULT_OK) {
 			Bitmap newPicture = (Bitmap) data.getExtras().get("data");
-			PictureController newPictureController = new PictureController(
-					newPicture);
-			MoleFinderApplication.getListPictureController().insertPicture(
-					newPictureController);
+			PictureController newPictureController = new PictureController(this);
+			Calendar date = Calendar.getInstance();
+			long time = date.getTime().getTime();
+			newPictureController.createPicture(time, "", newPicture);
 			Intent intent = new Intent(this, EditImageViewActivity.class);
 			intent.putExtra("moleId", newPictureController.getPicture().getId());
 			startActivityForResult(intent, EDIT_PIC_REQUEST);
