@@ -5,11 +5,9 @@ package cs310w10.MoleFinder.Model;
 
 import static org.junit.Assert.*;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import cs310w10.MoleFinder.Controller.MoleFinderApplication;
-import cs310w10.MoleFinder.View.EditMoleViewActivity;
 
 
 /**

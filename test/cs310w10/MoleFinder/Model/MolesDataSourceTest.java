@@ -3,15 +3,12 @@
  */
 package cs310w10.MoleFinder.Model;
 
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 
-import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import android.test.AndroidTestCase;
-import android.R.string;
-import android.text.Editable.Factory;
+
 
 import cs310w10.MoleFinder.Controller.MoleFinderApplication;
 
@@ -28,10 +25,10 @@ public class MolesDataSourceTest extends AndroidTestCase
     /**
      * @throws java.lang.Exception
      */
-    @After
-    public void tearDown() throws Exception
+    @Before
+    public void setUp() throws Exception
     {
-
+            source = new MolesDataSource(MoleFinderApplication.getAppContext());
     }
 
     /**
@@ -40,29 +37,46 @@ public class MolesDataSourceTest extends AndroidTestCase
     @Test
     public final void testMolesDataSource()
     {
-
-        source = new MolesDataSource(MoleFinderApplication.getAppContext());
         assertNotNull(source);
-        source.open();
-        
-        
+    }
+    
+    @Test
+    public final void testCreateMole()
+    {   
         testmole = source.createMole("asdf", "testmole", "back");
         assertNotNull(testmole);
         assertEquals("asdf", testmole.getName());
+        assertEquals("testmole", testmole.getDescription());
+        assertEquals("back", testmole.getLocation());
         Mole pullmole = source.getMoleFromId(testmole.getId());
-        assertEquals(pullmole.getName(), "test"); 
-   
-        testmole = source.editMole(testmole, "newtest", "newtestmole", "front");
-        assertEquals(testmole.getName(), "newtest");
-        pullmole = source.getMoleFromId(testmole.getId());
-        assertEquals(pullmole.getName(), "newtest"); 
+        assertSame(pullmole, testmole); 
+    }
     
-        
+    @Test
+    public final void testEditMole()
+    { 
+        testmole = source.editMole(testmole, "newtest", "newtestmole", "front");
+        assertEquals("newtest", testmole.getName());
+        assertEquals("newtestmole", testmole.getDescription());
+        assertEquals("front", testmole.getLocation());;
+        Mole pullmole = source.getMoleFromId(testmole.getId());
+        assertSame(pullmole, testmole); 
+    }
+    
+    @Test
+    public final void testDeleteMole()
+    { 
+        testmole = source.editMole(testmole, "newtest", "newtestmole", "front");
         int testid = testmole.getId();
         
         source.deleteMole(testmole);
         assertNull(source.getMoleFromId(testid).getName());
         
+    }
+    
+    @Test
+    public final void testGetAllMoles()
+    { 
         String description = "description";
         String location = "location";
         source.createMole("one", description, location);
@@ -70,21 +84,25 @@ public class MolesDataSourceTest extends AndroidTestCase
         source.createMole("three", description, location);
 
         ArrayList<Mole> moles = source.getAllMoles();
-        assertEquals(moles.get(0).getName(), "one");
-        assertEquals(moles.get(1).getName(), "two");
-        assertEquals(moles.get(2).getName(), "three");
+        assertEquals(moles.get(-3).getName(), "one");
+        assertEquals(moles.get(-2).getName(), "two");
+        assertEquals(moles.get(-1).getName(), "three");
 
-        Mole mole = source.getMoleFromId(1);
-        assertEquals(mole.getName(), "two");
+    }
+    
+    @Test
+    public final void testDeleteAllMoles()
+    { 
+        Mole mole = source.getMoleFromId(-3);
+        assertEquals(mole.getName(), "one");
 
         source.deleteAllMoles();
-        moles = source.getAllMoles();
+        ArrayList<Mole> moles = source.getAllMoles();
         assertEquals(moles.get(0).getName(), null);
     
     }
 
-
-    
+ 
     /**
      * Test method for {@link cs310w10.MoleFinder.Model.MolesDataSourceTesttest#testInsertPicture()}.
      */
