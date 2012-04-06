@@ -1,20 +1,17 @@
 package cs310w10.MoleFinder.View;
 
-import cs310w10.MoleFinder.Model.ListMole;
-import android.app.Activity;
-import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageSwitcher;
 import android.widget.TextView;
+import cs310w10.MoleFinder.Model.ListMole;
 
 public class MoleGalleryViewActivity extends ViewActivity<ListMole> {
 	private ImageSwitcher imageSwitcher;
 	private ImageButton editButton;
 	private TextView dateText;
 	private TextView notesText;
-
 
 	@Override
 	protected void setViews() {
@@ -34,6 +31,7 @@ public class MoleGalleryViewActivity extends ViewActivity<ListMole> {
 			}
 		});
 	}
+
 	protected void pressEditButton() {
 		// TODO: transfer intent to EditImage
 	}
@@ -47,7 +45,6 @@ public class MoleGalleryViewActivity extends ViewActivity<ListMole> {
 	protected void updateSelf() {
 		// TODO: make imageSwitcher work? Maybe this will help:
 		// http://saigeethamn.blogspot.com/2010/05/image-switcher-view-android-developer.html
-
 
 		// TODO: get date from image data
 		dateText.setText("A DATE");

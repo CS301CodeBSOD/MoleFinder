@@ -13,7 +13,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 import cs310w10.MoleFinder.Controller.PictureController;
 import cs310w10.MoleFinder.Model.Picture;
 
@@ -65,9 +64,7 @@ public class EditImageViewActivity extends ViewActivity<Picture> {
 				picture.getDate().getTimeInMillis(),
 				picture.getDescription(),
 				picture.getImageData());
-
-		Toast.makeText(getBaseContext(), picture.getImageData().toString(),
-				Toast.LENGTH_SHORT).show();
+		controller.AssociatePictureWithMole(mole.getId());
 		setResult(RESULT_OK);
 		finish();
 	}

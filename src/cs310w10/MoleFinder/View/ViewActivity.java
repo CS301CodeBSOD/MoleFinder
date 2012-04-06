@@ -83,18 +83,21 @@ public abstract class ViewActivity<M> extends Activity implements fView<M> {
 		Intent cameraIntent = new Intent(
 				android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 		startActivityForResult(cameraIntent, CAMERA_PICTURE_REQUEST);
+		updateSelf();
 	}
 
 	protected void launchIntentNoRequest(Intent intent) {
 		putMole(intent, mole);
 		putPicture(intent, picture);
 		startActivity(intent);
+		updateSelf();
 	}
 
 	protected void launchIntentRequest(Intent intent, int request) {
 		putMole(intent, mole);
 		putPicture(intent, picture);
 		startActivityForResult(intent, request);
+		updateSelf();
 	}
 
 	// / Load resources from Layout

@@ -86,7 +86,7 @@ public class ListPictureController {
 	/**
 	 * @param moleID
 	 */
-	public void getListPictureFromMole(int moleID) {
+	public ArrayList<Picture> getListPictureFromMole(int moleID) {
 		SQLiteDatabase database = connection.getWritableDatabase();
 		pictures = new ArrayList<Picture>();
 		String[] columns = { TableMolesPictures.COLUMN_PICTUREID };
@@ -114,6 +114,7 @@ public class ListPictureController {
 		}
 		cursor.close();
 		connection.close();
+		return pictures;
 	}
 
 	/**
