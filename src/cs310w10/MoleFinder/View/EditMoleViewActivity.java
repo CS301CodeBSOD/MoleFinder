@@ -71,8 +71,6 @@ public class EditMoleViewActivity extends ViewActivity<Mole> {
 						"Invalid or already in use mole name",
 						Toast.LENGTH_LONG).show();
 				result = Activity.RESULT_CANCELED;
-			} else {
-				launchViewMole();
 			}
 		}
 

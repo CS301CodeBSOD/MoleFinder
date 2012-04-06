@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 import cs310w10.MoleFinder.Controller.MoleController;
 import cs310w10.MoleFinder.Controller.PictureController;
 import cs310w10.MoleFinder.Model.Mole;
@@ -62,18 +63,20 @@ public class MoleViewActivity extends ViewActivity<Mole> {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == EDIT_MOLE_REQUEST && resultCode == RESULT_OK) {
-		        int id = data.getIntExtra("moleId", -1);
+			int id = data.getIntExtra("moleId", -1);
 			mole = new MoleController(this).getMoleFromId(id);
 			setResult(Activity.RESULT_OK);
 		}
 		if (requestCode == CAMERA_PICTURE_REQUEST && resultCode == RESULT_OK) {
 			Bitmap imagedata = (Bitmap) data.getExtras().get("data");
-			PictureController newPictureController = new PictureController(this);
+			PictureController controller = new PictureController(this);
 
 			Calendar date = Calendar.getInstance();
 			long time = date.getTimeInMillis();
-			picture = newPictureController.createPicture(time, "",
+			picture = controller.createPicture(time, "",
 					imagedata);
+
+			controller.AssociatePictureWithMole(mole.getId());
 
 			launchEditPicture();
 		}
@@ -83,6 +86,8 @@ public class MoleViewActivity extends ViewActivity<Mole> {
 	public void update(Mole model) {
 		if (model != null) {
 			mole = model;
+		}
+		if (mole != null) {
 			name.setText(mole.getName());
 			description.setText(mole.getDescription());
 			updateGallery();
@@ -101,5 +106,7 @@ public class MoleViewActivity extends ViewActivity<Mole> {
 		data.open();
 		List<Integer> ids = data.getPhotoIdsFromeMole(mole.getId());
 		gallery.setAdapter(new ImageAdapter(getBaseContext(), ids));
+		Toast.makeText(getBaseContext(), ids.size() + "pictures",
+				Toast.LENGTH_SHORT).show();
 	}
 }

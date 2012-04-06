@@ -64,7 +64,6 @@ public class EditImageViewActivity extends ViewActivity<Picture> {
 				picture.getDate().getTimeInMillis(),
 				picture.getDescription(),
 				picture.getImageData());
-		controller.AssociatePictureWithMole(mole.getId());
 		setResult(RESULT_OK);
 		finish();
 	}
@@ -75,6 +74,7 @@ public class EditImageViewActivity extends ViewActivity<Picture> {
 	}
 
 	public void update(Picture model) {
+
 		if (model != null) {
 			picture = model;
 			String path = picture.getImageData().getPath();

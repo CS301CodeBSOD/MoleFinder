@@ -78,7 +78,9 @@ public abstract class ViewActivity<M> extends Activity implements fView<M> {
 
 	protected void launchEditMole() {
 		Intent intent = new Intent(this, EditMoleViewActivity.class);
-		putMole(intent, mole.getId());
+		if (mole != null) {
+			putMole(intent, mole.getId());
+		}
 		launchIntentRequest(intent, EDIT_MOLE_REQUEST);
 	}
 
