@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import cs310w10.MoleFinder.Controller.MoleController;
 import cs310w10.MoleFinder.Controller.PictureController;
 import cs310w10.MoleFinder.Model.Mole;
 
@@ -59,6 +60,8 @@ public class MoleViewActivity extends ViewActivity<Mole> {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == EDIT_MOLE_REQUEST && resultCode == RESULT_OK) {
+			int id = data.getIntExtra("moleId", -1);
+			mole = new MoleController(this).getMoleFromId(id);
 			setResult(Activity.RESULT_OK);
 		}
 		if (requestCode == CAMERA_PICTURE_REQUEST && resultCode == RESULT_OK) {

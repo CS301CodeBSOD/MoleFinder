@@ -61,32 +61,28 @@ public class EditMoleViewActivity extends ViewActivity<Mole> {
 		String name = nameEdit.getText().toString().trim();
 		String description = descriptionEdit.getText().toString().trim();
 		String location = locationSpinner.getSelectedItem().toString();
+		MoleController controller = new MoleController(this);
 
+		int result = Activity.RESULT_OK;
 		if (editMode) {
-			long id = mole.getId();
-
-			MoleController controller = new MoleController(this);
-			controller.getMoleFromId(id);
+			controller.getMoleFromId(mole.getId());
 			controller.editMole(name, description, location);
-			setResult(RESULT_OK, getIntent());
-
-			finish();
 		} else {
-
-			MoleController mController = new MoleController(this);
-			mController.createMole(name, description, location);
-			mole = mController.getMole();
+			mole = controller.createMole(name, description, location);
 			if (mole.getId() == -1) {
 				Toast.makeText(getBaseContext(),
 						"Invalid or already in use mole name",
 						Toast.LENGTH_LONG).show();
-
+				result = Activity.RESULT_CANCELED;
 			} else {
 				launchViewMole();
-
-				setResult(Activity.RESULT_OK, getIntent());
-				finish();
 			}
+		}
+
+		if (result == Activity.RESULT_OK) {
+			putMole(getIntent(), mole);
+			setResult(RESULT_OK, getIntent());
+			finish();
 		}
 	}
 
