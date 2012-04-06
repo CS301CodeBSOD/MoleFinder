@@ -24,8 +24,10 @@ public class ImageAdapter extends BaseAdapter {
 	public ImageAdapter(Context context, List<Integer> listids) {
 		list = new ArrayList<Picture>();
 		PictureController controller = new PictureController(context);
-		for (Integer i : listids) {
-			list.add(controller.getPictureFromId(i));
+
+		// Add them in reverse order since we get them in chronological order
+		for (int i = listids.size() - 1; i >= 0; i--) {
+			list.add(controller.getPictureFromId(listids.get(i)));
 		}
 		this.context = context;
 	}
