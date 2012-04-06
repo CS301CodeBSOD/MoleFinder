@@ -165,7 +165,7 @@ public class MoleController {
 	 *            id of the mole
 	 * @return the Mole object
 	 */
-	public void getMoleFromId(long id) {
+	public Mole getMoleFromId(long id) {
 		SQLiteDatabase database = connection.getWritableDatabase();
 		mole = new Mole();
 		Cursor cursor = database.query(TableMoles.TABLE_MOLES,
@@ -178,6 +178,7 @@ public class MoleController {
 		}
 		cursor.close();
 		connection.close();
+		return mole;
 	}
 
 	/**
