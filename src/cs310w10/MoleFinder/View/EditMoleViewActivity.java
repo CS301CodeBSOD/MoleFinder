@@ -1,6 +1,5 @@
 package cs310w10.MoleFinder.View;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
-import cs310w10.MoleFinder.Controller.ListMoleController;
 import cs310w10.MoleFinder.Controller.MoleController;
-import cs310w10.MoleFinder.Controller.MoleFinderApplication;
 import cs310w10.MoleFinder.Model.Mole;
 
 public class EditMoleViewActivity extends ViewActivity<Mole> {
@@ -48,7 +45,7 @@ public class EditMoleViewActivity extends ViewActivity<Mole> {
 		descriptionEdit = (EditText) findViewById(R.id.NewMoleViewDescriptionEdit);
 
 		locationSpinner = (Spinner) findViewById(R.id.NewMoleViewLocationSpinner);
-		
+
 	}
 
 	@Override
@@ -67,13 +64,12 @@ public class EditMoleViewActivity extends ViewActivity<Mole> {
 		String location = locationSpinner.getSelectedItem().toString();
 
 		if (editMode) {
-			Intent intent = getIntent();
-			long id = intent.getExtras().getLong(Intent.EXTRA_SUBJECT);
+			long id = mole.getId();
 
 			MoleController controller = new MoleController(this);
 			controller.getMoleFromId(id);
 			controller.editMole(name, description, location);
-			setResult(Activity.RESULT_OK, intent);
+			setResult(Activity.RESULT_OK, getIntent());
 
 			finish();
 		} else {
@@ -89,8 +85,7 @@ public class EditMoleViewActivity extends ViewActivity<Mole> {
 
 			} else {
 				Intent intent = new Intent(this, MoleViewActivity.class);
-				
-				// TODO: get mole
+
 				putMole(intent, id);
 				startActivity(intent);
 
@@ -108,6 +103,7 @@ public class EditMoleViewActivity extends ViewActivity<Mole> {
 		locationSpinner.setAdapter(adapter);
 
 	}
+
 	@Override
 	protected void updateSelf() {
 		update(mole);

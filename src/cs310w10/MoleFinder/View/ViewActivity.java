@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import cs310w10.MoleFinder.Controller.MoleController;
 import cs310w10.MoleFinder.Controller.PictureController;
-import cs310w10.MoleFinder.Model.ListMole;
-import cs310w10.MoleFinder.Model.ListPicture;
 import cs310w10.MoleFinder.Model.Mole;
 import cs310w10.MoleFinder.Model.Picture;
 
@@ -16,8 +14,6 @@ public abstract class ViewActivity<M> extends Activity implements fView<M> {
 	protected static final int EDIT_PIC_REQUEST = 126;
 	protected Mole mole;
 	protected Picture picture;
-	protected ListMole listMole;
-	protected ListPicture listPicture;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

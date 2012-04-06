@@ -66,9 +66,9 @@ public class ListMoleViewActivity extends ViewActivity<ArrayList<Mole>>
 	}
 
 	protected void pressAddButton() {
-		Intent intent;
-		intent = new Intent(this, EditMoleViewActivity.class);
-		startActivityForResult(intent, 1);
+		this.mole = null;
+		this.picture = null;
+		this.launchEditMole();
 	}
 
 	public void update(ArrayList<Mole> moles) {
