@@ -77,9 +77,14 @@ public class EditImageViewActivity extends ViewActivity<Picture> {
 
 		if (model != null) {
 			picture = model;
+		}
+		if (picture != null) {
 			String path = picture.getImageData().getPath();
 			Bitmap imagebitmap = BitmapFactory.decodeFile(path);
 			image.setImageBitmap(imagebitmap);
+
+			notesField.setText(picture.getDescription());
+
 			if (picture.getDate() == null) {
 
 				picture.setDate(Calendar.getInstance());

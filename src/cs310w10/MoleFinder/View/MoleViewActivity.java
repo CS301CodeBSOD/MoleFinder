@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -47,7 +49,21 @@ public class MoleViewActivity extends ViewActivity<Mole> {
 				pressAddPictureButton();
 			}
 		});
+		gallery.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position,
+					long id) {
+				clickPicture(id);
 
+			}
+
+		});
+
+	}
+
+	protected void clickPicture(long id) {
+		picture = new PictureController(getBaseContext()).getPictureFromId(id);
+		launchEditPicture();
 	}
 
 	protected void pressAddPictureButton() {
