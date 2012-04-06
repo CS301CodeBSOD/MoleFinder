@@ -1,7 +1,6 @@
 package cs310w10.MoleFinder.View;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,33 +21,38 @@ public class ListMoleViewActivity extends ViewActivity<ArrayList<Mole>>
 	ImageButton trashButton;
 	ImageButton addButton;
 	ListView moleListView;
+	ListMoleController lController;
+	SimpleAdapter adapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		ArrayList<Mole> moleList = MoleFinderApplication
-				.getListMoleController()
-				.getMoles();
-
-		SimpleAdapter adapter = new SimpleAdapter(
-				this,
-				new MoleMapListAdapter(moleList),
-				R.layout.mole_list_item,
-				new String[] { "name",
-						/* "description", */
-						"id",
-						"location" },
-				new int[] {
-						R.id.MoleListItemName,
-						/* R.id.MoleListItemDescription, */
-						R.id.MoleListItemId,
-						R.id.MoleListItemLocation }
-				);
-
-		moleListView.setAdapter(adapter);
-		registerForContextMenu(moleListView);
+		lController = MoleFinderApplication.getListMoleController();
+		setAdapter();
 	}
 
+	private void setAdapter(){
+            ArrayList<Mole> moleList = lController.getMoles();
+	    
+	    adapter = new SimpleAdapter(
+                    this,
+                    new MoleMapListAdapter(moleList),
+                    R.layout.mole_list_item,
+                    new String[] { "name",
+                                    /* "description", */
+                                    "id",
+                                    "location" },
+                    new int[] {
+                                    R.id.MoleListItemName,
+                                    /* R.id.MoleListItemDescription, */
+                                    R.id.MoleListItemId,
+                                    R.id.MoleListItemLocation }
+                    );
+	    moleListView.setAdapter(adapter);
+	    registerForContextMenu(moleListView);
+	    
+	}
+	
 	@Override
 	protected void setViews() {
 		setContentView(R.layout.list_mole);
@@ -76,9 +80,10 @@ public class ListMoleViewActivity extends ViewActivity<ArrayList<Mole>>
 
 	protected void pressTrashButton() {
 		// TODO: Add confirmation dialog
-		ListMoleController.deleteAllMoles();
+		lController.deleteAllMoles();
 		Toast.makeText(getBaseContext(), "Database purged", Toast.LENGTH_SHORT)
-				.show();
+                .show();
+		setAdapter();
 	}
 
 	protected void pressAddButton() {
@@ -87,10 +92,7 @@ public class ListMoleViewActivity extends ViewActivity<ArrayList<Mole>>
 		this.launchEditMole();
 	}
 
-	public void update(ArrayList<Mole> moles) {
-
-		// moleListView.setAdapter(new MoleAdapter(moles.get(),
-		// getApplicationContext()));
+	public void update(ArrayList<Mole> mole){
 
 	}
 
@@ -103,25 +105,19 @@ public class ListMoleViewActivity extends ViewActivity<ArrayList<Mole>>
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == RESULT_OK) {
-			ArrayList<Mole> moleList = MoleFinderApplication
-					.getListMoleController()
-					.getMoles();
-			update(moleList);
+		    setAdapter();
 		}
 
 	}
+	
+	@Override
+	public void onResume(){
+	    super.onResume();
+	    setAdapter();
+	}
 
 	public void onItemClick(AdapterView<?> l, View v, int position, long id) {
-		int moleId = -1;
-		try {
-			@SuppressWarnings("unchecked")
-			HashMap<String, String> item = (HashMap<String, String>) moleListView
-					.getItemAtPosition(position);
-			moleId = Integer.parseInt(item.get("id"));
-		} catch (Exception e) {
-			Toast.makeText(this, "Problem detecting item", Toast.LENGTH_SHORT)
-					.show();
-		}
-		launchViewMole(moleId);
+		// Toast.makeText(this, String.valueOf(id), Toast.LENGTH_SHORT).show();
+		launchViewMole((int) id);
 	}
 }

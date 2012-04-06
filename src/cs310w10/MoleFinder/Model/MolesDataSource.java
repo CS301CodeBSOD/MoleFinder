@@ -73,8 +73,11 @@ public class MolesDataSource {
 		Cursor cursor = database.query(TableMoles.TABLE_MOLES,
 				TableMoles.ALLCOLUMNS,
 				TableMoles.COLUMN_ID + " = " + rowId, null, null, null, null);
-		if (cursor.moveToFirst()) {
-			mole = cursorToMole(cursor);
+		cursor.moveToFirst();
+                if (!cursor.isAfterLast()) {
+                        mole = cursorToMole(cursor);
+                }else{
+                        mole = null;
 		}
 		return mole;
 	}
@@ -114,8 +117,11 @@ public class MolesDataSource {
 		Cursor cursor = database.query(TableMoles.TABLE_MOLES,
 				TableMoles.ALLCOLUMNS,
 				TableMoles.COLUMN_ID + " = " + rowId, null, null, null, null);
-		if (cursor.moveToFirst()) {
-			mole = cursorToMole(cursor);
+		cursor.moveToFirst();
+                if (!cursor.isAfterLast()) {
+                        mole = cursorToMole(cursor);
+                }else{
+                        mole = null;
 		}
 		return mole;
 	}

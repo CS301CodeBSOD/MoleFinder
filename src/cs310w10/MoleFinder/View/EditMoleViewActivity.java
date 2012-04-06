@@ -25,7 +25,10 @@ public class EditMoleViewActivity extends ViewActivity<Mole> {
 
 		if (mole != null) {
 			editMode = true;
-			update(mole);
+
+			nameEdit.setText(mole.getName());
+			descriptionEdit.setText(mole.getDescription());
+
 		} else {
 			editMode = false;
 			mole = new Mole();

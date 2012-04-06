@@ -37,6 +37,7 @@ public class MoleController {
 	 */
 	public Mole createMole(String name, String description, String location) {
 		SQLiteDatabase database = connection.getWritableDatabase();
+		mole = new Mole();
 		ContentValues values = new ContentValues();
 		values.put(TableMoles.COLUMN_NAME, name);
 		values.put(TableMoles.COLUMN_LOCATION, location);
@@ -131,6 +132,26 @@ public class MoleController {
 		return mole;
 	}
 
+        /**
+         * Retrieve all moles from the database as an ArrayList<Mole> object.
+         * 
+         * @return an ArrayList containing all moles
+         */
+        public ArrayList<Mole> getAllMoles() {    
+                SQLiteDatabase database = connection.getWritableDatabase();
+                ArrayList<Mole> allmoles = new ArrayList<Mole>();
+                Cursor cursor = database.query(TableMoles.TABLE_MOLES,
+                                TableMoles.ALLCOLUMNS, null, null, null, null, null);
+                cursor.moveToFirst();
+                while (!cursor.isAfterLast()) {
+                        Mole mole = cursorToMole(cursor);
+                        allmoles.add(mole);
+                        cursor.moveToNext();
+                }
+                return allmoles;
+
+        }
+	
 	/**
 	 * Obtain all the ids of the pictures related to the mole provided.
 	 * 
@@ -189,11 +210,10 @@ public class MoleController {
 	 * @param PhotoID
 	 */
 	public void associateMoleWithPicture(int PhotoID) {
-		
+		SQLiteDatabase database = connection.getWritableDatabase();
 		if (mole == null) {
 			return;
 		}
-		SQLiteDatabase database = connection.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put(TableMolesPictures.COLUMN_MOLEID, mole.getId());
 		values.put(TableMolesPictures.COLUMN_PICTUREID, PhotoID);

@@ -11,7 +11,7 @@ import cs310w10.MoleFinder.Model.Picture;
 public abstract class ViewActivity<M> extends Activity implements fView<M> {
 	protected static final int CAMERA_PICTURE_REQUEST = 124;
 	protected static final int EDIT_MOLE_REQUEST = 125;
-	protected static final int EDIT_PICTURE_REQUEST = 126;
+	protected static final int EDIT_PIC_REQUEST = 126;
 	protected Mole mole;
 	protected Picture picture;
 
@@ -22,11 +22,13 @@ public abstract class ViewActivity<M> extends Activity implements fView<M> {
 		Bundle extras = intent.getExtras();
 		if (intent.hasExtra("moleId")) {
 			int id = extras.getInt("moleId");
-			mole = new MoleController(this).getMoleFromId(id);
+			MoleController controller = new MoleController(this);
+			controller.getMoleFromId(id);
+			mole = controller.getMole();
 		}
 		if (intent.hasExtra("pictureId")) {
 			int id = extras.getInt("pictureId");
-			picture = new PictureController(this).getPictureFromId(id);
+			picture = PictureController.getPictureFromId(id);
 		}
 		setViews();
 		addListeners();
@@ -45,13 +47,13 @@ public abstract class ViewActivity<M> extends Activity implements fView<M> {
 		}
 	}
 
-	protected void putMole(Intent putintent, int id) {
+	protected void putMole(Intent putintent, long id) {
 		if (id >= 0) {
 			putintent.putExtra("moleId", id);
 		}
 	}
 
-	protected void putPicture(Intent putintent, int id) {
+	protected void putPicture(Intent putintent, long id) {
 		if (id >= 0) {
 			putintent.putExtra("pictureId", id);
 		}
@@ -73,11 +75,7 @@ public abstract class ViewActivity<M> extends Activity implements fView<M> {
 		Intent intent = new Intent(this, EditMoleViewActivity.class);
 		launchIntentRequest(intent, EDIT_MOLE_REQUEST);
 	}
-
-	protected void launchEditPicture() {
-		Intent intent = new Intent(this, EditImageViewActivity.class);
-		launchIntentRequest(intent, EDIT_PICTURE_REQUEST);
-	}
+	
 
 	protected void launchCamera() {
 		Intent cameraIntent = new Intent(

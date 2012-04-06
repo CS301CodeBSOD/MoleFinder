@@ -13,6 +13,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import cs310w10.MoleFinder.Model.MoleSQLiteHelper;
 import cs310w10.MoleFinder.Model.Picture;
+import cs310w10.MoleFinder.Model.TableMoles;
 import cs310w10.MoleFinder.Model.TableMolesPictures;
 import cs310w10.MoleFinder.Model.TablePictures;
 
@@ -22,7 +23,7 @@ import cs310w10.MoleFinder.Model.TablePictures;
 public class PictureController {
 
 	private Picture picture;
-	private final MoleSQLiteHelper connection;
+	private MoleSQLiteHelper connection;
 
 	public PictureController(Picture picture, Context context) {
 		this.picture = picture;
@@ -41,15 +42,15 @@ public class PictureController {
 	 * picture.setDate(Calendar.getInstance()); picture.setImageData(uri); }
 	 * this.connection = MoleSQLiteHelper.getInstance(context); }
 	 */
-	//
-	// public PictureController(int id) {
-	//
-	// }
 
-	private Uri makeFile(Bitmap imagedata, String filename) {
+	public PictureController(int id) {
+
+	}
+
+	private Uri makeFile(Bitmap imagedata, int id) {
 		String folderpath = MoleFinderApplication.getSavePath();
 		String format = MoleFinderApplication.getSaveFormat();
-		filename = filename + format;
+		String filename = "pic" + id + format;
 
 		File folder;
 		File file = null;
@@ -81,7 +82,7 @@ public class PictureController {
 		try {
 			Calendar date = picture.getDate();
 			SimpleDateFormat format = new SimpleDateFormat("MM - dd - yyyy");
-			return format.format(date.getTimeInMillis());
+			return format.format(date);
 		} catch (NullPointerException e) {
 			return null;
 		}
@@ -96,14 +97,6 @@ public class PictureController {
 		}
 	}
 
-	public String uriToString(Uri uri) {
-		return uri.toString();
-	}
-
-	public Uri uriFromString(String string) {
-		return Uri.parse(string);
-	}
-
 	/**
 	 * Get the Picture object the controller is controlling
 	 * 
@@ -113,27 +106,25 @@ public class PictureController {
 		return picture;
 	}
 
-	// public static Picture getPictureFromId(int id) {
-	// // TODO Auto-generated method stub
-	// return null;
-	// }
+	public static Picture getPictureFromId(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	/**
 	 * Create a new Picture
 	 * 
 	 * @param date
 	 * @param description
-	 * @param data
-	 *            The picture data returned by the camera intent
-	 * @returns The created picture.
+	 * @param uri
 	 */
-	public Picture createPicture(long date, String description, Bitmap data) {
-		Uri uri = makeFile(data, Long.toString(date));
+	public void createPicture(long date, String description, String uri) {
 		SQLiteDatabase database = connection.getWritableDatabase();
+		picture = new Picture();
 		ContentValues values = new ContentValues();
 		values.put(TablePictures.COLUMN_DATE, date);
 		values.put(TablePictures.COLUMN_DESCRIPTION, description);
-		values.put(TablePictures.COLUMN_URI, uriToString(uri));
+		values.put(TablePictures.COLUMN_URI, uri);
 
 		long rowId = database
 				.insert(TablePictures.TABLE_PICTURES, null, values);
@@ -146,44 +137,12 @@ public class PictureController {
 		}
 		cursor.close();
 		connection.close();
-		return picture;
 	}
 
-	/**
-	 * edits a picture that has previously been set in the database
-	 * 
-	 * @param uri
-	 * @param string
-	 * @param calendar
-	 *            .getTimeInMills()
-	 * @param description
-	 * @param uri
-	 *            .getPath()
-	 * @return
-	 */
-
-	public Picture editPicture(long date, String description, Uri uri) {
-		SQLiteDatabase database = connection.getWritableDatabase();
-		long pictureid = picture.getId();
-		ContentValues values = new ContentValues();
-		values.put(TablePictures.COLUMN_DATE, date);
-		values.put(TablePictures.COLUMN_DESCRIPTION, description);
-		values.put(TablePictures.COLUMN_URI, uriToString(uri));
-
-		database.update(TablePictures.TABLE_PICTURES, values,
-						TablePictures.COLUMN_ID + " = " + pictureid, null);
-
-		Cursor cursor = database
-				.query(TablePictures.TABLE_PICTURES,
-						TablePictures.ALLCOLUMNS,
-						TablePictures.COLUMN_ID + " = " + pictureid, null, null,
-						null, null);
-		if (cursor.moveToFirst()) {
-			picture = cursorToPicture(cursor);
-		}
-		cursor.close();
-		connection.close();
-		return picture;
+	public void createPicture(long date, String description, Bitmap data) {
+		String newString = null;
+		createPicture(date, description, newString);
+		makeFile(data, picture.getId());
 	}
 
 	/**
@@ -192,9 +151,6 @@ public class PictureController {
 	 * @param picture
 	 */
 	public void deletePicture() {
-		if (picture == null){
-			return;
-		}
 		SQLiteDatabase database = connection.getWritableDatabase();
 		long picid = picture.getId();
 		database.delete(TablePictures.TABLE_PICTURES,
@@ -208,20 +164,44 @@ public class PictureController {
 	 */
 	private Picture cursorToPicture(Cursor cursor) {
 		Picture picture = new Picture();
-
 		int pictureId = cursor.getInt(0);
 		picture.setId(pictureId);
-
 		picture.setDescription(cursor.getString(1));
-
 		Calendar date = Calendar.getInstance();
 		date.setTimeInMillis(cursor.getInt(2));
 		picture.setDate(date);
-
-		Uri imageData = uriFromString(cursor.getString(3));
+		Uri imageData = Uri.parse(cursor.getString(3));
 		picture.setImageData(imageData);
 
 		return picture;
+	}
+
+	/**
+	 * edits a picture that has previously been set in the database
+	 * 
+	 * @param date
+	 * @param description
+	 * @param uri
+	 * @return
+	 */
+	public void editPicture(String date, String description, String uri) {
+		SQLiteDatabase database = connection.getWritableDatabase();
+		long pictureid = picture.getId();
+		ContentValues values = new ContentValues();
+		values.put(TablePictures.COLUMN_DATE, date);
+		values.put(TablePictures.COLUMN_DESCRIPTION, description);
+		values.put(TablePictures.COLUMN_URI, uri);
+		long rowId = database.update(TablePictures.TABLE_PICTURES, values,
+				TablePictures.COLUMN_ID + " = " + pictureid, null);
+
+		Cursor cursor = database.query(TablePictures.TABLE_PICTURES,
+				TablePictures.ALLCOLUMNS,
+				TableMoles.COLUMN_ID + " = " + rowId, null, null, null, null);
+		if (cursor.moveToFirst()) {
+			picture = cursorToPicture(cursor);
+		}
+		cursor.close();
+		connection.close();
 	}
 
 	/**
@@ -248,7 +228,7 @@ public class PictureController {
 	 * 
 	 * @param id
 	 */
-	public Picture getPictureFromId(long id) {
+	public void getPictureFromId(long id) {
 		SQLiteDatabase database = connection.getWritableDatabase();
 		picture = new Picture();
 		Cursor cursor = database.query(TablePictures.TABLE_PICTURES,
@@ -261,7 +241,6 @@ public class PictureController {
 		}
 		cursor.close();
 		connection.close();
-		return picture;
 	}
 
 }
