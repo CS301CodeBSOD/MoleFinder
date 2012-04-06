@@ -10,9 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
-import cs310w10.MoleFinder.Controller.ListMoleController;
 import cs310w10.MoleFinder.Controller.MoleController;
-import cs310w10.MoleFinder.Controller.MoleFinderApplication;
 import cs310w10.MoleFinder.Model.Mole;
 
 public class NewMoleViewActivity extends Activity implements fView<Mole> {

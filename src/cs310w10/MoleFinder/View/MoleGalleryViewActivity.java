@@ -1,17 +1,23 @@
 package cs310w10.MoleFinder.View;
 
+import java.util.ArrayList;
+
+import cs310w10.MoleFinder.Model.Mole;
+
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageSwitcher;
 import android.widget.TextView;
-import cs310w10.MoleFinder.Model.ListMole;
 
-public class MoleGalleryViewActivity extends ViewActivity<ListMole> {
-	private ImageSwitcher imageSwitcher;
+
+public class MoleGalleryViewActivity extends ViewActivity<ArrayList<Mole>> {
+	@SuppressWarnings("unused")
+        private ImageSwitcher imageSwitcher;
 	private ImageButton editButton;
 	private TextView dateText;
-	private TextView notesText;
+	@SuppressWarnings("unused")
+        private TextView notesText;
 
 	@Override
 	protected void setViews() {
@@ -36,7 +42,7 @@ public class MoleGalleryViewActivity extends ViewActivity<ListMole> {
 		// TODO: transfer intent to EditImage
 	}
 
-	public void update(ListMole model) {
+	public void update(ArrayList<Mole> model) {
 		// TODO Auto-generated method stub
 
 	}

@@ -10,6 +10,7 @@ import cs310w10.MoleFinder.View.fView;
  *         by the user
  * @deprecated
  */
+@SuppressWarnings("rawtypes")
 @Deprecated
 public class ListMole extends fModel<fView> {
 	/**

@@ -16,6 +16,10 @@ import cs310w10.MoleFinder.Controller.ListMoleController;
 import cs310w10.MoleFinder.Controller.MoleFinderApplication;
 import cs310w10.MoleFinder.Model.Mole;
 
+/**
+ * @author John Ryalls
+ * 
+ */
 public class SearchViewActivity extends ViewActivity<ArrayList<Mole>> implements
 		OnItemClickListener
 {

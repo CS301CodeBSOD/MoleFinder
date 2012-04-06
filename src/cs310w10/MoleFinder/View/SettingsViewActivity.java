@@ -3,6 +3,7 @@
  */
 package cs310w10.MoleFinder.View;
 
+import cs310w10.MoleFinder.Controller.ListMoleController;
 import cs310w10.MoleFinder.Controller.MoleFinderApplication;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
@@ -13,7 +14,7 @@ import android.preference.PreferenceActivity;
 import android.widget.Toast;
 
 /**
- * @author ryalls
+ * @author John Ryalls
  * 
  */
 public class SettingsViewActivity extends PreferenceActivity
@@ -22,8 +23,6 @@ public class SettingsViewActivity extends PreferenceActivity
     private CheckBoxPreference checkboxPassword;
     private EditTextPreference editPassword;
     private EditTextPreference editDeleteAllMoles;
-    private boolean            passwordEnabled;
-    private String             password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -65,8 +64,8 @@ public class SettingsViewActivity extends PreferenceActivity
                         if (newValue.toString().equals(
                                 "I want to delete all my moles!"))
                         {
-                            MoleFinderApplication.getListMoleController()
-                                    .deleteAllMoles();
+                            MoleFinderApplication.getListMoleController();
+                            ListMoleController.deleteAllMoles();
                             Toast.makeText(getBaseContext(),
                                     "Mole data deleted.", Toast.LENGTH_LONG)
                                     .show();

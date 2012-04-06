@@ -10,6 +10,7 @@ import cs310w10.MoleFinder.View.fView;
  * @author Bing Pan
  * @deprecated
  */
+@SuppressWarnings("rawtypes")
 @Deprecated
 public class ListPicture extends fModel<fView> {
 

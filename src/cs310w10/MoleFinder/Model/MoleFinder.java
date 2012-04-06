@@ -10,6 +10,7 @@ import cs310w10.MoleFinder.View.fView;
  * compiling lists of Moles from the ListMole model and from the database 
  *
  */
+@SuppressWarnings("rawtypes")
 public class MoleFinder extends fModel<fView> {
 
 }
