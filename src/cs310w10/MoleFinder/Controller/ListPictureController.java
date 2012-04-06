@@ -13,6 +13,14 @@ import cs310w10.MoleFinder.Model.Picture;
 import cs310w10.MoleFinder.Model.TableMolesPictures;
 import cs310w10.MoleFinder.Model.TablePictures;
 
+
+/**
+ * ListPictureController serves as an interface between the view and the
+ * model, primarily in the creation and management of lists of Pictures.
+ * 
+ * @author 
+ * 
+ */
 public class ListPictureController {
 	private ArrayList<Picture> pictures;
 	private final MoleSQLiteHelper connection;
@@ -29,7 +37,12 @@ public class ListPictureController {
 	public void insertPicture(PictureController picture) {
 		pictures.add(picture.getPicture());
 	}
-
+    /**
+     * Find a picture object with the given id
+     * 
+     * @param id
+     * @return picture
+     */
 	public Picture getPictureById(int id) {
 		Iterator<Picture> li = pictures.iterator();
 		while (li.hasNext()) {
@@ -41,6 +54,11 @@ public class ListPictureController {
 		return null;
 	}
 
+	 /**
+     * retrieve all picture objects from the database
+     * 
+     * @return picture
+     */
 	public void getAllPictures() {
 		SQLiteDatabase database = connection.getWritableDatabase();
 		pictures = new ArrayList<Picture>();
@@ -61,7 +79,7 @@ public class ListPictureController {
 	 * cursor provided
 	 * 
 	 * @param cursor
-	 * @return
+	 * @return picture
 	 */
 	private Picture cursorToPicture(Cursor cursor) {
 		Picture picture = new Picture();
@@ -117,7 +135,7 @@ public class ListPictureController {
 	}
 
 	/**
-	 * Delete the list of moles from the database
+	 * Delete the list of pictures from the database
 	 */
 	public void deleteListPicture() {
 		SQLiteDatabase database = connection.getWritableDatabase();
