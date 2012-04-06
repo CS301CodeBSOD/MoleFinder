@@ -34,7 +34,7 @@ Curabitur et felis tortor, ut laoreet nisl. Maecenas metus nisl, auctor aliquam 
         android:id="@+id/MoleViewGallery"
         android:layout_alignParentBottom="true"
         android:layout_width="fill_parent"
-        android:layout_height="80dip" />
+        android:layout_height="160dip" />
     
     <ImageButton
         android:id="@+id/MoleViewAddPictureButton"
