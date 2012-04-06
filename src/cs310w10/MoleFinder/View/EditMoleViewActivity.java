@@ -90,6 +90,25 @@ public class EditMoleViewActivity extends ViewActivity<Mole> {
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		locationSpinner.setAdapter(adapter);
 
+		if (mole != null) {
+			nameEdit.setText(mole.getName());
+			descriptionEdit.setText(mole.getDescription());
+			int index = findAdapterItem(adapter,
+					mole.getLocation());
+			if (index != -1) {
+				locationSpinner.setSelection(index);
+			}
+		}
+	}
+
+	private int findAdapterItem(ArrayAdapter<CharSequence> adapter,
+			String location) {
+		for (int i = 0; i < adapter.getCount(); i++) {
+			if (adapter.getItem(i).equals(location)) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	@Override
