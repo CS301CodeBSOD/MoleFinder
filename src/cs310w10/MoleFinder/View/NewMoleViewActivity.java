@@ -42,12 +42,12 @@ public class NewMoleViewActivity extends Activity implements fView<Mole> {
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		locationSpinner.setAdapter(adapter);
 
+        MoleController  mcontroller = new MoleController(this);
 		if (getIntent().hasExtra("id")) {
 			editMode = true;
 			Intent intent = getIntent();
 			int id = intent.getExtras().getInt(Intent.EXTRA_SUBJECT);
 			
-			MoleController  mcontroller = new MoleController(this);
 
 			mcontroller.getMoleFromId(id);
 			

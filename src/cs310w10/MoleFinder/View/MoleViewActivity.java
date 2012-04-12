@@ -121,5 +121,6 @@ public class MoleViewActivity extends ViewActivity<Mole> {
 		data.open();
 		List<Integer> ids = data.getPhotoIdsFromeMole(mole.getId());
 		gallery.setAdapter(new ImageAdapter(getBaseContext(), ids));
+		data.close();
 	}
 }
